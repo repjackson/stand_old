@@ -11,6 +11,20 @@ Template.registerHelper 'emotion_selector_class', () ->
         'orange invert'
     else if @title is 'fear'
         'grey invert'
+
+
+Template.registerHelper 'in_role', (role)->
+    if Meteor.user() and Meteor.user().roles
+        if role in Meteor.user().roles
+            true
+        else
+            false
+    else
+        false
+
+
+
+
 Template.registerHelper 'sentence_class', () ->
     # console.log @
     if @tones.length
@@ -84,6 +98,20 @@ Template.registerHelper 'is_gifv', () ->
 Template.registerHelper 'gif_filename', () ->
     @url.slice(0,-1)
     # true
+
+
+Template.registerHelper 'is_author', () ->
+    # if @_author_id and Meteor.userId()
+    @_author_id is Meteor.userId()
+
+
+Template.registerHelper 'can_edit', () ->
+    # if @_author_id and Meteor.userId()
+    @_author_id is Meteor.userId()
+    if Meteor.user().roles
+        'admin' in Meteor.user().roles
+
+
 
 Template.registerHelper 'current_doc', () ->
     Docs.findOne Router.current().params.doc_id
@@ -230,5 +258,8 @@ Template.registerHelper 'publish_when', ()->
         if @watson.metadata
             if @watson.metadata.publication_date
                 moment(@watson.metadata.publication_date).fromNow()
+
+Template.registerHelper 'when', ()->
+    moment(@_timestamp).fromNow()
 
 Template.registerHelper 'in_dev', ()-> Meteor.isDevelopment
