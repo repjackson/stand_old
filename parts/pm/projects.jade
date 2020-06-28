@@ -13,7 +13,7 @@ template(name='project_stats')
     .ui.fluid.accordion
         .title
             .ui.inline.header 
-                +i name='line chart' classes='ui avatar image'
+                +i name='line chart' cl='ui avatar image'
                 |project stats
                 .ui.large.basic.label #{project_stats_doc.total_count} total
                 .ui.large.basic.label #{project_stats_doc.complete_count} complete 
@@ -61,7 +61,7 @@ template(name='project_card_template')
         //-     +i name='approval' title='approved'
         //- else
         //-     i.large.circle.outline.icon(title='not approved')
-        //- +ismall name='tags' classes='ui inline image'
+        //- +ismall name='tags' cl='ui inline image'
         //- each tags
         //-     .ui.basic.label #{this}
         //- div
@@ -165,7 +165,7 @@ template(name='project_layout')
                 .six.wide.column 
                     //- a.ui.button(href="/projects" title='view projects')
                     //-     i.left.chevron.icon
-                    //-     +i name='work' classes='ui avatar image'
+                    //-     +i name='work' cl='ui avatar image'
                     //-     |projects
                     .ui.inline.header
                         //- if icon
@@ -327,7 +327,7 @@ template(name='latest_project_updates')
     .ui.link.list
         each latest_updates
             a.item(href="/project/#{parent_id}/view") 
-                +ismall name=project.icon classes='ui middle aligned image'
+                +ismall name=project.icon cl='ui middle aligned image'
                 .ui.small.inline.header 
                     |#{project.title}: 
                 strong #{text}

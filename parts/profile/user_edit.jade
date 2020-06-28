@@ -65,13 +65,13 @@ template(name='user_edit_info')
             +phone_edit key='phone' label='phone' icon='phone' direct=true
             +array_edit key='tags' label='tags' direct=true
             .ui.header score goals
-            +number_edit key='english' label='english' min=10 max=36 direct=true label_classes='inline'
+            +number_edit key='english' label='english' min=10 max=36 direct=true label_cl='inline'
             div
-            +number_edit key='math' label='math' min=10 max=36 direct=true label_classes='inline'
+            +number_edit key='math' label='math' min=10 max=36 direct=true label_cl='inline'
             div
-            +number_edit key='reading' label='reading' min=10 max=36 direct=true label_classes='inline'
+            +number_edit key='reading' label='reading' min=10 max=36 direct=true label_cl='inline'
             div
-            +number_edit key='science' label='science' min=10 max=36 direct=true label_classes='inline'
+            +number_edit key='science' label='science' min=10 max=36 direct=true label_cl='inline'
             .ui.list
                 .item Top 50 colleges: 95th percentile, 31 ACT
                 .item Top 100 colleges: 91st percentile, 29 ACT
@@ -119,7 +119,7 @@ template(name='password_edit')
             |reset password
     .ui.fluid.large.basic.button.set_password
         i.lock.icon
-        //- +i name='password' classes='ui mini inline image'
+        //- +i name='password' cl='ui mini inline image'
         | set password
             
             

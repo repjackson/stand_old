@@ -15,16 +15,16 @@ template(name='model_edit_layout')
                         i.trash.red.icon
                 .twelve.wide.column
                     a.ui.compact.large.button(href="/model/edit/#{current_doc._id}/" class="{{isActivePath regex='model_edit_dashboard'}}")
-                        +ismall name='dashboard' classes='ui inline image'
+                        +ismall name='dashboard' cl='ui inline image'
                         |dashboard
                     a.ui.compact.large.button(href="/model/edit/#{current_doc._id}/fields" class="{{isActivePath regex='model_edit_fields'}}")
-                        +ismall name='list' classes='ui inline image'
+                        +ismall name='list' cl='ui inline image'
                         |fields
                     a.ui.compact.large.button(href="/model/edit/#{current_doc._id}/modules" class="{{isActivePath regex='model_edit_modules'}}")
-                        +ismall name='module' classes='ui inline image'
+                        +ismall name='module' cl='ui inline image'
                         |modules
                     a.ui.compact.large.button(href="/model/edit/#{current_doc._id}/permissions" class="{{isActivePath regex='model_edit_permissions'}}")
-                        +ismall name='shield' classes='ui inline image'
+                        +ismall name='shield' cl='ui inline image'
                         |permissions
                     +yield
                     
@@ -75,7 +75,7 @@ template(name='field_edit')
         .title.field_edit.pointer
             |#{rank}
             if icon
-                +icon name=icon classes='ui mini inline image'
+                +icon name=icon cl='ui mini inline image'
                 //- i.icon(class=icon)
             strong #{title}
             | (#{field_type})

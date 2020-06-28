@@ -1,4 +1,52 @@
 if Meteor.isClient
+    Template.registerHelper 'delta_key_value_is', (key, value) ->
+        # console.log 'key', key
+        delta = Docs.findOne model:'delta'
+        # console.log 'value', value
+        delta["#{key}"] is value
+    Template.registerHelper 'fixed', (input) ->
+        if input
+            input.toFixed(2)
+    Template.registerHelper 'current_delta', () -> Docs.findOne model:'delta'
+
+
+    Template.registerHelper 'field_value', () ->
+        # console.log @
+        parent = Template.parentData()
+        parent5 = Template.parentData(5)
+        parent6 = Template.parentData(6)
+
+
+        if @direct
+            parent = Template.parentData()
+        else if parent5
+            if parent5._id
+                parent = Template.parentData(5)
+        else if parent6
+            if parent6._id
+                parent = Template.parentData(6)
+        # console.log 'parent', parent
+        if parent
+            parent["#{@key}"]
+
+
+    Template.registerHelper 'sorted_field_values', () ->
+        # console.log @
+        parent = Template.parentData()
+        parent5 = Template.parentData(5)
+        parent6 = Template.parentData(6)
+
+
+        if @direct
+            parent = Template.parentData()
+        else if parent5._id
+            parent = Template.parentData(5)
+        else if parent6._id
+            parent = Template.parentData(6)
+        if parent
+            _.sortBy parent["#{@key}"], 'number'
+
+
     Router.route '/m/:model_slug', (->
         @render 'delta'
         ), name:'delta'

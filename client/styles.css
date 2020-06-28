@@ -52,7 +52,7 @@ body {
 }
 
 .ui.button.result:hover{
-    /* transition: transform .5s; /* Animation */ */
+    transition: transform .5s; /* Animation */
     /* color: black !important; */
     /* font-size: 120% !important; */
     /* : 130% !important; */
@@ -106,6 +106,9 @@ a.goto_article {
     color: grey !important;
 }
 
+.ui.button:not(.circular)) {
+    border-radius: 20px !important;
+}
 .ui.button {
     margin: 2px !important;
     /* border-radius: 20px !important; */

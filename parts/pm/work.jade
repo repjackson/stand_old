@@ -3,7 +3,7 @@ template(name='work')
         .row
             .twelve.wide.column
                 .ui.inline.header 
-                    +i name='work' classes='ui avatar image'
+                    +i name='work' cl='ui avatar image'
                     |work
                 .ui.label #{work_stats_doc.total_count} total
                 .ui.label #{work_stats_doc.complete_count} complete 
@@ -255,7 +255,7 @@ template(name='work_view')
                 .sixteen.wide.column 
                     a.ui.large.button(href="/work")
                         i.left.chevron.icon
-                        //- +i name='work' classes='ui avatar image'
+                        //- +i name='work' cl='ui avatar image'
                         |work
                     h1.ui.inline.header 
                         if complete 

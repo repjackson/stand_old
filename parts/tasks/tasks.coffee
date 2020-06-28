@@ -90,7 +90,7 @@ if Meteor.isClient
             Router.go "/task/#{_id}/edit"
     Template.task_card_template.helpers
         task_segment_class: ->
-            classes=''
+            cl=''
             if @complete
                 classes += ' green'
             if Session.equals('selected_task_id', @_id)

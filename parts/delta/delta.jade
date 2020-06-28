@@ -8,7 +8,7 @@ template(name='delta')
                     if is_loading
                         .ui.inline.header.pulsing
                             //- i.yin.yang.loading.large.icon
-                            +icon name=color_icon classes='pulsing'
+                            +icon name=color_icon cl='pulsing'
                             |loading #{title}...
                     else
                         //- unless key_value_is current_delta.model_filter 'model'
@@ -48,6 +48,7 @@ template(name='delta')
                     //-     |#{views}
                     div
                     each sorted_facets
+                        //- .ui.header hi
                         +facet
                 .eleven.wide.column
                     |&nbsp;
@@ -122,7 +123,9 @@ template(name='delta')
                         //- .ui.compact.small.icon.button.toggle_right_panel
                         //-     i.table.large.icon
                         .spacer
-                    .scrolling    
+                    .scrollin  
+                        //- each current_delta.result_ids
+                        //-     .ui.header #{this}
                         if delta_key_value_is 'view_mode' 'cards'
                             .ui.cards
                                 each current_delta.result_ids
@@ -208,7 +211,7 @@ template(name='facet')
         //- .ui.fluid.rounded.accordion
             //- .active.title
         if icon
-            +icon name=icon classes='ui avatar image'
+            +icon name=icon cl='ui avatar image'
             //- i.grey.icon(class=icon)
         .ui.grey.inline.header 
             if title
