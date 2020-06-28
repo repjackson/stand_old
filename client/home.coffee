@@ -9,92 +9,16 @@ Template.admin.helpers
         Docs.find().count()
 
 
-Template.agg_tag.onCreated ->
-    # console.log @
-    @autorun => @subscribe 'term', @data.title
-
 Template.home.onCreated ->
-    Session.setDefault('current_query', '')
-    Session.setDefault('dummy', true)
-    @autorun => @subscribe 'terms',
-        selected_tags.array()
-    @autorun => @subscribe 'tag_results',
-        selected_tags.array()
-        selected_subreddits.array()
-        selected_domains.array()
-        selected_authors.array()
-        selected_emotions.array()
-        Session.get('current_query')
-        Session.get('dummy')
-        Session.get('date_setting')
-    @autorun => @subscribe 'doc_results',
-        selected_tags.array()
-        selected_subreddits.array()
-        selected_domains.array()
-        selected_authors.array()
-        selected_emotions.array()
-        Session.get('date_setting')
-
-Template.tone.events
-    # 'click .upvote_sentence': ->
-    'click .tone_item': ->
-        # console.log @
-        doc_id = Docs.findOne()._id
-        if @weight is 3
-            Meteor.call 'reset_sentence', doc_id, @, ->
-        else
-            Meteor.call 'upvote_sentence', doc_id, @, ->
-
-Template.agg_tag.helpers
-    term: ->
-        # console.log @
-        Terms.findOne
-            title:@title
-    tag_result_class: ->
-        # console.log 'active_term class', @
-        term =
-            Terms.findOne title:@title
-        if term
-            # console.log 'found term emotion', term
-            if term.max_emotion_name
-                if term.max_emotion_name is 'anger'
-                    'red invert'
-                else if term.max_emotion_name is 'sadness'
-                    'blue invert'
-                else if term.max_emotion_name is 'joy'
-                    'green invert'
-                else if term.max_emotion_name is 'disgust'
-                    'orange invert'
-                else if term.max_emotion_name is 'fear'
-                    'grey invert'
-
-
-Template.agg_tag.events
-    'click .result': (e,t)->
-        Meteor.call 'log_term', @title, ->
-        selected_tags.push @title
-
-        $('#search').val('')
-        Meteor.call 'call_wiki', @title, ->
-        Meteor.call 'calc_term', @title, ->
-        Meteor.call 'omega', @title, ->
-        Session.set('current_query', '')
-        Session.set('searching', false)
-
-        Meteor.call 'search_reddit', selected_tags.array(), ->
-        # Meteor.setTimeout ->
-        #     Session.set('dummy', !Session.get('dummy'))
-        # , 7000
-    # 'click .call_visual': ->
-    #     Meteor.call 'call_visual', @_id, (err,res)->
-    #         console.log res
-
-    'click .select_query': ->
-        selected_tags.push @title
-        Meteor.call 'search_reddit', selected_tags.array(), ->
-        $('#search').val('')
-        Session.set('current_query', '')
-        Session.set('searching', false)
+    # Session.get('dummy')
+    # Session.get('date_setting')
+    # @autorun => @subscribe 'doc_results',
+    #     selected_tags.array()
+    #     selected_subreddits.array()
+    #     selected_domains.array()
+    #     selected_authors.array()
+    #     selected_emotions.array()
+    #     Session.get('date_setting')
 
 Template.home.events
     'click .set_today': -> Session.set('date_setting','today')
@@ -117,20 +41,6 @@ Template.home.events
     'click .unselect_subreddit': ->
         selected_subreddits.remove @valueOf()
         # console.log selected_tags.array()
-
-    'click .select_domain': ->
-        selected_domains.push @title
-    'click .unselect_domain': ->
-        selected_domains.remove @valueOf()
-        # console.log selected_tags.array()
-
-    'click .select_emotion': ->
-        selected_emotions.push @title
-    'click .unselect_emotion': ->
-        selected_emotions.remove @valueOf()
-        # console.log selected_tags.array()
-
-    # 'click .refresh_tags': ->
 
     'click .clear_selected_tags': ->
         Session.set('current_query','')
@@ -216,21 +126,6 @@ Template.home.events
         # console.log @
         Meteor.call 'get_reddit_post', @_id, @reddit_id, =>
         # Meteor.call 'agg_omega', ->
-
-    'click .call_watson': ->
-        if @rd and @rd.selftext_html
-            dom = document.createElement('textarea')
-            # dom.innerHTML = doc.body
-            dom.innerHTML = @rd.selftext_html
-            console.log 'innner html', dom.value
-            # return dom.value
-            Docs.update @_id,
-                $set:
-                    parsed_selftext_html:dom.value
-        Meteor.call 'call_watson', @_id, 'url', 'url', ->
-        # Meteor.call 'agg_omega', ->
-
-
 
 
 

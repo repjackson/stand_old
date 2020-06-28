@@ -6,7 +6,7 @@ body {
     /* font-size: 110% !important; */
     /* line-height: 200% !important; */
     /* background: rgba(0,0,0,.8) !important; */
-    background: rgba(0,0,0,.3) !important;
+    background: rgba(0,0,0,.1) !important;
     /* filter: invert(1) !important; */
     /* overscroll-behavior: none; */
     transition: all 1s ease !important;
@@ -130,7 +130,7 @@ a.title, #title {
 
 .ui.embed, .ui.text, .invert, img{
     border-radius: 10px !important;
-    filter: invert(1) !important;
+    /* filter: invert(1) !important; */
 }
 .left.floated{
     margin:3px !important;

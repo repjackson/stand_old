@@ -14,25 +14,10 @@ Meteor.publish 'doc', (doc_id)->
     Docs.find
         _id:doc_id
 
-Meteor.publish 'term', (title)->
-    Terms.find
-        title:title
-
-Meteor.publish 'terms', (selected_tags, searching, query)->
-    # console.log 'selected tags looking for terms', selected_tags
-    # console.log 'looking for tags', Tags.find().fetch()
-    Terms.find
-        image:$exists:true
-        title:$in:selected_tags
-
-
 
 Meteor.publish 'tag_results', (
     selected_tags
-    selected_subreddits
-    selected_domains
     selected_authors
-    selected_emotions
     query
     dummy
     date_setting

@@ -1,7 +1,8 @@
 template(name='nav')
     .ui.fluid.attached.borderless.inverted.blue.menu
         a.item(href="/")
-            .ui.header
+            .ui.inverted.header
+                +icon name='hand-planting'
                 |the stand
         .item 
             .ui.input 
@@ -191,7 +192,7 @@ template(name='footer')
                 +bug_reporter 
                 .ui.grey.small.header    
                     i.copyright.outline.icon 
-                    |2020 defacebook
+                    |2020 the stand coop
             //- 
 template(name='footer_chat')
     a.ui.grey.header(href="/chat")
