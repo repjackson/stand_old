@@ -3,7 +3,7 @@ template(name='delta')
         with current_model
             .row
                 .five.wide.column
-                    a.ui.icon.button.go_home(href='/m/model' class="{{isActivePath '/m/model'}}" title='models')
+                    a.ui.icon.circular.button.go_home(href='/m/model' class="{{isActivePath '/m/model'}}" title='models')
                         i.large.yin.yang.icon
                     if is_loading
                         .ui.inline.header.pulsing
@@ -12,31 +12,31 @@ template(name='delta')
                             |loading #{title}...
                     else
                         //- unless key_value_is current_delta.model_filter 'model'
-                        //-     a.ui.icon.button.go_home
+                        //-     a.ui.icon.circular.button.go_home
                         //-         i.left.chevron.icon
                         .ui.inline.header(title="#{description}, #{views} views")
                             +icon name=color_icon
                             | #{title}
                     unless is_loading
                         if currentUser
-                            .ui.icon.compact.button.add_model_doc(title="add #{slug}")
+                            .ui.icon.compact.circular.button.add_model_doc(title="add #{slug}")
                                 i.plus.large.green.icon
                         //- +user_list_toggle key='bookmark_ids' add_icon='bookmark outline' remove_icon='bookmark' label="bookmark"
                         if is_admin
-                            .ui.icon.button.edit_model(title='configure model')
+                            .ui.icon.circular.button.edit_model(title='configure model')
                                 i.cog.icon
                         if current_delta
                             if is_admin
-                                .ui.icon.button.delete_delta(title='delete session document')
+                                .ui.icon.circular.button.delete_delta(title='delete session document')
                                     i.remove.icon
-                                .ui.icon.button.print_delta(title='print delta')
+                                .ui.icon.circular.button.print_delta(title='print delta')
                                     i.code.icon
-                                i.refresh.link.reset.icon(title='reload session')
+                                i.refresh.link.reset.circular.icon(title='reload session')
                             if is_dev
                                 i.code.link.icon.print_delta(title='print session doc')
                                 i.trash.delete_delta.link.icon(title='delete session')
                         else
-                            .create_delta.ui.large.button(title='new session')
+                            .create_delta.ui.large.circular.button(title='new session')
                                 i.plus.icon
                                 |session
                         //- if is_dev
@@ -70,12 +70,12 @@ template(name='delta')
                                     each sortable_fields
                                         .item.set_sort_key 
                                             |#{title}
-                        .ui.compact.icon.button.set_sort_direction(title='sort direction')
+                        .ui.compact.icon.circular.button.set_sort_direction(title='sort direction')
                             if sorting_up
                                 i.sort.amount.down.large.icon
                             else
                                 i.sort.amount.up.large.icon
-                        //- .ui.compact.button.set_sort_direction
+                        //- .ui.compact.circular.button.set_sort_direction
                         //-     |#{current_delta.sort_direction}
                         |&nbsp;
                         |&nbsp;
@@ -120,7 +120,7 @@ template(name='delta')
                                     //- +set_view_mode title='items' icon='list'
                                     //- +set_view_mode title='map' icon='map'
                                     //- +set_view_mode title='graph' icon='graph'
-                        //- .ui.compact.small.icon.button.toggle_right_panel
+                        //- .ui.compact.small.icon.circular.button.toggle_right_panel
                         //-     i.table.large.icon
                         .spacer
                     .scrollin  
@@ -160,10 +160,10 @@ template(name='delta')
             //-         if model_stats_exists
             //-             +Template.dynamic template=model_stats
             //-         .ui.header calculations
-            //-         .ui.button rerun calculations
+            //-         .ui.circular.button rerun calculations
         unless current_model
             if is_admin
-                .ui.big.button.create_model create model
+                .ui.big.circular.button.create_model create model
             //- else 
                 //- .ui.header model not found
             
@@ -226,7 +226,7 @@ template(name='facet')
                 //- div
         each filtering_res
             if name
-                .selector.ui.compact.button.toggle_selection(class=toggle_value_class title=count)
+                .selector.ui.compact.circular.button.toggle_selection(class=toggle_value_class title=count)
                     //- with ..
                     //- if parent_key_value_is 'field_type' 'color_icon'
                     //-     .ui.header icon
@@ -235,7 +235,7 @@ template(name='facet')
                     if is_admin
                         small #{cal_count} #{count}
             else
-                .selector.ui.compact.button.toggle_selection(class=toggle_value_class)
+                .selector.ui.compact.circular.button.toggle_selection(class=toggle_value_class)
                     strong [null]
                     //- small #{cal_count}
         //- .ui.hidden.divider
@@ -243,10 +243,10 @@ template(name='facet')
         
 template(name='toggle_delta_config')
     if boolean_true
-        .ui.active.icon.button.disable_key(title=label)
+        .ui.active.icon.circular.button.disable_key(title=label)
             // | #{label}
     else
-        .ui.icon.button.enable_key(title=label)
+        .ui.icon.circular.button.enable_key(title=label)
             // | #{label}
             
             

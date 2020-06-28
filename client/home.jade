@@ -7,27 +7,27 @@ template(name='home')
                 +task_panel
             .four.wide.column
                 a.ui.header(href="/shop") 
-                    +icon name='shop'
+                    +icon name='shop' cl='ui mini image'
                     |shop
             .four.wide.column
                 a.ui.header(href="/delivery")
-                    +icon name='delivery'
+                    +icon name='delivery' cl='ui mini image'
                     |deliveries
             .four.wide.column
                 a.ui.header(href="/garden") 
-                    +icon name='garden'
+                    +icon name='garden' cl='ui mini image'
                     |gardens
             .four.wide.column
                 a.ui.header(href="/pictures")
-                    +icon name='picture'
+                    +icon name='picture' cl='ui mini image'
                     |photos
             .four.wide.column
                 a.ui.header(href="/users") 
-                    +icon name='groups'
+                    +icon name='groups' cl='ui mini image'
                     |people
             .four.wide.column
                 a.ui.header(href="/stats") 
-                    +icon name='line-chart'
+                    +icon name='line-chart' cl='ui mini image'
                     |stats
             .four.wide.column
                 
@@ -44,7 +44,7 @@ template(name='admin_panel')
     
     
 template(name='task_panel')
-    .ui.header
+    a.ui.header(href="/tasks")
         +icon name='tasks'
         //- i.tasks.icon
         |tasks

@@ -1,5 +1,5 @@
 template(name='nav')
-    .ui.fluid.attached.borderless.inverted.blue.small.menu
+    .ui.fluid.attached.borderless.inverted.blue.small.menu.topnav
         a.item(href="/")
             .ui.inverted.header
                 +icon name='hand-planting'
@@ -24,111 +24,126 @@ template(name='nav')
             +icon name='project' cl='ui mini spaced image'
             //- strong groups
         .right.menu
+            a.icon.item(href="/m/model") 
+                i.code.large.icon
+            if is_admin
+                a.icon.item(href="/admin") 
+                    i.large.shield.large.icon
+            //- a.icon.item.mobile.hidden(href="/help") 
+            //-     i.question.large.icon
+        
             if currentUser
                 //- a.icon.item
                 //-     i.plus.large.icon
                 a.icon.item
-                    i.chat.large.icon
+                    i.large.chat.large.icon
                 a.icon.item
-                    i.bell.large.icon
+                    i.large.bell.large.icon
                 a.item(href="/user/#{currentUser.username}")
-                    i.user.large.icon
+                    i.large.user.large.icon
                     |#{currentUser.username}
             else
                 a.item(href="/login")
-                    i.sign.in.alternate.icon
+                    i.large.sign.in.alternate.icon
                     |login
+    .ui.fluid.attached.menu.secnav
+        each models
+            a.item.goto_model(href="/m/#{slug}")
+                //- i.icon(class=icon)
+                //- if color_icon
+                +icon name=color_icon cl='ui avatar image'
+                |#{title}
                 
         
 template(name='bottom_nav')
         if in_role 'admin'
             .ui.bottom.fixed.menu
                 a.icon.item.go_home(href='/' class="{{isActivePath '/'}}" title='models')
-                    i.large.home.icon
+                    i.large.large.home.icon
                 a.icon.item.mobile.hidden(href='/users' class="{{isActivePath '/users'}}" title='users')
-                    i.large.users.icon
+                    i.large.large.users.icon
         if in_role 'business'
             .ui.bottom.fixed.six.item.menu.mobile.only
                 a.icon.item(href='/business_home' class="{{isActivePath '/business_home'}}" title='home')
-                    i.home.icon
+                    i.large.home.icon
                 a.icon.item(href='/business_clients' class="{{isActivePath '/business_clients'}}" title='clients')
-                    i.database.icon
+                    i.large.database.icon
                 a.icon.item(href='/business_onboarding' class="{{isActivePath '/business_onboarding'}}" title='onboarding')
-                    i.arrow.up.icon
+                    i.large.arrow.up.icon
                 a.icon.item(href='/mail' class="{{isActivePath '/mail'}}" title='mail')
-                    i.chat.icon
+                    i.large.chat.icon
                 a.icon.item(href='/search' class="{{isActivePath '/search'}}" title='search')
-                    i.search.icon
+                    i.large.search.icon
                 a.icon.item(href='/business_profile' class="{{isActivePath '/business_profile'}}" title='search')
-                    i.user.outline.icon
-            .ui.bottom.fixed.six.item.labeled.icon.menu.mobile.hidden
+                    i.large.user.outline.icon
+            .ui.bottom.fixed.six.item.menu.mobile.hidden
                 a.item(href='/business_home' class="{{isActivePath '/business_home'}}" title='home')
-                    i.home.icon
+                    i.large.home.icon
                     |home
                 a.item(href='/business_clients' class="{{isActivePath '/business_clients'}}" title='clients')
-                    i.database.icon
+                    i.large.database.icon
                     | clients
                 a.item(href='/onboarding' class="{{isActivePath '/business_home'}}" title='home')
-                    i.arrow.up.icon
+                    i.large.arrow.up.icon
                     | onboarding
                 a.item(href='/chat' class="{{isActivePath '/chat'}}" title='home')
-                    i.chat.icon
+                    i.large.chat.icon
                     | mail
                 a.item(href='/search' class="{{isActivePath '/search'}}" title='search')
-                    i.search.icon
+                    i.large.search.icon
                     | search
                 a.item(href='/business_profile' class="{{isActivePath '/business_profile'}}" title='search')
-                    i.user.outline.icon
+                    i.large.user.outline.icon
                     | profile
                 
         if in_role 'student'
             .ui.bottom.fixed.six.item.menu.mobile.only
                 a.icon.item(href='/student_home' class="{{isActivePath '/student_home'}}" title='home')
-                    i.home.icon
+                    i.large.home.icon
                 a.icon.item(href='/student_schedule' class="{{isActivePath '/student_schedule'}}" title='clients')
-                    i.calendar.icon
+                    i.large.calendar.icon
                 a.icon.item(href='/student_tasks' class="{{isActivePath '/student_tasks'}}" title='tasks')
-                    i.arrow.up.icon
+                    i.large.arrow.up.icon
                 a.icon.item(href='/student_development' class="{{isActivePath '/student_development'}}" title='home')
-                    i.line.chart.icon
+                    i.large.line.chart.icon
                 a.icon.item(href='/student_mail' class="{{isActivePath '/student_mail'}}" title='mail')
-                    i.chat.icon
+                    i.large.chat.icon
                 a.icon.item(href='/student_profile' class="{{isActivePath '/student_profile'}}" title='profile')
-                    i.user.outline.icon
-            .ui.bottom.fixed.six.item.labeled.icon.menu.mobile.hidden
+                    i.large.user.outline.icon
+            .ui.bottom.fixed.six.item.menu.mobile.hidden
                 a.item(href='/student_home' class="{{isActivePath '/student_home'}}" title='home')
-                    i.home.icon
+                    i.large.home.icon
                     | home
                 a.item(href='/student_schedule' class="{{isActivePath '/student_schedule'}}" title='clients')
-                    i.calendar.icon
+                    i.large.calendar.icon
                     | schedule
                 a.item(href='/student_tasks' class="{{isActivePath '/student_tasks'}}" title='tasks')
-                    i.checkmark.icon
+                    i.large.checkmark.icon
                     | tasks
                 a.item(href='/student_development' class="{{isActivePath '/student_development'}}" title='home')
-                    i.line.chart.icon
+                    i.large.line.chart.icon
                     | development
                 a.item(href='/student_mail' class="{{isActivePath '/student_mail'}}" title='mail')
-                    i.chat.icon
+                    i.large.chat.icon
                     | mail
                 a.item(href='/student_profile' class="{{isActivePath '/student_profile'}}" title='profile')
-                    i.user.outline.icon
+                    i.large.user.outline.icon
                     | profile
             
         if in_role 'teacher'
             .ui.bottom.fixed.six.item.menu
                 a.icon.item(href='/student_home' class="{{isActivePath '/student_home'}}" title='home')
-                    i.home.icon
+                    i.large.home.icon
                 a.icon.item(href='/student_schedule' class="{{isActivePath '/student_schedule'}}" title='clients')
-                    i.database.icon
+                    i.large.database.icon
                 a.icon.item(href='/teacher_students' class="{{isActivePath '/teacher_students'}}" title='tasks')
-                    i.users.icon
+                    i.large.users.icon
                 a.icon.item(href='/student_development' class="{{isActivePath '/student_development'}}" title='home')
-                    i.building.icon
+                    i.large.building.icon
                 a.icon.item(href='/student_mail' class="{{isActivePath '/student_mail'}}" title='mail')
-                    i.chat.icon
+                    i.large.chat.icon
                 a.icon.item(href='/student_profile' class="{{isActivePath '/student_profile'}}" title='profile')
-                    i.user.outline.icon
+                    i.large.user.outline.icon
             
             
 
@@ -151,7 +166,7 @@ template(name='footer')
                 .ui.selection.animated.list
                     if is_admin
                         a.item(href='/m/model' class="{{isActivePath '/m/model'}}")
-                            i.database.icon
+                            i.large.database.icon
                             |models
                     //- a.icon.item(href='/m/internship' class="{{isActivePath '/m/internship'}}")
                     //-     +icon name='work' cl='ui avatar image'
@@ -173,12 +188,12 @@ template(name='footer')
                         |mail
                     a.item(href='/m/alert' class="{{isActivePath '/m/alert'}}")
                         //- i.bell.icon(class=alert_icon_class)
-                        i.rss.icon
+                        i.large.rss.icon
                         |alerts
                 if currentUser
                     .ui.link.large.list
                         a.item(href='/users')
-                            i.users.icon
+                            i.large.users.icon
                             | users
                 unless currentUser
                     .ui.link.large.list
@@ -196,7 +211,7 @@ template(name='footer')
             .four.wide.column
                 +bug_reporter 
                 .ui.grey.small.header    
-                    i.copyright.outline.icon 
+                    i.large.copyright.outline.icon 
                     |2020 the stand coop
             //- 
 template(name='footer_chat')
@@ -217,7 +232,7 @@ template(name='footer_chat')
                         |#{text}
                 if is_author
                     span
-                        i.remove.link.icon.remove_message
+                        i.large.remove.link.icon.remove_message
     .ui.bottom.attached.fluid.icon.transparent.input
         i.plus.icon
         input.new_footer_chat_message(type='text' placeholder='add message')
