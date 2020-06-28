@@ -5,55 +5,55 @@ template(name='profile_layout')
         .ui.stackable.padded.grid
             .four.wide.column
                 img.ui.centered.small.rounded.profile_image.image(src="{{c.url profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
-                .ui.center.aligned.cricular.segment
+                .ui.center.aligned.circular.segment
                     a(href="/user/#{username}")
                         .ui.center.aligned.inline.header
                             | #{user.first_name} #{user.last_name}
                         //- div
                         //- .ui.small.inline.header @#{user.username}  
-                a.ui.large.fluid.cricular.button(href="/user/#{username}/edit")
+                a.ui.large.fluid.circular.button(href="/user/#{username}/edit")
                     i.cog.icon
                     |account
-                a.ui.fluid.cricular.button.logout(href="#")
+                a.ui.fluid.circular.button.logout(href="#")
                     i.sign.out.alternate.icon
                     |log out
-                a.ui.fluid.cricular.button.logout_other_clients(href="#")
+                a.ui.fluid.circular.button.logout_other_clients(href="#")
                     //- i.globe.icon
                     |log out other clients
                 if is_admin
-                    .ui.cricular.segment
+                    .ui.circular.segment
                         .ui.header 
                             i.grey.shield.small.icon
                             |roles
                         each roles
-                            .ui.cricular.label #{this}
+                            .ui.circular.label #{this}
                       
             .twelve.wide.column
-                a.ui.cricular.button(href="/user/#{username}/dashboard" class="{{isActivePath regex='user_dashboard'}}")
+                a.ui.circular.button(href="/user/#{username}/dashboard" class="{{isActivePath regex='user_dashboard'}}")
                     +icon name='dashboard' cl='ui inline mini image'
                     |dashboard
-                a.ui.cricular.button(href="/user/#{username}/about" class="{{isActivePath regex=user_about}}")
+                a.ui.circular.button(href="/user/#{username}/about" class="{{isActivePath regex=user_about}}")
                     +icon name='info' cl='ui inline mini image'
                     |about
 
-                a.ui.cricular.button(href="/user/#{username}/events" class="{{isActivePath regex='user_events'}}")
+                a.ui.circular.button(href="/user/#{username}/events" class="{{isActivePath regex='user_events'}}")
                     +icon name='calendar' cl='ui inline mini image'
                     |events
-                //- a.ui.cricular.button(href="/user/#{username}/mentorship" class="{{isActivePath regex=user_mentorship}}")
+                //- a.ui.circular.button(href="/user/#{username}/mentorship" class="{{isActivePath regex=user_mentorship}}")
                 //-     |mentorship
-                //- a.ui.cricular.button(href="/user/#{username}/tutoring" class="{{isActivePath regex='user_tutoring'}}")
+                //- a.ui.circular.button(href="/user/#{username}/tutoring" class="{{isActivePath regex='user_tutoring'}}")
                 //-     i.grey.chalkboard.icon
                 //-     |tutoring
-                a.ui.cricular.button(href="/user/#{username}/internships" class="{{isActivePath regex='user_internships'}}")
+                a.ui.circular.button(href="/user/#{username}/internships" class="{{isActivePath regex='user_internships'}}")
                     +icon name='work' cl='ui inline mini image'
                     |internships
-                a.ui.cricular.button(href="/user/#{username}/awards" class="{{isActivePath regex=user_awards}}")
+                a.ui.circular.button(href="/user/#{username}/awards" class="{{isActivePath regex=user_awards}}")
                     +icon name='prize' cl='ui inline mini image'
                     |awards
-                a.ui.cricular.button(href="/user/#{username}/friends" class="{{isActivePath regex='user_friends'}}")
+                a.ui.circular.button(href="/user/#{username}/friends" class="{{isActivePath regex='user_friends'}}")
                     +icon name='groups' cl='ui inline mini image'
                     |friends
-                a.ui.cricular.button(href="/user/#{username}/messages" class="{{isActivePath regex='user_messages'}}")
+                a.ui.circular.button(href="/user/#{username}/messages" class="{{isActivePath regex='user_messages'}}")
                     +icon name='chat' cl='ui inline mini image'
                     |messages
                 //- if is_current_user

@@ -1,26 +1,26 @@
-Router.route '/users', (->
-    @render 'users'
-    ), name:'users'
-
-
-Template.users.onCreated ->
-    @autorun -> Meteor.subscribe 'all_users'
-
-Template.users.helpers
-    users: ->
-        Meteor.users.find()
-
-
-Template.user_item.helpers
-
-
-Template.user_item.events
-
-
-
-
-
 if Meteor.isClient
+    Router.route '/users', (->
+        @render 'users'
+        ), name:'users'
+
+
+    Template.users.onCreated ->
+        @autorun -> Meteor.subscribe 'all_users'
+
+    Template.users.helpers
+        users: ->
+            Meteor.users.find()
+
+
+    Template.user_item.helpers
+
+
+    Template.user_item.events
+
+
+
+
+
     @selected_tags = new ReactiveArray []
 
     Template.user_cloud.onCreated ->
