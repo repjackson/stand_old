@@ -14,16 +14,16 @@ template(name='model_edit_layout')
                     #delete_model.ui.icon.button
                         i.trash.red.icon
                 .twelve.wide.column
-                    a.ui.compact.large.button(href="/model/edit/#{current_doc._id}/" class="{{active_path regex='model_edit_dashboard'}}")
+                    a.ui.compact.large.button(href="/model/edit/#{current_doc._id}/" class="{{isActivePath regex='model_edit_dashboard'}}")
                         +ismall name='dashboard' classes='ui inline image'
                         |dashboard
-                    a.ui.compact.large.button(href="/model/edit/#{current_doc._id}/fields" class="{{active_path regex='model_edit_fields'}}")
+                    a.ui.compact.large.button(href="/model/edit/#{current_doc._id}/fields" class="{{isActivePath regex='model_edit_fields'}}")
                         +ismall name='list' classes='ui inline image'
                         |fields
-                    a.ui.compact.large.button(href="/model/edit/#{current_doc._id}/modules" class="{{active_path regex='model_edit_modules'}}")
+                    a.ui.compact.large.button(href="/model/edit/#{current_doc._id}/modules" class="{{isActivePath regex='model_edit_modules'}}")
                         +ismall name='module' classes='ui inline image'
                         |modules
-                    a.ui.compact.large.button(href="/model/edit/#{current_doc._id}/permissions" class="{{active_path regex='model_edit_permissions'}}")
+                    a.ui.compact.large.button(href="/model/edit/#{current_doc._id}/permissions" class="{{isActivePath regex='model_edit_permissions'}}")
                         +ismall name='shield' classes='ui inline image'
                         |permissions
                     +yield
@@ -57,7 +57,7 @@ template(name='model_edit_fields')
 template(name='model_edit_modules')
     .ui.segment
         .ui.header
-            +icolor name='module'
+            +icon name='module'
             |modules
         +boolean_edit key='show_comments' label='comments' color_icon='chat' direct=true
         +boolean_edit key='show_voting' label='voting' color_icon='elections' direct=true
@@ -75,7 +75,7 @@ template(name='field_edit')
         .title.field_edit.pointer
             |#{rank}
             if icon
-                +icolor name=icon classes='ui mini inline image'
+                +icon name=icon classes='ui mini inline image'
                 //- i.icon(class=icon)
             strong #{title}
             | (#{field_type})

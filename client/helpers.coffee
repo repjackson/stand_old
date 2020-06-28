@@ -12,6 +12,11 @@ Template.registerHelper 'emotion_selector_class', () ->
     else if @title is 'fear'
         'grey invert'
 
+Template.registerHelper 'delta_key_value_is', (key, value) ->
+    # console.log 'key', key
+    delta = Docs.findOne model:'delta'
+    # console.log 'value', value
+    delta["#{key}"] is value
 
 Template.registerHelper 'in_role', (role)->
     if Meteor.user() and Meteor.user().roles

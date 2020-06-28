@@ -7,7 +7,7 @@ template(name='delta_result_card')
                 .content
                     if key_value_is 'model' 'model'
                         .ui.header
-                            +icolor name=color_icon
+                            +icon name=color_icon
                             |#{title}
                     else
                         each fields
@@ -19,7 +19,7 @@ template(name='delta_result_card')
                             //- a.ui.button.route_model(href="/m/#{slug}")
                             //-     |view model
                             //-     i.right.chevron.green.icon
-                                //- +icolor name='chevron-right' clases='ui avatar image'
+                                //- +icon name='chevron-right' clases='ui avatar image'
                             if is_admin
                                 a.ui.button.route_model(href="/model/edit/#{_id}")
                                     i.cog.icon
@@ -60,7 +60,7 @@ template(name='delta_list_result')
                 .content
                     if key_value_is 'model' 'model'
                         .ui.header
-                            +icolor name=color_icon
+                            +icon name=color_icon
                             |#{title}
                     else
                         //- each visible_fields
@@ -106,7 +106,7 @@ template(name='delta_list_result')
 template(name='delta_result_table_row')
     tr.pointer.goto_doc
         //- if result.color_icon
-        //-     +icolor name=result.color_icon
+        //-     +icon name=result.color_icon
         //- td
             //- |#{result.title}
         each visible_fields
