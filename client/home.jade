@@ -1,8 +1,8 @@
 template(name='home')
     .ui.stackable.padded.grid
         .row
-            .four.wide.column
-                +admin_panel
+            //- .four.wide.column
+            //-     +admin_panel
             .four.wide.column
                 +work_panel
             .four.wide.column
@@ -10,38 +10,9 @@ template(name='home')
                     +icon name='shop' cl='ui mini image'
                     |shop
             .four.wide.column
-                a.ui.header(href="/delivery")
-                    +icon name='delivery' cl='ui mini image'
-                    |deliveries
-            .four.wide.column
-                a.ui.header(href="/garden") 
-                    +icon name='garden' cl='ui mini image'
-                    |gardens
-            .four.wide.column
-                a.ui.header(href="/pictures")
-                    +icon name='picture' cl='ui mini image'
-                    |photos
-            .four.wide.column
                 a.ui.header(href="/users") 
                     +icon name='groups' cl='ui mini image'
                     |people
-            .four.wide.column
-                a.ui.header(href="/stats") 
-                    +icon name='line-chart' cl='ui mini image'
-                    |stats
-            .four.wide.column
-                
-            .four.wide.column
-                +blog_panel
-                
-                
-                
-template(name='admin_panel')
-    .ui.header 
-        +icon name='shield'
-        |admin
-    
-    
     
 template(name='work_panel')
     a.ui.header(href="/work")
@@ -51,10 +22,3 @@ template(name='work_panel')
     .ui.button 
         |new work
         
-        
-template(name='blog_panel')
-    .ui.header
-        +icon name='blog'
-        |blog
-    .ui.button 
-        |new work

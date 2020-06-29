@@ -1,12 +1,12 @@
 if Meteor.isClient
-    Router.route '/', (->
-        @redirect('/m/model')
-    )
-
     # Router.route '/', (->
-    #     @layout 'layout'
-    #     @render 'home'
-    #     ), name:'home'
+    #     @redirect('/m/model')
+    # )
+
+    Router.route '/', (->
+        @layout 'layout'
+        @render 'home'
+        ), name:'home'
 
 
 Router.configure

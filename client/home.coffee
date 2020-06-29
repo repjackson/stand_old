@@ -7,6 +7,8 @@
 Template.admin.helpers
     doc_count: ->
         Docs.find().count()
+Template.nav.onCreated ->
+    @autorun => Meteor.subscribe 'me'
 
 
 Template.home.onCreated ->
