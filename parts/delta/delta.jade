@@ -2,9 +2,9 @@ template(name='delta')
     .ui.stackable.grid
         with current_model
             .row
-                .five.wide.column
-                    a.ui.icon.button.go_home(href='/m/model' class="{{isActivePath '/m/model'}}" title='models')
-                        i.large.yin.yang.icon
+                .five.wide.column.scrolling
+                    //- a.ui.icon.button.go_home(href='/m/model' class="{{isActivePath '/m/model'}}" title='models')
+                    //-     i.large.yin.yang.icon
                     if is_loading
                         .ui.inline.header.pulsing
                             //- i.yin.yang.loading.large.icon
@@ -123,7 +123,7 @@ template(name='delta')
                         //- .ui.compact.small.icon.button.toggle_right_panel
                         //-     i.table.large.icon
                         .spacer
-                    .scrollin  
+                    .scrolling
                         //- each current_delta.result_ids
                         //-     .ui.header #{this}
                         if delta_key_value_is 'view_mode' 'cards'
