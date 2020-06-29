@@ -3,40 +3,40 @@ template(name='work_view')
         .ui.stackable.padded.grid
             .row
                 .five.wide.column
-                    .ui.large.button.goto_work
+                    a.ui.large.button(href="/work")
                         i.left.chevron.icon
                         |work
-                    if parent_dependents
-                        .ui.small.header parent dependents
-                        each parent_dependents
-                            a.ui.button(href="/work/#{_id}/view")
-                                i.left.chevron.icon
-                                |#{title}
+                    //- if parent_dependents
+                    //-     .ui.small.header parent dependents
+                    //-     each parent_dependents
+                    //-         a.ui.button(href="/work/#{_id}/view")
+                    //-             i.left.chevron.icon
+                    //-             |#{title}
 
                     a.ui.icon.button(href="/work/#{_id}/edit" title='edit')
                         i.pencil.grey.icon
                     //- +multi_user_edit key='subscriber_ids' label='subscriptions' direct=true
                     div
-                    +subscriptions
-                    div
+                    //- +subscriptions
+                    //- div
                     +author_info
                     +creation_info
-                    div
-                    .ui.grey.inline.header
-                        i.clock.small.icon
-                        |time tracking
-                    .ui.compact.icon.button.new_work
-                        i.plus.icon
-                    .ui.link.list
-                        each work
-                            a.item(href="/work/#{_id}/view")
-                                |{{long_time start_datetime}}-{{long_time end_datetime}}
-                                small by #{_author_username}
-                    .ui.small.grey.header total time #{total_time}
-                    div
-                    +viewing
-                    div
-                    +voting_full
+                    //- div
+                    //- .ui.grey.inline.header
+                    //-     i.clock.small.icon
+                    //-     |time tracking
+                    //- .ui.compact.icon.button.new_work
+                    //-     i.plus.icon
+                    //- .ui.link.list
+                    //-     each work
+                    //-         a.item(href="/work/#{_id}/view")
+                    //-             |{{long_time start_datetime}}-{{long_time end_datetime}}
+                    //-             small by #{_author_username}
+                    //- .ui.small.grey.header total time #{total_time}
+                    //- div
+                    //- +viewing
+                    //- div
+                    //- +voting_full
                 .seven.wide.column
                     if parent_id
                         a.ui.fluid.button(href="/work/#{parent_id}/view")

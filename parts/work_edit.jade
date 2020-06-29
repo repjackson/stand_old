@@ -17,12 +17,13 @@ template(name='work_edit')
                     +number_edit key='actual_hours' label='actual hours' direct=true
                 
                 .eight.wide.column
+                    .ui.header edit work
                     +text_edit key='title' label='title' direct=true
-                    +html_edit key='description' label='description' direct=true
+                    +textarea_edit key='description' label='description' direct=true
                     div 
                     +array_edit key='tags' label='tags' direct=true
                 .four.wide.column
-                    +text_edit key='parent_id' label='parent id' direct=true
+                    //- +text_edit key='parent_id' label='parent id' direct=true
                     //- if work_list_id 
                     //-     with work_list
                     //-         .ui.segment
@@ -36,13 +37,11 @@ template(name='work_edit')
                     //-             i.grey.list.icon
                     //-             a.ui.inline.header(href="/work_list/#{_id}/view" title='view work list') #{title}
                     //-             i.small.link.grey.remove.icon.clear_work_list(title='remove from list')
-                    +single_user_edit key='assigned_by' label='assigned by' direct=true
-                    if assigned_by
-                        +text_view key='assigned_by' direct=true
+                    //- +single_user_edit key='assigned_by' label='assigned by' direct=true
+                    //- if assigned_by
+                    //-     +text_view key='assigned_by' direct=true
                     +single_user_edit key='assigned_to' label='assigned to' icon='sign out' direct=true
                     if assigned_to
                         +text_view key='assigned_to' icon='sign in' direct=true
                     +date_edit key='due_date' label='due date' icon='calendar' direct=true
-                    +boolean_edit key='complete' label='complete' icon='checkmark' direct=true
-                    +number_edit key='percent_complete' label='percent complete' icon='percent' min=0 max=100 direct=true
-                    +number_edit key='weight' label='weight' icon='sort up' min=0 max=100 direct=true
+                    //- +boolean_edit key='complete' label='complete' icon='checkmark' direct=true

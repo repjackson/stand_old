@@ -8,25 +8,25 @@ template(name='work')
                 .ui.icon.large.button.new_work
                     i.green.plus.icon
                 +work_cloud
-                with currentUser
-                    .ui.list
-                        .item(title='hours today')
-                            i.sun.icon
-                            i.clock.icon
-                            | #{daily_hours}hrs
-                        .item(title='weekly hours')
-                            i.calendar.icon
-                            i.clock.icon
-                            | #{weekly_hours}hrs
-                        .item(title='sessions today')
-                            i.sun.icon
-                            i.business.time.icon
-                            | #{daily_sessions} sessions
-                        .item(title='weekly sessions')
-                            i.calendar.icon
-                            i.business.time.icon
-                            | #{weekly_sessions} sessions
-            .six.wide.column
+                //- with currentUser
+                //-     .ui.list
+                //-         .item(title='hours today')
+                //-             i.sun.icon
+                //-             i.clock.icon
+                //-             | #{daily_hours}hrs
+                //-         .item(title='weekly hours')
+                //-             i.calendar.icon
+                //-             i.clock.icon
+                //-             | #{weekly_hours}hrs
+                //-         .item(title='sessions today')
+                //-             i.sun.icon
+                //-             i.business.time.icon
+                //-             | #{daily_sessions} sessions
+                //-         .item(title='weekly sessions')
+                //-             i.calendar.icon
+                //-             i.business.time.icon
+                //-             | #{weekly_sessions} sessions
+            .twelve.wide.column
                 //- with top_work
                 //-     +work_card_template
                 i.link.refresh.icon.refresh_my_time_stats
@@ -40,24 +40,24 @@ template(name='work')
                 .ui.small.compact.button priority
             
                 .largescroll
-                    .ui.segments
+                    .ui.cards
                         each work 
                             +work_card_template
-            .six.wide.column
-                if selected_work_doc
-                    .ui.icon.right.floated.button.unselect_work
-                        i.remove.icon
-                    with selected_work_doc
-                        +selected_work
-                else 
-                    .ui.small.button.new_work 
-                        i.plus.icon
-                        |new work 
-                    i.refresh.link.icon.refresh_work_stats
-                    with work_stats_doc
-                        .ui.small.grey.header #{total_work} total work 
-                        .ui.small.grey.header #{week_work_count} work this week
-                        .ui.small.grey.header #{day_work_count} work today
+            //- .six.wide.column
+            //-     if selected_work_doc
+            //-         .ui.icon.right.floated.button.unselect_work
+            //-             i.remove.icon
+            //-         with selected_work_doc
+            //-             +selected_work
+            //-     else 
+            //-         .ui.small.button.new_work 
+            //-             i.plus.icon
+            //-             |new work 
+            //-         i.refresh.link.icon.refresh_work_stats
+            //-         with work_stats_doc
+            //-             .ui.small.grey.header #{total_work} total work 
+            //-             .ui.small.grey.header #{week_work_count} work this week
+            //-             .ui.small.grey.header #{day_work_count} work today
                     
                     
                     
@@ -83,43 +83,42 @@ template(name='work_cloud')
 
 
 template(name='work_card_template')
-    .ui.segment.pointer.select_work(class=work_segment_class)
-        .ui.header.goto_work #{title}
-        div
-        .ui.horizontal.list 
-            .item(title='views')
-                i.eye.icon 
-                |#{views}
-            .item(title='points')
-                i.thumbs.up.outline.icon
-                |#{points}
-            if work_list_id 
-                .item(title='work list')
-                    i.list.icon 
-                    |#{work_list.title}
-            .item
-                i.grey.tags.icon 
-                each five_tags
-                    .ui.small.basic.label #{this}
-        div
-        if weight 
-            .ui.small.inline.header #{weight} weight
-        if assigned_by
-            .ui.large.basic.label(title='assigned by')
-                |#{assigned_by}
-            .ui.small.inline.header ->
-        if assigned_to
-            .ui.large.basic.label(title='assigned to')
-                |#{assigned_to}
-        unless complete
-            if percent_complete
-                .rounded(style="height:5px;width:{{percent_complete}}%;background-color:grey" title="{{percent_complete}}% complete")
-                    //- 
-                    //- .ui.bottom.attached.progress(data-percent="{{percent_complete}}" title="{{percent_complete}}% complete")
-                    //-     .bar
-                        //- .progress
-                    //- .label complete
-    .spacer
+    .ui.card.select_work(class=work_segment_class)
+        .content
+            a.ui.header(href="/work/#{_id}/view") #{title}
+            div
+            .ui.list 
+                .item(title='views')
+                    i.eye.icon 
+                    |#{views}
+                .item(title='points')
+                    i.thumbs.up.outline.icon
+                    |#{points}
+                if work_list_id 
+                    .item(title='work list')
+                        i.list.icon 
+                        |#{work_list.title}
+                .item
+                    i.grey.tags.icon 
+                    each five_tags
+                        .ui.small.basic.label #{this}
+            div
+            //- if assigned_by
+            //-     .ui.large.basic.label(title='assigned by')
+            //-         |#{assigned_by}
+            //-     .ui.small.inline.header 
+            if assigned_to
+                .ui.large.basic.label(title='assigned to')
+                    |#{assigned_to}
+            unless complete
+                if percent_complete
+                    .rounded(style="height:5px;width:{{percent_complete}}%;background-color:grey" title="{{percent_complete}}% complete")
+                        //- 
+                        //- .ui.bottom.attached.progress(data-percent="{{percent_complete}}" title="{{percent_complete}}% complete")
+                        //-     .bar
+                            //- .progress
+                        //- .label complete
+        .spacer
 
 
 

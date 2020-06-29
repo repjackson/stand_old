@@ -5,8 +5,13 @@ if Meteor.isClient
         ), name:'shop'
 
     Template.shop.onCreated ->
-        # Session.set 'username', null
+        @autorun => Meteor.subscribe 'model_docs', 'item'
+        @autorun => Meteor.subscribe 'all_users'
 
+    Template.shop.helpers
+        items: ->
+            Docs.find
+                model:'item'
     Template.shop.events
         'click .add_item': ->
             new_id =
