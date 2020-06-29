@@ -2,4 +2,8 @@ template(name='shop')
     .ui.padded.stackable.grid
         .four.wide.column
             .ui.header shop
+            .ui.big.icon.button.add_item
+                i.green.plus.icon
         .twelve.wide.column
+            each item 
+                .ui.header #{title}

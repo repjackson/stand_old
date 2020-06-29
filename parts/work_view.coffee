@@ -3,3 +3,6 @@ if Meteor.isClient
         @layout 'layout'
         @render 'work_view'
         ), name:'work_view'
+
+    Template.work_view.onCreated ->
+        @autorun => Meteor.subscribe 'doc', Router.current().params.doc_id

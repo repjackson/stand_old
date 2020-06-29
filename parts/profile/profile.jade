@@ -4,13 +4,9 @@ template(name='profile_layout')
     with user
         .ui.stackable.padded.grid
             .four.wide.column
-                img.ui.centered.small.rounded.profile_image.image(src="{{c.url profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
-                .ui.center.aligned.circular.segment
-                    a(href="/user/#{username}")
-                        .ui.center.aligned.inline.header
-                            | #{user.first_name} #{user.last_name}
-                        //- div
-                        //- .ui.small.inline.header @#{user.username}  
+                img.ui.centered.small.circular.profile_image.image(src="{{c.url profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
+                a(href="/user/#{username}")
+                    .ui.header #{username}
                 a.ui.large.fluid.circular.button(href="/user/#{username}/edit")
                     i.cog.icon
                     |account
@@ -20,13 +16,13 @@ template(name='profile_layout')
                 a.ui.fluid.circular.button.logout_other_clients(href="#")
                     //- i.globe.icon
                     |log out other clients
-                if is_admin
-                    .ui.circular.segment
-                        .ui.header 
-                            i.grey.shield.small.icon
-                            |roles
-                        each roles
-                            .ui.circular.label #{this}
+                //- if is_admin
+                //-     .ui.circular.segment
+                //-         .ui.header 
+                //-             i.grey.shield.small.icon
+                //-             |roles
+                //-         each roles
+                //-             .ui.circular.label #{this}
                       
             .twelve.wide.column
                 a.ui.circular.button(href="/user/#{username}/dashboard" class="{{isActivePath regex='user_dashboard'}}")
@@ -39,17 +35,9 @@ template(name='profile_layout')
                 a.ui.circular.button(href="/user/#{username}/events" class="{{isActivePath regex='user_events'}}")
                     +icon name='calendar' cl='ui inline mini image'
                     |work
-                //- a.ui.circular.button(href="/user/#{username}/mentorship" class="{{isActivePath regex=user_mentorship}}")
-                //-     |mentorship
-                //- a.ui.circular.button(href="/user/#{username}/tutoring" class="{{isActivePath regex='user_tutoring'}}")
-                //-     i.grey.chalkboard.icon
-                //-     |tutoring
-                //- a.ui.circular.button(href="/user/#{username}/internships" class="{{isActivePath regex='user_internships'}}")
-                //-     +icon name='work' cl='ui inline mini image'
-                //-     |internships
-                //- a.ui.circular.button(href="/user/#{username}/awards" class="{{isActivePath regex=user_awards}}")
-                //-     +icon name='prize' cl='ui inline mini image'
-                //-     |awards
+                a.ui.circular.button(href="/user/#{username}/shop" class="{{isActivePath regex='user_shop'}}")
+                    +icon name='shop' cl='ui inline mini image'
+                    |shop
                 a.ui.circular.button(href="/user/#{username}/friends" class="{{isActivePath regex='user_friends'}}")
                     +icon name='groups' cl='ui inline mini image'
                     |friends
@@ -58,10 +46,6 @@ template(name='profile_layout')
                     |messages
                 //- if is_current_user
                 //- +user_friend_button            
-                //- each user_sections
-                //-     a.ui.button(href="/user/#{username}/#{slug}")
-                //-         i.icon(class=icon)
-                //-         |#{title}
                 +yield    
     //- +footer
 
@@ -77,13 +61,7 @@ template(name='user_dashboard')
                 .ui.segment
                     .ui.header 
                         +icon name='work'
-                        |internships
-                .spacer    
-            .five.wide.column
-                .ui.segment
-                    .ui.header 
-                        +icon name='bookmark'
-                        |bookmarks
+                        |work
                 .spacer    
             .five.wide.column
                 .ui.segment
@@ -94,11 +72,14 @@ template(name='user_dashboard')
             .five.wide.column
                 .ui.segment
                     .ui.header 
-                        +icon name='chat'
+                        +icon name='sales'
                         |messages
+                .ui.segment
+                    .ui.header 
+                        +icon name='shop'
+                        |shop
                 .spacer    
                     
-        .three.column.row
 
 
 

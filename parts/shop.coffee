@@ -5,7 +5,11 @@ if Meteor.isClient
         ), name:'shop'
 
     Template.shop.onCreated ->
-        Session.set 'username', null
+        # Session.set 'username', null
 
     Template.shop.events
-        'keyup .username': ->
+        'click .add_item': ->
+            new_id =
+                Docs.insert
+                    model:'item'
+            Router.go "/item/#{new_id}/edit"
