@@ -26,22 +26,6 @@ if Meteor.isClient
 
 
 
-    Template.user_internships.onCreated ->
-        @autorun => Meteor.subscribe 'user_internships_questions', Router.current().params.user_id
-    Template.user_internships.events
-        'click .recalc_internship_stats': -> Meteor.call 'calc_user_internship_stats', Router.current().params.user_id
-    Template.user_internships.helpers
-        # sorted_right_unions: ->
-        #     sorted = _.sortBy(@right_unions, 'union_count').reverse()
-        internships: ->
-            user = Meteor.users.findOne Router.current().params.user_id
-            Docs.find
-                model:'internship'
-                _author_id:user._id
-                # _id: $in: user.all_right_ids
-
-
-
 
 
 if Meteor.isServer

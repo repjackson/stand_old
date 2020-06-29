@@ -1,13 +1,13 @@
-template(name='tasks')
+template(name='work')
     .ui.stackable.padded.grid
         .row
             .four.wide.column
                 .ui.header 
-                    i.tasks.icon
-                    |tasks
-                .ui.icon.large.button.new_task
+                    i.work.icon
+                    |work
+                .ui.icon.large.button.new_work
                     i.green.plus.icon
-                +task_cloud
+                +work_cloud
                 with currentUser
                     .ui.list
                         .item(title='hours today')
@@ -27,8 +27,8 @@ template(name='tasks')
                             i.business.time.icon
                             | #{weekly_sessions} sessions
             .six.wide.column
-                //- with top_task
-                //-     +task_card_template
+                //- with top_work
+                //-     +work_card_template
                 i.link.refresh.icon.refresh_my_time_stats
                 .ui.small.compact.icon.button.toggle_complete(title='view complete' class=view_complete_class)
                     i.checkmark.icon
@@ -41,29 +41,29 @@ template(name='tasks')
             
                 .largescroll
                     .ui.segments
-                        each tasks 
-                            +task_card_template
+                        each work 
+                            +work_card_template
             .six.wide.column
-                if selected_task_doc
-                    .ui.icon.right.floated.button.unselect_task
+                if selected_work_doc
+                    .ui.icon.right.floated.button.unselect_work
                         i.remove.icon
-                    with selected_task_doc
-                        +selected_task
+                    with selected_work_doc
+                        +selected_work
                 else 
-                    .ui.small.button.new_task 
+                    .ui.small.button.new_work 
                         i.plus.icon
-                        |new task 
-                    i.refresh.link.icon.refresh_tasks_stats
-                    with tasks_stats_doc
-                        .ui.small.grey.header #{total_tasks} total tasks 
-                        .ui.small.grey.header #{week_tasks_count} tasks this week
-                        .ui.small.grey.header #{day_tasks_count} tasks today
+                        |new work 
+                    i.refresh.link.icon.refresh_work_stats
+                    with work_stats_doc
+                        .ui.small.grey.header #{total_work} total work 
+                        .ui.small.grey.header #{week_work_count} work this week
+                        .ui.small.grey.header #{day_work_count} work today
                     
                     
                     
 
-template(name='task_cloud')
-    //- #task_cloud
+template(name='work_cloud')
+    //- #work_cloud
         //- .ui.left.icon.input
         //-     i.search.icon
         //-     +inputAutocomplete settings=settings id="search" class="" autocomplete="off" 
@@ -76,15 +76,15 @@ template(name='task_cloud')
             .unselect_tag.ui.active.compact.button
                 strong #{this}
     each all_tags
-        .ui.compact.small.button.select_tag(class=task_cloud_tag_class) 
+        .ui.compact.small.button.select_tag(class=work_cloud_tag_class) 
             strong #{this.name}
 
 
 
 
-template(name='task_card_template')
-    .ui.segment.pointer.select_task(class=task_segment_class)
-        .ui.header.goto_task #{title}
+template(name='work_card_template')
+    .ui.segment.pointer.select_work(class=work_segment_class)
+        .ui.header.goto_work #{title}
         div
         .ui.horizontal.list 
             .item(title='views')
@@ -93,10 +93,10 @@ template(name='task_card_template')
             .item(title='points')
                 i.thumbs.up.outline.icon
                 |#{points}
-            if task_list_id 
-                .item(title='task list')
+            if work_list_id 
+                .item(title='work list')
                     i.list.icon 
-                    |#{task_list.title}
+                    |#{work_list.title}
             .item
                 i.grey.tags.icon 
                 each five_tags
@@ -123,22 +123,22 @@ template(name='task_card_template')
 
 
 
-template(name='selected_task')
-    if editing_task 
+template(name='selected_work')
+    if editing_work 
         +text_edit key='title' direct=true
         +array_edit key='tags' direct=true
         div
-        .ui.icon.large.button.save_task(title='save task') 
+        .ui.icon.large.button.save_work(title='save work') 
             i.checkmark.green.large.icon
-        .ui.icon.small.button.delete_task(title='delete task') 
+        .ui.icon.small.button.delete_work(title='delete work') 
             i.remove.icon
     else 
         .ui.small.header #{title}
         +array_view key='tags' direct=true
         div
-        .ui.icon.large.button.edit_task(title='edit task') 
+        .ui.icon.large.button.edit_work(title='edit work') 
             i.pencil.blue.icon
-        .ui.icon.large.button.goto_task(title='view task') 
+        .ui.icon.large.button.goto_work(title='view work') 
             i.right.chevron.large.icon
         div
         +voting_full

@@ -1,19 +1,19 @@
-template(name='task_view')
+template(name='work_view')
     with current_doc
         .ui.stackable.padded.grid
             .row
                 .five.wide.column
-                    .ui.large.button.goto_tasks
+                    .ui.large.button.goto_work
                         i.left.chevron.icon
-                        |tasks
+                        |work
                     if parent_dependents
                         .ui.small.header parent dependents
                         each parent_dependents
-                            a.ui.button(href="/task/#{_id}/view")
+                            a.ui.button(href="/work/#{_id}/view")
                                 i.left.chevron.icon
                                 |#{title}
 
-                    a.ui.icon.button(href="/task/#{_id}/edit" title='edit')
+                    a.ui.icon.button(href="/work/#{_id}/edit" title='edit')
                         i.pencil.grey.icon
                     //- +multi_user_edit key='subscriber_ids' label='subscriptions' direct=true
                     div
@@ -25,11 +25,11 @@ template(name='task_view')
                     .ui.grey.inline.header
                         i.clock.small.icon
                         |time tracking
-                    .ui.compact.icon.button.new_task
+                    .ui.compact.icon.button.new_work
                         i.plus.icon
                     .ui.link.list
-                        each tasks
-                            a.item(href="/task/#{_id}/view")
+                        each work
+                            a.item(href="/work/#{_id}/view")
                                 |{{long_time start_datetime}}-{{long_time end_datetime}}
                                 small by #{_author_username}
                     .ui.small.grey.header total time #{total_time}
@@ -39,7 +39,7 @@ template(name='task_view')
                     +voting_full
                 .seven.wide.column
                     if parent_id
-                        a.ui.fluid.button(href="/task/#{parent_id}/view")
+                        a.ui.fluid.button(href="/work/#{parent_id}/view")
                             i.up.chevron.icon
                             |#{parent_doc.title}
 
@@ -49,21 +49,21 @@ template(name='task_view')
                     +comments
                     .ui.grey.inline.header
                         i.small.fork.icon
-                        |sub tasks
-                    i.plus.link.icon.new_subtask
+                        |sub work
+                    i.plus.link.icon.new_subwork
                     div
-                    each subtasks
+                    each subwork
                         .ui.segment
                             +text_edit key='title' direct=true
                             +text_edit key='assigned_to' direct=true
-                            a.ui.icon.button(href="/task/#{_id}/view")
+                            a.ui.icon.button(href="/work/#{_id}/view")
                                 i.right.chevron.icon
                             +remove_button
                 .four.wide.column
                     if child_dependents
                         .ui.small.header child dependents
                         each child_dependents
-                            a.ui.fluid.small.button(href="/task/#{_id}/view")
+                            a.ui.fluid.small.button(href="/work/#{_id}/view")
                                 i.right.chevron.icon
                                 |#{title}
                     if group_id

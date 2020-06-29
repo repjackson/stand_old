@@ -31,10 +31,10 @@ if Meteor.isClient
         @layout 'profile_layout'
         @render 'user_feed'
         ), name:'user_feed'
-    Router.route '/user/:username/tasks', (->
+    Router.route '/user/:username/work', (->
         @layout 'profile_layout'
-        @render 'user_tasks'
-        ), name:'user_tasks'
+        @render 'user_work'
+        ), name:'user_work'
     Router.route '/user/:username/messages', (->
         @layout 'profile_layout'
         @render 'user_messages'

@@ -4,7 +4,7 @@ template(name='home')
             .four.wide.column
                 +admin_panel
             .four.wide.column
-                +task_panel
+                +work_panel
             .four.wide.column
                 a.ui.header(href="/shop") 
                     +icon name='shop' cl='ui mini image'
@@ -43,13 +43,13 @@ template(name='admin_panel')
     
     
     
-template(name='task_panel')
-    a.ui.header(href="/tasks")
-        +icon name='tasks'
-        //- i.tasks.icon
-        |tasks
+template(name='work_panel')
+    a.ui.header(href="/work")
+        +icon name='work'
+        //- i.work.icon
+        |work
     .ui.button 
-        |new task
+        |new work
         
         
 template(name='blog_panel')
@@ -57,4 +57,4 @@ template(name='blog_panel')
         +icon name='blog'
         |blog
     .ui.button 
-        |new task
+        |new work

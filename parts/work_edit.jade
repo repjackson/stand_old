@@ -1,9 +1,9 @@
-template(name='task_edit')
+template(name='work_edit')
     with current_doc
         .ui.stackable.padded.grid
             .row 
                 .four.wide.column
-                    a.ui.fluid.large.button(href="/task/#{_id}/view") 
+                    a.ui.fluid.large.button(href="/work/#{_id}/view") 
                         i.checkmark.icon
                         |save
                     +remove_button
@@ -23,19 +23,19 @@ template(name='task_edit')
                     +array_edit key='tags' label='tags' direct=true
                 .four.wide.column
                     +text_edit key='parent_id' label='parent id' direct=true
-                    //- if task_list_id 
-                    //-     with task_list
+                    //- if work_list_id 
+                    //-     with work_list
                     //-         .ui.segment
                     //-             i.grey.list.icon
-                    //-             a.ui.inline.header(href="/task_list/#{_id}/view" title='view task list') #{title}
-                    //-             i.small.link.grey.remove.icon.clear_task_list(title='remove from list')
-                    //- +task_list_lookup key='task_list_id' label='task list' direct=true
-                    //- if task_list_id 
-                    //-     with task_list
+                    //-             a.ui.inline.header(href="/work_list/#{_id}/view" title='view work list') #{title}
+                    //-             i.small.link.grey.remove.icon.clear_work_list(title='remove from list')
+                    //- +work_list_lookup key='work_list_id' label='work list' direct=true
+                    //- if work_list_id 
+                    //-     with work_list
                     //-         .ui.segment
                     //-             i.grey.list.icon
-                    //-             a.ui.inline.header(href="/task_list/#{_id}/view" title='view task list') #{title}
-                    //-             i.small.link.grey.remove.icon.clear_task_list(title='remove from list')
+                    //-             a.ui.inline.header(href="/work_list/#{_id}/view" title='view work list') #{title}
+                    //-             i.small.link.grey.remove.icon.clear_work_list(title='remove from list')
                     +single_user_edit key='assigned_by' label='assigned by' direct=true
                     if assigned_by
                         +text_view key='assigned_by' direct=true

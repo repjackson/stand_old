@@ -27,15 +27,15 @@ if Meteor.isClient
             Meteor.users.update Meteor.userId(),
                 $pull: friend_ids:@_id
 
-        'keyup .assign_task': (e,t)->
+        'keyup .assign_work': (e,t)->
             if e.which is 13
-                post = t.$('.assign_task').val().trim()
+                post = t.$('.assign_work').val().trim()
                 # console.log post
                 current_user = Meteor.users.findOne Router.current().params.user_id
                 Docs.insert
                     body:post
-                    model:'task'
+                    model:'work'
                     assigned_user_id:current_user._id
                     assigned_username:current_user.username
 
-                t.$('.assign_task').val('')
+                t.$('.assign_work').val('')

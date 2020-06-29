@@ -22,9 +22,9 @@ template(name='nav')
         //- a.icon.item.mobile.hidden(href="/groups" class="{{isActivePath '/groups'}}")
         //-     +icon name='meeting-room' cl='ui mini spaced image'
         //-     //- strong groups
-        //- a.icon.item.mobile.hidden(href="/tasks" class="{{isActivePath '/tasks'}}")
+        //- a.icon.item.mobile.hidden(href="/work" class="{{isActivePath '/work'}}")
         //-     //- i.circular.users.icon
-        //-     +icon name='tasks' cl='ui mini spaced image'
+        //-     +icon name='work' cl='ui mini spaced image'
         //-     //- strong groups
         //- a.icon.item.mobile.hidden(href="/projects" class="{{isActivePath '/projects'}}")
         //-     //- i.circular.users.icon
@@ -105,7 +105,7 @@ template(name='bottom_nav')
                     i.large.home.icon
                 a.icon.item(href='/student_schedule' class="{{isActivePath '/student_schedule'}}" title='clients')
                     i.large.calendar.icon
-                a.icon.item(href='/student_tasks' class="{{isActivePath '/student_tasks'}}" title='tasks')
+                a.icon.item(href='/student_work' class="{{isActivePath '/student_work'}}" title='work')
                     i.large.arrow.up.icon
                 a.icon.item(href='/student_development' class="{{isActivePath '/student_development'}}" title='home')
                     i.large.line.chart.icon
@@ -120,9 +120,9 @@ template(name='bottom_nav')
                 a.item(href='/student_schedule' class="{{isActivePath '/student_schedule'}}" title='clients')
                     i.large.calendar.icon
                     | schedule
-                a.item(href='/student_tasks' class="{{isActivePath '/student_tasks'}}" title='tasks')
+                a.item(href='/student_work' class="{{isActivePath '/student_work'}}" title='work')
                     i.large.checkmark.icon
-                    | tasks
+                    | work
                 a.item(href='/student_development' class="{{isActivePath '/student_development'}}" title='home')
                     i.large.line.chart.icon
                     | development
@@ -139,7 +139,7 @@ template(name='bottom_nav')
                     i.large.home.icon
                 a.icon.item(href='/student_schedule' class="{{isActivePath '/student_schedule'}}" title='clients')
                     i.large.database.icon
-                a.icon.item(href='/teacher_students' class="{{isActivePath '/teacher_students'}}" title='tasks')
+                a.icon.item(href='/teacher_students' class="{{isActivePath '/teacher_students'}}" title='work')
                     i.large.users.icon
                 a.icon.item(href='/student_development' class="{{isActivePath '/student_development'}}" title='home')
                     i.large.building.icon
