@@ -8,7 +8,62 @@ if Meteor.isClient
         if input
             input.toFixed(2)
     Template.registerHelper 'current_delta', () -> Docs.findOne model:'delta'
+    Template.registerHelper 'view_template', ->
+        # console.log 'view template this', @
+        field_type_doc =
+            Docs.findOne
+                model:'field_type'
+                _id: @field_type_id
+        # console.log 'field type doc', field_type_doc
+        "#{field_type_doc.slug}_view"
 
+
+    Template.registerHelper 'edit_template', ->
+        field_type_doc =
+            Docs.findOne
+                model:'field_type'
+                _id: @field_type_id
+
+        # console.log 'field type doc', field_type_doc
+        "#{field_type_doc.slug}_edit"
+
+
+    Template.registerHelper 'fields', () ->
+        model = Docs.findOne
+            model:'model'
+            slug:Router.current().params.model_slug
+        if model
+            match = {}
+            # if Meteor.user()
+            #     match.view_roles = $in:Meteor.user().roles
+            match.model = 'field'
+            match.parent_id = model._id
+            # console.log model
+            cur = Docs.find match,
+                sort:rank:1
+            # console.log cur.fetch()
+            cur
+
+    Template.registerHelper 'edit_fields', () ->
+        console.log 'finding edit fields'
+        model = Docs.findOne
+            model:'model'
+            slug:Router.current().params.model_slug
+        if model
+            Docs.find {
+                model:'field'
+                parent_id:model._id
+                # edit_roles:$in:Meteor.user().roles
+            }, sort:rank:1
+
+
+    Template.registerHelper 'view_template', -> "#{@field_type}_view"
+    Template.registerHelper 'edit_template', -> "#{@field_type}_edit"
+
+    Template.registerHelper 'current_model', ->
+        Docs.findOne
+            model:'model'
+            slug: Router.current().params.model_slug
 
     Template.registerHelper 'field_value', () ->
         # console.log @

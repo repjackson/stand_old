@@ -27,8 +27,11 @@ Meteor.publish 'alerts', ->
 
 Meteor.publish 'model_docs', (model)->
     # console.log 'pulling doc'
-    Docs.find
-        model:model
+    match = {model:model}
+    if Meteor.user()
+        unless Meteor.user().roles and 'admin' in Meteor.user().roles
+            match.app = 'stand'
+    Docs.find match
 
 
 Meteor.publish 'all_users', ()->
@@ -55,7 +58,6 @@ Meteor.publish 'tag_results', (
     query
     dummy
     date_setting
-
     )->
     # console.log 'dummy', dummy
     console.log 'selected tags', selected_tags
