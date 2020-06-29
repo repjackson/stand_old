@@ -187,7 +187,8 @@ a.goto_article {
     color: grey !important;
 }
 
-.ui.button:not(.circular)) {
+/* .ui.button:not(.circular)) { */
+.ui.button {
     border-radius: 20px !important;
 }
 .ui.button {

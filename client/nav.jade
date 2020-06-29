@@ -4,25 +4,25 @@ template(name='nav')
             .ui.inverted.header
                 +icon name='hand-planting'
                 |the stand
-        .item.mobile.hidden
-            .ui.input 
-                input(type='text' placeholder='search...')
-        a.icon.item.mobile.hidden(href="/shop" class="{{isActivePath '/shop'}}")
-            +icon name='shop' cl='ui mini image'
-        a.icon.item.mobile.hidden(href="/users" class="{{isActivePath '/users'}}")
-            +icon name='groups' cl='ui mini spaced image'
-            //- strong users
-        a.icon.item.mobile.hidden(href="/groups" class="{{isActivePath '/groups'}}")
-            +icon name='meeting-room' cl='ui mini spaced image'
-            //- strong groups
-        a.icon.item.mobile.hidden(href="/tasks" class="{{isActivePath '/tasks'}}")
-            //- i.circular.users.icon
-            +icon name='tasks' cl='ui mini spaced image'
-            //- strong groups
-        a.icon.item.mobile.hidden(href="/projects" class="{{isActivePath '/projects'}}")
-            //- i.circular.users.icon
-            +icon name='project' cl='ui mini spaced image'
-            //- strong groups
+        //- .item.mobile.hidden
+        //-     .ui.input 
+        //-         input(type='text' placeholder='search...')
+        //- a.icon.item.mobile.hidden(href="/shop" class="{{isActivePath '/shop'}}")
+        //-     +icon name='shop' cl='ui mini image'
+        //- a.icon.item.mobile.hidden(href="/users" class="{{isActivePath '/users'}}")
+        //-     +icon name='groups' cl='ui mini spaced image'
+        //-     //- strong users
+        //- a.icon.item.mobile.hidden(href="/groups" class="{{isActivePath '/groups'}}")
+        //-     +icon name='meeting-room' cl='ui mini spaced image'
+        //-     //- strong groups
+        //- a.icon.item.mobile.hidden(href="/tasks" class="{{isActivePath '/tasks'}}")
+        //-     //- i.circular.users.icon
+        //-     +icon name='tasks' cl='ui mini spaced image'
+        //-     //- strong groups
+        //- a.icon.item.mobile.hidden(href="/projects" class="{{isActivePath '/projects'}}")
+        //-     //- i.circular.users.icon
+        //-     +icon name='project' cl='ui mini spaced image'
+        //-     //- strong groups
         .right.menu
             a.icon.item(href="/m/model") 
                 i.code.large.icon
@@ -286,7 +286,7 @@ template(name='role_switcher')
     if is_dev
         //- +user_array_element_toggle key='roles' value='dev' user=currentUser
         +user_array_element_toggle key='roles' value='admin' user=currentUser
-    +user_array_element_toggle key='roles' value='student' user=currentUser
-    +user_array_element_toggle key='roles' value='business' user=currentUser
-    +user_array_element_toggle key='roles' value='teacher' user=currentUser
+    +user_array_element_toggle key='roles' value='contributor' user=currentUser
+    +user_array_element_toggle key='roles' value='customer' user=currentUser
+    //- +user_array_element_toggle key='roles' value='teacher' user=currentUser
     //- +user_array_element_toggle key='roles' value='parent' user=currentUser

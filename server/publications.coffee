@@ -31,6 +31,8 @@ Meteor.publish 'model_docs', (model)->
     if Meteor.user()
         unless Meteor.user().roles and 'admin' in Meteor.user().roles
             match.app = 'stand'
+    else
+        match.app = 'stand'
     Docs.find match
 
 

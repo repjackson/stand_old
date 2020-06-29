@@ -1,8 +1,12 @@
 if Meteor.isClient
     Router.route '/', (->
-        @layout 'layout'
-        @render 'home'
-        ), name:'home'
+        @redirect('/m/model')
+    )
+
+    # Router.route '/', (->
+    #     @layout 'layout'
+    #     @render 'home'
+    #     ), name:'home'
 
 
 Router.configure
@@ -26,25 +30,6 @@ force_loggedin =  ()->
 #         'verify-email'
 #     ]
 #     })
-
-
-
-force_loggedin =  ()->
-    if !Meteor.userId()
-        @render 'login'
-    else
-        @next()
-
-# Router.onBeforeAction(force_loggedin, {
-#   # only: ['admin']
-#   except: [
-#     'register'
-#     'login'
-#     'find_mentor'
-#     'verify-email'
-#   ]
-# });
-#
 
 
 Router.route('enroll', {
@@ -77,7 +62,6 @@ Router.route('verify-email', {
 })
 
 
-# Router.route '/user/:username', -> @render 'user'
 Router.route '/verification_confirmation', -> @render 'verification_confirmation'
 Router.route '*', -> @render 'not_found'
 

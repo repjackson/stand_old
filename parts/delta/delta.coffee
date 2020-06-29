@@ -245,6 +245,7 @@ if Meteor.isClient
                 Session.set 'loading', false
 
         'click .create_delta': (e,t)->
+            console.log 'create delta'
             Docs.insert
                 model:'delta'
                 view_mode:'list'
