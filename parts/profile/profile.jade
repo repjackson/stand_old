@@ -38,18 +38,18 @@ template(name='profile_layout')
 
                 a.ui.circular.button(href="/user/#{username}/events" class="{{isActivePath regex='user_events'}}")
                     +icon name='calendar' cl='ui inline mini image'
-                    |events
+                    |work
                 //- a.ui.circular.button(href="/user/#{username}/mentorship" class="{{isActivePath regex=user_mentorship}}")
                 //-     |mentorship
                 //- a.ui.circular.button(href="/user/#{username}/tutoring" class="{{isActivePath regex='user_tutoring'}}")
                 //-     i.grey.chalkboard.icon
                 //-     |tutoring
-                a.ui.circular.button(href="/user/#{username}/internships" class="{{isActivePath regex='user_internships'}}")
-                    +icon name='work' cl='ui inline mini image'
-                    |internships
-                a.ui.circular.button(href="/user/#{username}/awards" class="{{isActivePath regex=user_awards}}")
-                    +icon name='prize' cl='ui inline mini image'
-                    |awards
+                //- a.ui.circular.button(href="/user/#{username}/internships" class="{{isActivePath regex='user_internships'}}")
+                //-     +icon name='work' cl='ui inline mini image'
+                //-     |internships
+                //- a.ui.circular.button(href="/user/#{username}/awards" class="{{isActivePath regex=user_awards}}")
+                //-     +icon name='prize' cl='ui inline mini image'
+                //-     |awards
                 a.ui.circular.button(href="/user/#{username}/friends" class="{{isActivePath regex='user_friends'}}")
                     +icon name='groups' cl='ui inline mini image'
                     |friends
@@ -63,7 +63,7 @@ template(name='profile_layout')
                 //-         i.icon(class=icon)
                 //-         |#{title}
                 +yield    
-    +footer
+    //- +footer
 
 
 

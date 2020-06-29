@@ -4,6 +4,13 @@ template(name='nav')
             .ui.inverted.header
                 +icon name='hand-planting'
                 |the stand
+        each models
+            a.item.goto_model(href="/m/#{slug}")
+                //- i.icon(class=icon)
+                //- if color_icon
+                +icon name=color_icon cl='ui avatar image'
+                |#{title}
+                
         //- .item.mobile.hidden
         //-     .ui.input 
         //-         input(type='text' placeholder='search...')
@@ -48,13 +55,7 @@ template(name='nav')
                 a.item(href="/login")
                     i.large.sign.in.alternate.icon
                     |login
-    .ui.fluid.attached.menu.secnav
-        each models
-            a.item.goto_model(href="/m/#{slug}")
-                //- i.icon(class=icon)
-                //- if color_icon
-                +icon name=color_icon cl='ui avatar image'
-                |#{title}
+    //- .ui.fluid.attached.menu.secnav
                 
         
 template(name='bottom_nav')
