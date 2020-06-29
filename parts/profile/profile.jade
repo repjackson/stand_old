@@ -32,9 +32,9 @@ template(name='profile_layout')
                 a.ui.circular.button(href="/user/#{username}/dashboard" class="{{isActivePath regex='user_dashboard'}}")
                     +icon name='dashboard' cl='ui inline mini image'
                     |dashboard
-                a.ui.circular.button(href="/user/#{username}/about" class="{{isActivePath regex=user_about}}")
-                    +icon name='info' cl='ui inline mini image'
-                    |about
+                //- a.ui.circular.button(href="/user/#{username}/about" class="{{isActivePath regex=user_about}}")
+                //-     +icon name='info' cl='ui inline mini image'
+                //-     |about
 
                 a.ui.circular.button(href="/user/#{username}/events" class="{{isActivePath regex='user_events'}}")
                     +icon name='calendar' cl='ui inline mini image'
