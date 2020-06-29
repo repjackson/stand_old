@@ -1,10 +1,10 @@
 Docs.allow
     insert: (user_id, doc) ->
-        user = Meteor.users.findOne user_id
-        if user.roles and 'admin' in user.roles
-            true
-        else
-            user_id is doc._author_id
+        true
+        # user = Meteor.users.findOne user_id
+        # if user.roles and 'admin' in user.roles
+        # else
+        #     user_id is doc._author_id
     update: (user_id, doc) ->
         user = Meteor.users.findOne user_id
         if user.roles and 'admin' in user.roles

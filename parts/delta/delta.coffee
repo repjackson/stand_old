@@ -249,6 +249,7 @@ if Meteor.isClient
             Docs.insert
                 model:'delta'
                 view_mode:'list'
+                app:'stand'
                 model_filter: Router.current().params.model_slug
 
         'click .print_delta': (e,t)->
@@ -497,6 +498,8 @@ if Meteor.isServer
 
 
     Meteor.publish 'my_delta', ->
+        # Docs.find
+        #     model:'delta'
         if Meteor.userId()
             Docs.find
                 _author_id:Meteor.userId()
