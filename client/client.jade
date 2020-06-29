@@ -36,6 +36,8 @@ template(name='nav')
             +icon name='work' cl='ui mini image'
         a.item(href="/shop")
             +icon name='shop' cl='ui mini image'
+        a.item(href="/users")
+            +icon name='groups' cl='ui mini image'
         .right.menu
             if currentUser
                 a.item(href="/user/#{currentUser.username}")

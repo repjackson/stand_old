@@ -10,9 +10,7 @@ template(name='work_edit')
                     +boolean_edit key='approval_required' label='approval required' direct=true
                     if approval_required 
                         +text_edit key='approving_username' label='approving username' direct=true
-                    +boolean_edit key='bounty' label='bounty' direct=true
-                    if bounty 
-                        +number_edit key='bounty_amount' label='bounty amount' direct=true
+                    +number_edit key='bounty' label='bounty (karma)' direct=true
                     +number_edit key='estimated_hours' label='estimated hours' direct=true
                     +number_edit key='actual_hours' label='actual hours' direct=true
                 

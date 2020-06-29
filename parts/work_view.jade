@@ -38,34 +38,12 @@ template(name='work_view')
                     //- div
                     //- +voting_full
                 .seven.wide.column
-                    if parent_id
-                        a.ui.fluid.button(href="/work/#{parent_id}/view")
-                            i.up.chevron.icon
-                            |#{parent_doc.title}
-
                     .ui.header #{title}
                     | !{description}
                     div
                     +comments
-                    .ui.grey.inline.header
-                        i.small.fork.icon
-                        |sub work
-                    i.plus.link.icon.new_subwork
-                    div
-                    each subwork
-                        .ui.segment
-                            +text_edit key='title' direct=true
-                            +text_edit key='assigned_to' direct=true
-                            a.ui.icon.button(href="/work/#{_id}/view")
-                                i.right.chevron.icon
-                            +remove_button
                 .four.wide.column
-                    if child_dependents
-                        .ui.small.header child dependents
-                        each child_dependents
-                            a.ui.fluid.small.button(href="/work/#{_id}/view")
-                                i.right.chevron.icon
-                                |#{title}
+                    .ui.header #{bounty} karma offered
                     if group_id
                         .ui.header
                             i.list.icon

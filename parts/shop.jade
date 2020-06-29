@@ -4,6 +4,10 @@ template(name='shop')
             .ui.header shop
             .ui.big.icon.button.add_item
                 i.green.plus.icon
-        .twelve.wide.column
-            each items
-                .ui.header #{title}
+        .twelve.wide.column.scrolling
+            .ui.stackable.four.cards
+                each items
+                    .ui.card
+                        img.ui.image(src="{{c.url image_id width=400 height=400 gravity='face' crop='fill'}}")
+                        .content
+                            a.ui.header(href="/item/#{_id}/view") #{title}
