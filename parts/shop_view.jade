@@ -5,23 +5,16 @@ template(name='item_view')
                 .five.wide.column
                     a.ui.large.button(href="/shop")
                         i.left.chevron.icon
-                        |item
-                    if parent_dependents
-                        .ui.small.header parent dependents
-                        each parent_dependents
-                            a.ui.button(href="/item/#{_id}/view")
-                                i.left.chevron.icon
-                                |#{title}
-
+                        |shop
                     a.ui.icon.button(href="/item/#{_id}/edit" title='edit')
                         i.pencil.grey.icon
                     div
                     +author_info
                     +creation_info
-                    div
-                    +viewing
-                    div
-                    +voting_full
+                    //- div
+                    //- +viewing
+                    //- div
+                    //- +voting_full
                 .seven.wide.column
                     .ui.header #{title}
                     | !{description}

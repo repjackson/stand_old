@@ -41,24 +41,8 @@ template(name='work')
             
                 .largescroll
                     .ui.cards
-                        each work 
+                        each work_docs
                             +work_card_template
-            //- .six.wide.column
-            //-     if selected_work_doc
-            //-         .ui.icon.right.floated.button.unselect_work
-            //-             i.remove.icon
-            //-         with selected_work_doc
-            //-             +selected_work
-            //-     else 
-            //-         .ui.small.button.new_work 
-            //-             i.plus.icon
-            //-             |new work 
-            //-         i.refresh.link.icon.refresh_work_stats
-            //-         with work_stats_doc
-            //-             .ui.small.grey.header #{total_work} total work 
-            //-             .ui.small.grey.header #{week_work_count} work this week
-            //-             .ui.small.grey.header #{day_work_count} work today
-                    
                     
                     
 

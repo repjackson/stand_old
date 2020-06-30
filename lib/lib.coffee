@@ -1,5 +1,6 @@
 @Docs = new Meteor.Collection 'docs'
 @Tags = new Meteor.Collection 'tags'
+@Location_tag_results = new Meteor.Collection 'location_tag_results'
 
 
 if Meteor.isClient

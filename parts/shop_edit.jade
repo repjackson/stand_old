@@ -14,6 +14,8 @@ template(name='item_edit')
                 .eight.wide.column
                     +text_edit key='title' label='title' direct=true
                     +textarea_edit key='description' label='description' direct=true
+                    +image_edit key='image_id' label='image' direct=true
                     div 
                     +array_edit key='tags' label='tags' direct=true
+                    +array_edit key='location_tags' label='location_tags' direct=true
                 .four.wide.column

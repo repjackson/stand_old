@@ -28,11 +28,11 @@ Meteor.publish 'alerts', ->
 Meteor.publish 'model_docs', (model)->
     # console.log 'pulling doc'
     match = {model:model}
-    if Meteor.user()
-        unless Meteor.user().roles and 'admin' in Meteor.user().roles
-            match.app = 'stand'
-    else
-        match.app = 'stand'
+    # if Meteor.user()
+    #     unless Meteor.user().roles and 'admin' in Meteor.user().roles
+    #         match.app = 'stand'
+    # else
+        # match.app = 'stand'
     Docs.find match
 
 

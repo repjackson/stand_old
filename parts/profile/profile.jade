@@ -81,6 +81,24 @@ template(name='user_dashboard')
                 .spacer    
                     
 
+template(name='user_groups')
+    .ui.center.aligned.header 
+        i.users.icon
+        | groups
+
+
+
+template(name='user_friend_button')
+    if is_friend
+        .ui.blue.fade.animated.circular.button.unfriend
+            .visible.content
+                |friend
+            .hidden.content
+                i.minus.icon
+    else
+        .ui.basic.circular.button.friend
+            i.plus.icon
+            |friend
 
 
 

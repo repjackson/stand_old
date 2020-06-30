@@ -5,16 +5,30 @@ if Meteor.isClient
         ), name:'shop'
 
     Template.shop.onCreated ->
-        @autorun => Meteor.subscribe 'model_docs', 'item'
-        @autorun => Meteor.subscribe 'all_users'
+        # @autorun => Meteor.subscribe 'model_docs', 'shop'
+        # @autorun => Meteor.subscribe 'all_users'
+        @autorun -> Meteor.subscribe('shop_tag_results',
+            selected_tags.array()
+            selected_location_tags.array()
+            selected_authors.array()
+            Session.get('view_purchased')
+            # Session.get('view_incomplete')
+            )
+        @autorun -> Meteor.subscribe('shop_results',
+            selected_tags.array()
+            selected_location_tags.array()
+            selected_authors.array()
+            Session.get('view_purchased')
+            # Session.get('view_incomplete')
+            )
 
     Template.shop.helpers
-        items: ->
+        shop_items: ->
             Docs.find
-                model:'item'
+                model:'shop'
     Template.shop.events
-        'click .add_item': ->
+        'click .add_shop': ->
             new_id =
                 Docs.insert
-                    model:'item'
-            Router.go "/item/#{new_id}/edit"
+                    model:'shop'
+            Router.go "/shop/#{new_id}/edit"

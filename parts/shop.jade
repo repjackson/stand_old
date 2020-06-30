@@ -1,13 +1,42 @@
 template(name='shop')
     .ui.padded.stackable.grid
         .four.wide.column
-            .ui.header shop
+            .ui.header 
+                +icon name='shop'
+                |shop
             .ui.big.icon.button.add_item
                 i.green.plus.icon
+            +shop_cloud
         .twelve.wide.column.scrolling
             .ui.stackable.four.cards
-                each items
-                    .ui.card
-                        img.ui.image(src="{{c.url image_id width=400 height=400 gravity='face' crop='fill'}}")
-                        .content
-                            a.ui.header(href="/item/#{_id}/view") #{title}
+                each shop_items
+                    +shop_card
+                    
+                    
+                    
+template(name='shop_card')                    
+    a.ui.card(href="/item/#{_id}/view")
+        img.ui.image(src="{{c.url image_id width=400 height=400 gravity='face' crop='fill'}}")
+        .content
+            .ui.header #{title}
+            .ui.list
+                .ui.item #{price} karma
+                .ui.item #{inventory} left
+                .ui.item 
+                    i.user.icon
+                    |#{_author_username}
+                            
+
+
+
+template(name='shop_cloud')
+    i.grey.tags.icon
+    if selected_tags
+        #clear_tags.ui.active.icon.compact.button
+            i.remove.icon
+        each selected_shop_tags
+            .unselect_tag.ui.active.compact.button
+                strong #{this}
+    each shop_tag_results
+        .ui.compact.small.button.select_tag(class=work_cloud_tag_class) 
+            strong #{title}

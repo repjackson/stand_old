@@ -3,21 +3,25 @@ if Meteor.isClient
         @layout 'layout'
         @render 'work'
         ), name:'work'
-    Router.route '/work/:doc_id/edit', (->
-        @layout 'layout'
-        @render 'work_edit'
-        ), name:'work_edit'
 
 
     Template.work.onCreated ->
-        # @autorun => Meteor.subscribe 'model_docs', 'work'
-        @autorun -> Meteor.subscribe('work',
+        @autorun -> Meteor.subscribe('work_tag_results',
             selected_tags.array()
+            selected_location_tags.array()
+            selected_authors.array()
+            selected_tribes.array()
             Session.get('view_complete')
             Session.get('view_incomplete')
             )
-        @autorun => Meteor.subscribe 'model_docs', 'work_stats'
-        @autorun => Meteor.subscribe 'current_work'
+        @autorun -> Meteor.subscribe('work_results',
+            selected_tags.array()
+            selected_location_tags.array()
+            selected_authors.array()
+            selected_tribes.array()
+            Session.get('view_complete')
+            Session.get('view_incomplete')
+            )
     Template.work.events
         'click .toggle_complete': ->
             Session.set('view_complete', !Session.get('view_complete'))
@@ -25,69 +29,22 @@ if Meteor.isClient
             new_work_id =
                 Docs.insert
                     model:'work'
-            Session.set('editing_work', true)
-            Session.set('selected_work_id', new_work_id)
-        'click .unselect_work': ->
-            Session.set('selected_work_id', null)
+            Router.go "/work/#{new_work_id}/edit"
 
     Template.work.helpers
         view_complete_class: ->
             if Session.get('view_complete') then 'blue' else ''
-        selected_work_doc: ->
-            Docs.findOne Session.get('selected_work_id')
-        current_work: ->
+        work_docs: ->
             Docs.find
                 model:'work'
-                current:true
-        work_stats_doc: ->
-            Docs.findOne
-                model:'work_stats'
-        work: ->
-            Docs.find
-                model:'work'
-
-
-
-
-    Template.selected_work.events
-        'click .delete_work': ->
-            if confirm 'delete work?'
-                Docs.remove @_id
-                Session.set('selected_work_id', null)
-        'click .save_work': ->
-            Session.set('editing_work', false)
-        'click .edit_work': ->
-            Session.set('editing_work', true)
-        'click .goto_work': (e,t)->
-            console.log @
-            $(e.currentTarget).closest('.grid').transition('fade right', 500)
-            Meteor.setTimeout =>
-                Router.go "/work/#{@_id}/view"
-            , 500
-
-    Template.selected_work.helpers
-        editing_work: -> Session.get('editing_work')
-
-
-
-
-
-
 
 
 
 
     Template.work_card_template.onRendered ->
-        Meteor.setTimeout ->
-            $('.accordion').accordion()
-        , 1000
     Template.work_card_template.onCreated ->
-        @autorun => Meteor.subscribe 'model_docs', 'log_events'
+        # @autorun => Meteor.subscribe 'model_docs', 'log_events'
     Template.work_card_template.events
-        'click .add_work_item': ->
-            new_mi_id = Docs.insert
-                model:'work_item'
-            Router.go "/work/#{_id}/edit"
     Template.work_card_template.helpers
         work_segment_class: ->
             cl=''
@@ -96,27 +53,9 @@ if Meteor.isClient
             if Session.equals('selected_work_id', @_id)
                 classes += ' inverted blue'
             classes
-        work_list: ->
-            # console.log @
-            Docs.findOne
-                model:'work_list'
-                _id: @work_list_id
 
 
     Template.work_card_template.events
-        'click .select_work': ->
-            if Session.equals('selected_work_id',@_id)
-                Session.set 'selected_work_id', null
-            else
-                Session.set 'selected_work_id', @_id
-        'click .goto_work': (e,t)->
-            console.log @
-            $(e.currentTarget).closest('.grid').transition('fade right', 500)
-            Meteor.setTimeout =>
-                Router.go "/work/#{@_id}/view"
-            , 500
-
-
 
 
 
@@ -162,27 +101,3 @@ if Meteor.isServer
             # .ui.small.header biggest renter
             # .ui.small.header predicted payback duration
             # .ui.small.header predicted payback date
-    Meteor.publish 'work', (
-        selected_tags
-        view_complete
-        )->
-        # user = Meteor.users.findOne @userId
-        # console.log selected_tags
-        # console.log filter
-        self = @
-        match = {}
-        if view_complete
-            match.complete = true
-        # if Meteor.user()
-        #     unless Meteor.user().roles and 'dev' in Meteor.user().roles
-        #         match.view_roles = $in:Meteor.user().roles
-        # else
-        #     match.view_roles = $in:['public']
-
-        # if filter is 'shop'
-        #     match.active = true
-        if selected_tags.length > 0 then match.tags = $all: selected_tags
-        # if filter then match.model = filter
-        match.model = 'work'
-
-        Docs.find match, sort:_timestamp:-1
