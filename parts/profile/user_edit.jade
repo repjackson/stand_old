@@ -5,38 +5,32 @@ template(name='user_edit_layout')
         .ui.stackable.padded.grid
             .row
                 .four.wide.column
-                    .ui.center.aligned.large.inline.grey.header
+                    .ui.center.aligned.large.inline.header
                         | #{current_user.first_name} #{current_user.last_name}
                     //- +i name='pencil'
                     .ui.small.inline.header @#{current_user.username}
                     a.ui.fluid.basic.large.button(href="/user/#{current_user._id}/") 
-                        i.grey.checkmark.icon
+                        i.checkmark.icon
                         strong save
-                    .ui.vertical.fluid.pointing.menu(class="{{currentUser.nav_color}}")
+                    .ui.vertical.fluid.pointing.large.menu
                         a.item(href="/user/#{current_user._id}/edit/info" class="{{isActivePath regex='user_edit_info'}}") 
                             |info
-                            i.grey.info.icon 
+                            i.info.icon 
                         a.item(href="/user/#{current_user._id}/edit/account" class="{{isActivePath regex='user_edit_account'}}") 
                             |account
-                            i.grey.cog.icon 
-                        //- a.item(href="/user/#{current_user._id}/edit/friends" class="{{isActivePath regex='user_edit_friends'}}") 
-                        //-     |friends
-                        //-     i.grey.users.icon 
-                        a.item(href="/user/#{current_user._id}/edit/tutoring" class="{{isActivePath regex='user_edit_tutoring'}}") 
-                            |tutoring
-                            i.grey.chalkboard.icon 
-                        //- a.item(href="/user/#{current_user._id}/edit/alerts" class="{{isActivePath regex='user_edit_alerts'}}") 
-                        //-     |alerts
-                        //-     i.grey.bell.icon 
-                        //- a.item(href="/user/#{current_user._id}/edit/privacy" class="{{isActivePath regex='user_edit_privacy'}}") 
-                        //-     | privacy
-                        //-     i.grey.lock.icon 
-                        //- a.item(href="/user/#{current_user._id}/edit/membership" class="{{isActivePath regex='user_edit_membership'}}") 
-                        //-     | membership
-                        //-     i.grey.shield.icon 
-                        //- a.item(href="/user/#{current_user._id}/edit/ads" class="{{isActivePath regex='user_edit_ads'}}") 
-                        //-     |ads
-                        //-     i.grey.bullhorn.icon 
+                            i.cog.icon 
+                        a.item(href="/user/#{current_user._id}/edit/friends" class="{{isActivePath regex='user_edit_friends'}}") 
+                            |friends
+                            i.users.icon 
+                        a.item(href="/user/#{current_user._id}/edit/alerts" class="{{isActivePath regex='user_edit_alerts'}}") 
+                            |alerts
+                            i.bell.icon 
+                        a.item(href="/user/#{current_user._id}/edit/privacy" class="{{isActivePath regex='user_edit_privacy'}}") 
+                            | privacy
+                            i.lock.icon 
+                        a.item(href="/user/#{current_user._id}/edit/membership" class="{{isActivePath regex='user_edit_membership'}}") 
+                            | membership
+                            i.shield.icon 
                 .twelve.wide.column
                     +yield
 
@@ -45,8 +39,8 @@ template(name='user_edit_info')
         .column
             +image_edit key='profile_image_id' icon='picture' title='profile image' direct=true
         .column
-            +text_edit key='first_name' label='first name' direct=true
-            +text_edit key='last_name' label='last name' direct=true
+            //- +text_edit key='first_name' label='first name' direct=true
+            //- +text_edit key='last_name' label='last name' direct=true
             .ui.header 
                 i.envelope.outline.icon
                 |emails
@@ -56,7 +50,7 @@ template(name='user_edit_info')
             //- if is_admin
             //-     .ui.segment 
             //-         .ui.small.header 
-            //-             i.grey.shield.icon 
+            //-             i.shield.icon 
             //-             |admin
             //-         +text_edit key='student_code' label='student code' direct=true
             //-         +text_edit key='parent_code' label='parent code' direct=true
@@ -103,7 +97,7 @@ template(name='phone_editor')
 
 
 template(name='password_edit')
-    .ui.small.grey.header
+    .ui.small.header
         //- +i name='password'
         i.lock.icon
         |change password
@@ -125,7 +119,7 @@ template(name='password_edit')
             
             
 template(name='emails_edit')
-    //- .ui.small.grey.header 
+    //- .ui.small.header 
     //-     i.envelope.icon
     //-     | email(s)
     //- #test_email.ui.large.basic.button test email
@@ -139,16 +133,16 @@ template(name='emails_edit')
                     if verified
                         .ui.large.basic.label(title='verified')
                             | #{address}
-                            i.grey.checkmark.icon
+                            i.checkmark.icon
                     else
                         .ui.large.basic.label
                             //- i.ban.icon
                             | #{address}
                         .send_verification_email.ui.basic.button 
                             |verify
-                            i.grey.caret.right.icon
+                            i.caret.right.icon
                     .ui.small.icon.basic.button.remove_email
-                        i.grey.remove.icon
+                        i.remove.icon
     .ui.action.large.fluid.icon.action.input
         input#new_email(type='email' placeholder='add new email address' autocomplete="off")
         #add_email.ui.submit.icon.button 
@@ -200,7 +194,7 @@ template(name='user_edit_account')
             if is_admin
                 with current_user
                     .ui.basic.button.remove_user 
-                        i.grey.remove.icon
+                        i.remove.icon
                         |delete user
         .column
             +username_edit

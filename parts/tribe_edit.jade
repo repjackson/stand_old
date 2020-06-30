@@ -11,9 +11,9 @@ template(name='tribe_edit')
                     .ui.header 
                         i.pencil.icon
                         |edit tribe
-                    +text_edit key='title' label='title' direct=true
-                    +textarea_edit key='description' label='description' direct=true
+                    +text_edit key='title' label='title'
+                    +textarea_edit key='description' label='description'
                     div 
-                    +array_edit key='tags' label='tags' direct=true
+                    +array_edit key='tags' label='tags'
                 .four.wide.column
-                    +multi_user_edit key='tribe_member_ids' label='tribe members' icon='users' direct=true
+                    +multi_user_edit key='tribe_member_ids' label='tribe members' icon='users'
