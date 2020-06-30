@@ -45,40 +45,11 @@ Template.registerHelper 'can_edit', () ->
 
 
 
-Template.registerHelper 'current_doc', () ->
-    Docs.findOne Router.current().params.doc_id
+Template.registerHelper 'current_doc', () -> Docs.findOne Router.current().params.doc_id
 
+Template.registerHelper 'lowered_title', ()-> @title.toLowerCase()
 
-
-Template.registerHelper 'above_50', (input) ->
-    # console.log 'input', input
-    # console.log @
-    # console.log @["#{input}"]
-    @["#{input}"] > .49
-
-
-Template.registerHelper 'parse', (input) ->
-    console.log 'input', input
-
-    # parser = new DOMParser()
-    # doc = parser.parseFromString(input, 'text/html')
-    # console.log 'dom parser', doc, doc.body
-    # console.log 'dom parser', doc.body
-
-    # // Otherwise, fallback to old-school method
-    dom = document.createElement('textarea')
-    # dom.innerHTML = doc.body
-    dom.innerHTML = input
-    console.log 'innner html', dom
-    return dom.value
-
-
-Template.registerHelper 'lowered_title', ()->
-    @title.toLowerCase()
-
-Template.registerHelper 'lowered', (input)->
-    input.toLowerCase()
-
+Template.registerHelper 'lowered', (input)-> input.toLowerCase()
 
 Template.registerHelper 'session_key_value_is', (key, value) ->
     # console.log 'key', key
@@ -104,6 +75,8 @@ Template.registerHelper 'nl2br', (text)->
     new Spacebars.SafeString(nl2br)
 
 
+Template.registerHelper 'author', ->
+    Meteor.users.findOne(@_author_id)
 
 
 Template.registerHelper 'is_loading', -> Session.get 'is_loading'
@@ -118,15 +91,7 @@ Template.registerHelper 'to_percent', (number)->
 Template.registerHelper 'loading_class', ()->
     if Session.get 'loading' then 'disabled' else ''
 
-Template.registerHelper 'publish_when', ()->
-    if @watson
-        if @watson.metadata
-            if @watson.metadata.publication_date
-                moment(@watson.metadata.publication_date).fromNow()
-
-Template.registerHelper 'when', ()->
-    moment(@_timestamp).fromNow()
-Template.registerHelper 'from_now', (input)->
-    moment(input).fromNow()
+Template.registerHelper 'when', ()-> moment(@_timestamp).fromNow()
+Template.registerHelper 'from_now', (input)-> moment(input).fromNow()
 
 Template.registerHelper 'in_dev', ()-> Meteor.isDevelopment

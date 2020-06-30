@@ -31,7 +31,7 @@ template(name='layout')
     
     
 template(name='nav')
-    .ui.fluid.attached.borderless.inverted.blue.menu.topnav
+    .ui.fluid.attached.borderless.inverted.blue.large.menu.topnav
         a.item(href="/work")
             +icon name='work' cl='ui mini image'
             |work
@@ -41,9 +41,9 @@ template(name='nav')
         a.item(href="/users")
             +icon name='groups' cl='ui mini image'
             |users
-        a.item(href="/groups")
-            +icon name='audience' cl='ui mini image'
-            |groups
+        a.item(href="/tribes")
+            +icon name='campfire' cl='ui mini image'
+            |tribes
         .right.menu
             if currentUser
                 a.large.item(href="/user/#{currentUser.username}")

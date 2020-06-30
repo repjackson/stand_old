@@ -28,12 +28,10 @@ fourseven:scss
 reactive-var@1.0.11
 constellation:console
 constellation:subscriptions
-constellation:autopublish
 constellation:session
 babrahams:temple
 accounts-password
 flowkey:hotkeys
 zimme:active-route
 mrgalaxy:stripe
-multiply:iron-router-progress
 lepozepo:cloudinary

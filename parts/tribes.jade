@@ -1,14 +1,14 @@
-template(name='work')
+template(name='tribes')
     .ui.stackable.padded.grid
         .row
             .four.wide.column
                 .ui.inline.header 
-                    i.work.icon
-                    |work
-                .ui.icon.large.button.new_work
+                    +icon name='campfire'
+                    |tribe
+                .ui.icon.large.button.new_tribe
                     i.green.plus.icon
                 div
-                +work_cloud
+                +tribe_cloud
                 //- with currentUser
                 //-     .ui.list
                 //-         .item(title='hours today')
@@ -28,8 +28,6 @@ template(name='work')
                 //-             i.business.time.icon
                 //-             | #{weekly_sessions} sessions
             .twelve.wide.column
-                //- with top_work
-                //-     +work_card_template
                 //- i.link.refresh.icon.refresh_my_time_stats
                 //- .ui.small.compact.icon.button.toggle_complete(title='view complete' class=view_complete_class)
                 //-     i.checkmark.icon
@@ -42,13 +40,13 @@ template(name='work')
             
                 .largescroll
                     .ui.cards
-                        each work_docs
-                            +work_card_template
+                        each tribe_docs
+                            +tribe_card_template
                     
                     
 
-template(name='work_cloud')
-    //- #work_cloud
+template(name='tribe_cloud')
+    //- #tribe_cloud
         //- .ui.left.icon.input
         //-     i.search.icon
         //-     +inputAutocomplete settings=settings id="search" class="" autocomplete="off" 
@@ -61,16 +59,16 @@ template(name='work_cloud')
             .unselect_tag.ui.active.compact.button
                 strong #{this}
     each all_tags
-        .ui.compact.small.button.select_tag(class=work_cloud_tag_class) 
+        .ui.compact.small.button.select_tag(class=tribe_cloud_tag_class) 
             strong #{this.name}
 
 
 
 
-template(name='work_card_template')
-    .ui.card.select_work(class=work_segment_class)
+template(name='tribe_card_template')
+    .ui.card.select_tribe(class=tribe_segment_class)
         .content
-            a.ui.header(href="/work/#{_id}/view") #{title}
+            a.ui.header(href="/tribe/#{_id}/view") #{title}
             div
             .ui.list 
                 .item(title='views')
@@ -79,10 +77,10 @@ template(name='work_card_template')
                 .item(title='points')
                     i.thumbs.up.outline.icon
                     |#{points}
-                if work_list_id 
-                    .item(title='work list')
+                if tribe_list_id 
+                    .item(title='tribe list')
                         i.list.icon 
-                        |#{work_list.title}
+                        |#{tribe_list.title}
                 .item
                     i.grey.tags.icon 
                     each five_tags

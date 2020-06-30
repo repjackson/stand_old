@@ -33,7 +33,7 @@ template(name='user_item')
             img.ui.image(src="{{c.url image_id width=400 height=300 crop='fill'}}")    
         .content
             a.ui.inline.header(href="/user/#{username}") #{username}
-            .ui.inline.green.header $#{credit}
+            .ui.inline.small.header #{karma} karma
             each tags
                 .ui.large.label #{this}
         .content

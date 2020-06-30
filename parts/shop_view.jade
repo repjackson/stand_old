@@ -15,18 +15,20 @@ template(name='item_view')
                     //- +viewing
                     //- div
                     //- +voting_full
-                .seven.wide.column
+                .six.wide.column
                     .ui.header #{title}
                     | !{description}
                     div
                     img.ui.image(src="{{c.url image_id width=400 height=400 gravity='face' crop='fill'}}")
-                    
                     +comments
                 .five.wide.column
                     .ui.segment
-                        a.ui.header(href="/user/#{_author_username}") #{_author_username}
+                        a.ui.header(href="/user/#{author.username}") 
+                            |#{author.username}
                     .ui.segment
                         .ui.header
-                            +icon name='fire'
+                            +icon name='campfire'
                             |tribes
+                        each tribes
+                            .ui.header #{title}
                     
