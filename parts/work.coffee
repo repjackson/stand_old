@@ -23,8 +23,8 @@ if Meteor.isClient
             Session.get('view_incomplete')
             )
     Template.work.events
-        'click .toggle_complete': ->
-            Session.set('view_complete', !Session.get('view_complete'))
+        # 'click .toggle_complete': ->
+        #     Session.set('view_complete', !Session.get('view_complete'))
         'click .new_work': (e,t)->
             new_work_id =
                 Docs.insert
@@ -46,13 +46,13 @@ if Meteor.isClient
         # @autorun => Meteor.subscribe 'model_docs', 'log_events'
     Template.work_card_template.events
     Template.work_card_template.helpers
-        work_segment_class: ->
-            cl=''
-            if @complete
-                classes += ' green'
-            if Session.equals('selected_work_id', @_id)
-                classes += ' inverted blue'
-            classes
+        # work_segment_class: ->
+        #     cl=''
+        #     if @complete
+        #         classes += ' green'
+        #     if Session.equals('selected_work_id', @_id)
+        #         classes += ' inverted blue'
+        #     classes
 
 
     Template.work_card_template.events

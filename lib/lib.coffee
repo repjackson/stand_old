@@ -1,6 +1,8 @@
 @Docs = new Meteor.Collection 'docs'
 @Tags = new Meteor.Collection 'tags'
 @Location_tag_results = new Meteor.Collection 'location_tag_results'
+@Author_results = new Meteor.Collection 'author_results'
+@Tribe_results = new Meteor.Collection 'tribe_results'
 
 
 if Meteor.isClient

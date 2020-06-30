@@ -2,11 +2,12 @@ template(name='work')
     .ui.stackable.padded.grid
         .row
             .four.wide.column
-                .ui.header 
+                .ui.inline.header 
                     i.work.icon
                     |work
                 .ui.icon.large.button.new_work
                     i.green.plus.icon
+                div
                 +work_cloud
                 //- with currentUser
                 //-     .ui.list
@@ -29,9 +30,9 @@ template(name='work')
             .twelve.wide.column
                 //- with top_work
                 //-     +work_card_template
-                i.link.refresh.icon.refresh_my_time_stats
-                .ui.small.compact.icon.button.toggle_complete(title='view complete' class=view_complete_class)
-                    i.checkmark.icon
+                //- i.link.refresh.icon.refresh_my_time_stats
+                //- .ui.small.compact.icon.button.toggle_complete(title='view complete' class=view_complete_class)
+                //-     i.checkmark.icon
                 //- .ui.small.compact.icon.button.toggle_incomplete(title='incomplete') 
                 //-     i.circle.outline.icon
                 |sort by 

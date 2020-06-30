@@ -22,3 +22,11 @@ template(name='item_view')
                     img.ui.image(src="{{c.url image_id width=400 height=400 gravity='face' crop='fill'}}")
                     
                     +comments
+                .five.wide.column
+                    .ui.segment
+                        a.ui.header(href="/user/#{_author_username}") #{_author_username}
+                    .ui.segment
+                        .ui.header
+                            +icon name='fire'
+                            |tribes
+                    

@@ -25,10 +25,6 @@ mquandalle:jade
 underscore@1.0.10
 coffeescript
 fourseven:scss
-ecmascript@0.14.3
-modules@0.15.0
-http
-markdown
 reactive-var@1.0.11
 constellation:console
 constellation:subscriptions
@@ -39,7 +35,5 @@ accounts-password
 flowkey:hotkeys
 zimme:active-route
 mrgalaxy:stripe
-lookback:emails
 multiply:iron-router-progress
-francocatena:status
 lepozepo:cloudinary

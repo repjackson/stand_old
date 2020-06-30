@@ -31,19 +31,26 @@ template(name='layout')
     
     
 template(name='nav')
-    .ui.fluid.attached.borderless.inverted.blue.small.menu.topnav
+    .ui.fluid.attached.borderless.inverted.blue.menu.topnav
         a.item(href="/work")
             +icon name='work' cl='ui mini image'
+            |work
         a.item(href="/shop")
             +icon name='shop' cl='ui mini image'
+            |shop
         a.item(href="/users")
             +icon name='groups' cl='ui mini image'
+            |users
+        a.item(href="/groups")
+            +icon name='audience' cl='ui mini image'
+            |groups
         .right.menu
             if currentUser
-                a.item(href="/user/#{currentUser.username}")
+                a.large.item(href="/user/#{currentUser.username}")
                     //- i.large.user.large.icon
-                    .ui.circular.label 
+                    .ui.circular.blue.large.label 
                         |#{currentUser.karma}
+                        small k
                     |#{currentUser.username}
             else
                 a.item(href="/login")
