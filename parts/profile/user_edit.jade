@@ -9,7 +9,7 @@ template(name='user_edit_layout')
                         | #{current_user.first_name} #{current_user.last_name}
                     //- +i name='pencil'
                     .ui.small.inline.header @#{current_user.username}
-                    a.ui.fluid.basic.large.button(href="/user/#{current_user._id}/") 
+                    a.ui.fluid.large.button(href="/user/#{current_user._id}/") 
                         i.checkmark.icon
                         strong save
                     .ui.vertical.fluid.pointing.large.menu
@@ -81,10 +81,10 @@ template(name='phone_editor')
                 .ui.label not verified
                 a.resend_verification(href='#')
                     |resend code
-                .ui.small.icon.basic.button.remove_phone(title='remove phone')
+                .ui.small.icon.button.remove_phone(title='remove phone')
                     i.remove.icon
     else
-        .ui.fluid.basic.button.update_phone add phone
+        .ui.fluid.button.update_phone add phone
 
 
 
@@ -98,12 +98,12 @@ template(name='password_edit')
     .ui.fluid.icon.input
         input#new_password(type='password', placeholder='new password')
     if is_dev
-        .ui.fluid.basic.button.send_enrollment_email
+        .ui.fluid.button.send_enrollment_email
             |send enrollment email
     if is_admin
-        .ui.fluid.basic.button.reset_password
+        .ui.fluid.button.reset_password
             |reset password
-    .ui.fluid.large.basic.button.set_password
+    .ui.fluid.large.button.set_password
         i.lock.icon
         //- +i name='password' cl='ui mini inline image'
         | set password
@@ -114,26 +114,26 @@ template(name='emails_edit')
     //- .ui.small.header 
     //-     i.envelope.icon
     //-     | email(s)
-    //- #test_email.ui.large.basic.button test email
+    //- #test_email.ui.large.button test email
     .ui.divided.list
         each current_user.emails
             .item 
                 // unless verified
                 //     .right.floated.content
-                //         .ui.basic.button Verify
+                //         .ui.button Verify
                 .content
                     if verified
-                        .ui.large.basic.label(title='verified')
+                        .ui.large.label(title='verified')
                             | #{address}
                             i.checkmark.icon
                     else
-                        .ui.large.basic.label
+                        .ui.large.label
                             //- i.ban.icon
                             | #{address}
-                        .send_verification_email.ui.basic.button 
+                        .send_verification_email.ui.button 
                             |verify
                             i.caret.right.icon
-                    .ui.small.icon.basic.button.remove_email
+                    .ui.small.icon.button.remove_email
                         i.remove.icon
     .ui.action.large.fluid.icon.action.input
         input#new_email(type='email' placeholder='add new email address' autocomplete="off")
@@ -185,7 +185,7 @@ template(name='user_edit_account')
             +password_edit
             if is_admin
                 with current_user
-                    .ui.basic.button.remove_user 
+                    .ui.button.remove_user 
                         i.remove.icon
                         |delete user
         .column

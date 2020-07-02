@@ -27,7 +27,7 @@ body {
     overflow-y:hidden;
 	overflow-x:scroll;
 	/* padding-top: .2em; */
-	padding: .2em;
+	/* padding: .2em; */
 
 }
 
@@ -207,7 +207,7 @@ a.title, #title {
     border-radius:10px !important;
 }
 
-.ui.embed, .ui.text, .invert, img{
+.ui.embed, .ui.text, .invert, img:not(.circular){
     border-radius: 10px !important;
     /* filter: invert(1) !important; */
 }

@@ -26,68 +26,42 @@ template(name='profile_layout')
                 //- if is_current_user
                 //- +user_friend_button            
                 +yield    
-            .four.wide.column
+            .four.wide.center.aligned.column
                 img.ui.centered.small.circular.profile_image.image(src="{{c.url profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
-                a(href="/user/#{username}")
-                    .ui.header #{username}
-                a.ui.large.fluid.circular.button(href="/user/#{username}/edit")
-                    i.cog.icon
+                a.ui.large.center.aligned.header(href="/user/#{username}") #{username}
+                .spacer
+                a.ui.fluid.circular.compact.large.button(href="/user/#{username}/edit")
+                    +icon name='settings' cl='ui mini inline image'
                     |account
-                a.ui.fluid.circular.button.logout(href="#")
-                    i.sign.out.alternate.icon
+                .spacer
+                a.ui.fluid.circular.compact.large.button.logout(href="#")
+                    +icon name='logout-rounded' cl='ui mini inline image'
                     |log out
-                a.ui.fluid.circular.button.logout_other_clients(href="#")
-                    //- i.globe.icon
-                    |log out other clients
-                //- if is_admin
-                //-     .ui.circular.segment
-                //-         .ui.header 
-                //-             i.grey.shield.small.icon
-                //-             |roles
-                //-         each roles
-                //-             .ui.circular.label #{this}
+                //- a.ui.fluid.circular.button.logout_other_clients(href="#")
+                //-     //- i.globe.icon
+                //-     |log out other clients
+                .ui.header 
+                    +icon name='shield'
+                    |roles
+                each roles
+                    .ui.circular.label #{this}
                       
 
 
 
 template(name='user_dashboard')
-    //- .ui.header hi
-    .ui.header #{points}
     .ui.header #{level} level
-    .ui.header 
-        |earned
-        +icon name='receive-cash'
-    .ui.header 
-        |earned
-        +icon name='donate'
-    //- .ui.center.aligned.header 
-    //-     +icon name='dashboard'
-    //-     |dashboard
-    //- .ui.stackable.padded.grid
-    //-     .row
-    //-         .five.wide.column
-    //-             .ui.segment
-    //-                 .ui.header 
-    //-                     +icon name='generate'
-    //-                     |generate
-    //-             .spacer    
-    //-         .five.wide.column
-    //-             .ui.segment
-    //-                 .ui.header 
-    //-                     +icon name='chat'
-    //-                     |messages
-    //-             .spacer    
-    //-         .five.wide.column
-    //-             .ui.segment
-    //-                 .ui.header 
-    //-                     +icon name='sales'
-    //-                     |messages
-    //-             .ui.segment
-    //-                 .ui.header 
-    //-                     +icon name='spend'
-    //-                     |spend
-    //-             .spacer    
-    //- 
+    .ui.header #{points}pts
+    .ui.stackable.two.column.grid
+        .column
+            .ui.header 
+                +icon name='receive-cash'
+                |earned
+        .column
+            .ui.header 
+                +icon name='donate'
+                |spent
+                
 
 template(name='user_groups')
     .ui.center.aligned.header 
