@@ -120,6 +120,8 @@ if Meteor.isClient
     #     Meteor.call 'log_view', @_id, ->
 
     Template.delta.helpers
+        is_loading: -> Session.get('loading')
+
         table_header_column: ->
             console.log @
 
