@@ -3,7 +3,7 @@ globalHotkeys = new Hotkeys();
 globalHotkeys.add
 	combo: "r a"
 	callback: ->
-        if Meteor.userId() and Meteor.userId() in ['vwCi2GTJgvBJN5F6c']
+        if Meteor.userId() and Meteor.userId() in ['vwCi2GTJgvBJN5F6c','Dw2DfanyyteLytajt','LQEJBS6gHo3ibsJFu']
             if Meteor.user().roles and 'admin' in Meteor.user().roles
                 Meteor.users.update Meteor.userId(), $pull:roles:'admin'
             else
@@ -11,7 +11,7 @@ globalHotkeys.add
 globalHotkeys.add
 	combo: "r s"
 	callback: ->
-        if Meteor.userId() and Meteor.userId() in ['vwCi2GTJgvBJN5F6c']
+        if Meteor.userId() and Meteor.userId() in ['vwCi2GTJgvBJN5F6c','Dw2DfanyyteLytajt','LQEJBS6gHo3ibsJFu']
             if 'student' in Meteor.user().roles
                 Meteor.users.update Meteor.userId(), $pull:roles:'student'
             else
@@ -19,7 +19,7 @@ globalHotkeys.add
 globalHotkeys.add
 	combo: "r d"
 	callback: ->
-        if Meteor.userId() and Meteor.userId() in ['vwCi2GTJgvBJN5F6c']
+        if Meteor.userId() and Meteor.userId() in ['vwCi2GTJgvBJN5F6c','Dw2DfanyyteLytajt','LQEJBS6gHo3ibsJFu']
             if Meteor.user().roles and 'dev' in Meteor.user().roles
                 Meteor.users.update Meteor.userId(), $pull:roles:'dev'
             else
@@ -42,7 +42,7 @@ globalHotkeys.add
 globalHotkeys.add
 	combo: "g d"
 	callback: ->
-        if Meteor.userId() and Meteor.userId() in ['vwCi2GTJgvBJN5F6c']
+        if Meteor.userId() and Meteor.userId() in ['vwCi2GTJgvBJN5F6c','Dw2DfanyyteLytajt','LQEJBS6gHo3ibsJFu']
             Router.go '/dev'
 globalHotkeys.add
 	combo: "g p"

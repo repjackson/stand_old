@@ -3,6 +3,29 @@ template(name='profile_layout')
     +nav
     with user
         .ui.stackable.padded.grid
+            .twelve.wide.column
+                //- a.ui.circular.button(href="/user/#{username}/dashboard" class="{{isActivePath regex='user_dashboard'}}")
+                //-     +icon name='dashboard' cl='ui inline mini image'
+                //-     |dashboard
+                //- a.ui.circular.button(href="/user/#{username}/about" class="{{isActivePath regex=user_about}}")
+                //-     +icon name='info' cl='ui inline mini image'
+                //-     |about
+
+                //- a.ui.circular.button(href="/user/#{username}/events" class="{{isActivePath regex='user_events'}}")
+                //-     +icon name='calendar' cl='ui inline mini image'
+                //-     |generate
+                //- a.ui.circular.button(href="/user/#{username}/spend" class="{{isActivePath regex='user_spend'}}")
+                //-     +icon name='spend' cl='ui inline mini image'
+                //-     |spend
+                //- a.ui.circular.button(href="/user/#{username}/friends" class="{{isActivePath regex='user_friends'}}")
+                //-     +icon name='groups' cl='ui inline mini image'
+                //-     |friends
+                //- a.ui.circular.button(href="/user/#{username}/messages" class="{{isActivePath regex='user_messages'}}")
+                //-     +icon name='chat' cl='ui inline mini image'
+                //-     |messages
+                //- if is_current_user
+                //- +user_friend_button            
+                +yield    
             .four.wide.column
                 img.ui.centered.small.circular.profile_image.image(src="{{c.url profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
                 a(href="/user/#{username}")
@@ -24,62 +47,41 @@ template(name='profile_layout')
                 //-         each roles
                 //-             .ui.circular.label #{this}
                       
-            .twelve.wide.column
-                a.ui.circular.button(href="/user/#{username}/dashboard" class="{{isActivePath regex='user_dashboard'}}")
-                    +icon name='dashboard' cl='ui inline mini image'
-                    |dashboard
-                //- a.ui.circular.button(href="/user/#{username}/about" class="{{isActivePath regex=user_about}}")
-                //-     +icon name='info' cl='ui inline mini image'
-                //-     |about
-
-                a.ui.circular.button(href="/user/#{username}/events" class="{{isActivePath regex='user_events'}}")
-                    +icon name='calendar' cl='ui inline mini image'
-                    |work
-                a.ui.circular.button(href="/user/#{username}/shop" class="{{isActivePath regex='user_shop'}}")
-                    +icon name='shop' cl='ui inline mini image'
-                    |shop
-                a.ui.circular.button(href="/user/#{username}/friends" class="{{isActivePath regex='user_friends'}}")
-                    +icon name='groups' cl='ui inline mini image'
-                    |friends
-                a.ui.circular.button(href="/user/#{username}/messages" class="{{isActivePath regex='user_messages'}}")
-                    +icon name='chat' cl='ui inline mini image'
-                    |messages
-                //- if is_current_user
-                //- +user_friend_button            
-                +yield    
-    //- +footer
 
 
 
-template(name='user_dashboard')             
-    .ui.center.aligned.header 
-        +icon name='dashboard'
-        |dashboard
-    .ui.stackable.padded.grid
-        .row
-            .five.wide.column
-                .ui.segment
-                    .ui.header 
-                        +icon name='work'
-                        |work
-                .spacer    
-            .five.wide.column
-                .ui.segment
-                    .ui.header 
-                        +icon name='chat'
-                        |messages
-                .spacer    
-            .five.wide.column
-                .ui.segment
-                    .ui.header 
-                        +icon name='sales'
-                        |messages
-                .ui.segment
-                    .ui.header 
-                        +icon name='shop'
-                        |shop
-                .spacer    
-                    
+template(name='user_dashboard')
+    //- .ui.header hi
+    .ui.header #{points}
+    .ui.header #{level} level
+    //- .ui.center.aligned.header 
+    //-     +icon name='dashboard'
+    //-     |dashboard
+    //- .ui.stackable.padded.grid
+    //-     .row
+    //-         .five.wide.column
+    //-             .ui.segment
+    //-                 .ui.header 
+    //-                     +icon name='generate'
+    //-                     |generate
+    //-             .spacer    
+    //-         .five.wide.column
+    //-             .ui.segment
+    //-                 .ui.header 
+    //-                     +icon name='chat'
+    //-                     |messages
+    //-             .spacer    
+    //-         .five.wide.column
+    //-             .ui.segment
+    //-                 .ui.header 
+    //-                     +icon name='sales'
+    //-                     |messages
+    //-             .ui.segment
+    //-                 .ui.header 
+    //-                     +icon name='spend'
+    //-                     |spend
+    //-             .spacer    
+    //- 
 
 template(name='user_groups')
     .ui.center.aligned.header 

@@ -28,16 +28,17 @@ template(name='user_cloud')
         
 
 template(name='user_item')
-    .ui.card
+    .ui.horizontal.card
         a(href="/user/#{username}")
             img.ui.image(src="{{c.url image_id width=400 height=300 crop='fill'}}")    
         .content
             a.ui.inline.header(href="/user/#{username}") #{username}
-            .ui.inline.small.header #{karma} karma
+            
+            .ui.small.header #{points} points
             each tags
                 .ui.large.label #{this}
-        .content
-            +user_friend_button
+        //- .content
+        //-     +user_friend_button
         
-            //- .ui.button send credit
+        //- .ui.button send credit
                 

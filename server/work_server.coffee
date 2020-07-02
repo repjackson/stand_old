@@ -1,4 +1,4 @@
-Meteor.publish 'work_tag_results', (
+Meteor.publish 'generate_tag_results', (
     selected_tags
     selected_location_tags
     selected_authors
@@ -11,7 +11,7 @@ Meteor.publish 'work_tag_results', (
     self = @
     match = {}
 
-    match.model = 'work'
+    match.model = 'generate'
     # console.log 'query length', query.length
     # if query
     # if query and query.length > 1
@@ -29,7 +29,7 @@ Meteor.publish 'work_tag_results', (
     if selected_tags.length > 0
         match.tags = $all: selected_tags
     # console.log 'match for tags', match
-    console.log 'match for work tags', match
+    console.log 'match for generate tags', match
 
 
     agg_doc_count = Docs.find(match).count()
@@ -88,13 +88,13 @@ Meteor.publish 'work_tag_results', (
 
     self.ready()
 
-Meteor.publish 'work_results', (
+Meteor.publish 'generate_results', (
     selected_tags
     )->
     # console.log 'got selected tags', selected_tags
     # else
     self = @
-    match = {model:'work'}
+    match = {model:'generate'}
     # if selected_tags.length > 0
     # console.log date_setting
     # if date_setting

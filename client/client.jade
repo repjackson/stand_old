@@ -1,5 +1,5 @@
 head
-    title the stand
+    title one riverside
     meta(name='viewport', content='user-scalable=no, initial-scale=1.0, maximum-scale=1.3, width=device-width')
     meta(name='apple-mobile-web-app-capable', content='yes')
     meta(name='apple-mobile-web-app-status-bar-style', content='black')
@@ -31,31 +31,33 @@ template(name='layout')
     
     
 template(name='nav')
-    .ui.fluid.attached.borderless.inverted.blue.large.menu.topnav
-        a.item(href="/work")
+    .ui.fluid.attached.borderless.inverted.blue.big.menu.topnav
+        a.item(href="/generate")
             +icon name='work' cl='ui mini image'
-            |work
-        a.item(href="/shop")
+            span.mobile.hidden Generate
+        a.item(href="/spend")
             +icon name='shop' cl='ui mini image'
-            |shop
+            span.mobile.hidden Spend
         a.item(href="/users")
             +icon name='groups' cl='ui mini image'
-            |users
-        a.item(href="/tribes")
-            +icon name='campfire' cl='ui mini image'
-            |tribes
-        .right.menu
-            if currentUser
-                a.large.item(href="/user/#{currentUser.username}")
-                    //- i.large.user.large.icon
-                    .ui.circular.blue.large.label 
-                        |#{currentUser.karma}
-                        small k
-                    |#{currentUser.username}
-            else
-                a.item(href="/login")
-                    i.large.sign.in.alternate.icon
-                    |login
+            span.mobile.hidden Directory
+        //- a.item(href="/tribes")
+        //-     +icon name='campfire' cl='ui mini image'
+        //-     |tribes
+        if is_admin
+            a.item(href="/m/model")
+                +icon name='database' cl='ui mini image'
+                |db
+        if currentUser
+            a.large.item(href="/user/#{currentUser.username}")
+                //- i.large.user.large.icon
+                .ui.circular.teal.large.label 
+                    |#{currentUser.points}
+                |#{currentUser.username}
+        else
+            a.item(href="/login")
+                i.large.sign.in.alternate.icon
+                |login
     
     
     

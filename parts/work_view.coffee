@@ -1,8 +1,8 @@
 if Meteor.isClient
-    Router.route '/work/:doc_id/view', (->
+    Router.route '/generate/:doc_id/view', (->
         @layout 'layout'
-        @render 'work_view'
-        ), name:'work_view'
+        @render 'generate_view'
+        ), name:'generate_view'
 
-    Template.work_view.onCreated ->
+    Template.generate_view.onCreated ->
         @autorun => Meteor.subscribe 'doc', Router.current().params.doc_id

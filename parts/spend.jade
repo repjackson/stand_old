@@ -1,0 +1,62 @@
+template(name='spend')
+    .ui.padded.stackable.grid
+        .four.wide.column
+            .ui.inline.header 
+                +icon name='shop'
+                |spend
+            if is_admin
+                .ui.big.icon.button.add_spend
+                    i.green.plus.icon
+            //- div
+            //- +spend_cloud
+        .twelve.wide.column
+            //- |sort
+            //- .ui.button.cheapest
+            //-     i.money.icon
+            //-     |cheapest
+            //- .ui.button.closest
+            //-     i.marker.icon
+            //-     |closest
+            //- .ui.button.recent
+            //-     i.clock.icon
+            //-     |recent
+            //- .scrolling
+            .ui.stackable.four.cards
+                each spend_items
+                    +spend_card
+                
+                    
+                    
+template(name='spend_card')                    
+    //- a.ui.card(href="/item/#{_id}/view")
+    .ui.link.card.record_spend
+        img.ui.image(src="{{c.url image_id width=400 height=400 gravity='face' crop='fill'}}")
+        .content
+            .ui.header #{title}
+            .ui.link.list
+                .ui.item -#{points} points
+
+
+
+template(name='spend_cloud')
+    i.tags.icon
+    if selected_tags
+        #clear_tags.ui.active.icon.compact.button
+            i.remove.icon
+        each selected_spend_tags
+            .unselect_tag.ui.active.compact.button
+                strong #{this}
+    each spend_tag_results
+        .ui.compact.small.button.select_tag(class=generate_cloud_tag_class) 
+            strong #{title}
+    div
+    i.marker.icon
+    if selected_tags
+        #clear_tags.ui.active.icon.compact.button
+            i.remove.icon
+        each selected_spend_tags
+            .unselect_tag.ui.active.compact.button
+                strong #{this}
+    each spend_tag_results
+        .ui.compact.small.button.select_tag(class=generate_cloud_tag_class) 
+            strong #{title}

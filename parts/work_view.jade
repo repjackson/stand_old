@@ -1,12 +1,12 @@
-template(name='work_view')
+template(name='generate_view')
     with current_doc
         .ui.stackable.padded.grid
             .row
                 .five.wide.column
-                    a.ui.large.button(href="/work")
+                    a.ui.large.button(href="/generate")
                         i.left.chevron.icon
-                        |work
-                    a.ui.icon.button(href="/work/#{_id}/edit" title='edit')
+                        |generate
+                    a.ui.icon.button(href="/generate/#{_id}/edit" title='edit')
                         i.pencil.grey.icon
                     div
                     +author_info
@@ -18,7 +18,7 @@ template(name='work_view')
                     div
                     +comments
                 .four.wide.column
-                    .ui.header #{bounty} karma offered
+                    .ui.header #{bounty} points offered
                     if group_id
                         .ui.header
                             i.list.icon

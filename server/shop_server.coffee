@@ -1,4 +1,4 @@
-Meteor.publish 'shop_tag_results', (
+Meteor.publish 'spend_tag_results', (
     selected_tags
     selected_location_tags
     selected_authors
@@ -10,7 +10,7 @@ Meteor.publish 'shop_tag_results', (
     self = @
     match = {}
 
-    match.model = 'shop'
+    match.model = 'spend'
     # console.log 'query length', query.length
     # if query
     # if query and query.length > 1
@@ -28,7 +28,7 @@ Meteor.publish 'shop_tag_results', (
 
     if selected_tags.length > 0
         match.tags = $all: selected_tags
-    console.log 'match for shop tags', match
+    console.log 'match for spend tags', match
 
 
     # agg_doc_count = Docs.find(match).count()
@@ -85,7 +85,7 @@ Meteor.publish 'shop_tag_results', (
 
     self.ready()
 
-Meteor.publish 'shop_results', (
+Meteor.publish 'spend_results', (
     selected_tags
     selected_location_tags=[]
     selected_authors=[]
@@ -94,7 +94,7 @@ Meteor.publish 'shop_results', (
     # console.log 'got selected tags', selected_tags
     # else
     self = @
-    match = {model:'shop'}
+    match = {model:'spend'}
     # if selected_tags.length > 0
     # console.log date_setting
     # if date_setting

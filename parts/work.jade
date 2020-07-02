@@ -1,14 +1,14 @@
-template(name='work')
+template(name='generate')
     .ui.stackable.padded.grid
         .row
-            .four.wide.column
-                .ui.inline.header 
-                    i.work.icon
-                    |work
-                .ui.icon.large.button.new_work
-                    i.green.plus.icon
-                div
-                +work_cloud
+            //- .four.wide.column
+            //-     .ui.inline.header 
+            //-         i.generate.icon
+            //-         |generate
+            //-     .ui.icon.large.button.new_generate
+            //-         i.green.plus.icon
+            //-     div
+            //-     +generate_cloud
                 //- with currentUser
                 //-     .ui.list
                 //-         .item(title='hours today')
@@ -27,28 +27,28 @@ template(name='work')
                 //-             i.calendar.icon
                 //-             i.business.time.icon
                 //-             | #{weekly_sessions} sessions
-            .twelve.wide.column
-                //- with top_work
-                //-     +work_card_template
+            .sixteen.wide.column
+                //- with top_generate
+                //-     +generate_card_template
                 //- i.link.refresh.icon.refresh_my_time_stats
                 //- .ui.small.compact.icon.button.toggle_complete(title='view complete' class=view_complete_class)
                 //-     i.checkmark.icon
                 //- .ui.small.compact.icon.button.toggle_incomplete(title='incomplete') 
                 //-     i.circle.outline.icon
-                |sort by 
-                .ui.small.compact.button lucrative
-                .ui.small.compact.button soonest
-                .ui.small.compact.button priority
-            
+                //- |sort by 
+                //- .ui.small.compact.button lucrative
+                //- .ui.small.compact.button soonest
+                //- .ui.small.compact.button priority
+                .ui.header click this item as many times as hours you've contributed
                 .largescroll
                     .ui.cards
-                        each work_docs
-                            +work_card_template
+                        each generate_docs
+                            +generate_card_template
                     
                     
 
-template(name='work_cloud')
-    //- #work_cloud
+template(name='generate_cloud')
+    //- #generate_cloud
         //- .ui.left.icon.input
         //-     i.search.icon
         //-     +inputAutocomplete settings=settings id="search" class="" autocomplete="off" 
@@ -61,47 +61,21 @@ template(name='work_cloud')
             .unselect_tag.ui.active.compact.button
                 strong #{this}
     each all_tags
-        .ui.compact.small.button.select_tag(class=work_cloud_tag_class) 
+        .ui.compact.small.button.select_tag(class=generate_cloud_tag_class) 
             strong #{this.name}
 
 
 
 
-template(name='work_card_template')
-    .ui.card.select_work(class=work_segment_class)
+template(name='generate_card_template')
+    .ui.link.card.record_generate
         .content
-            a.ui.header(href="/work/#{_id}/view") #{title}
+            //- a.ui.header(href="/generate/#{_id}/view") #{title}
+            .ui.header #{title}
             div
-            .ui.list 
-                .item(title='views')
-                    i.eye.icon 
-                    |#{views}
-                .item(title='points')
-                    i.thumbs.up.outline.icon
-                    |#{points}
-                if work_list_id 
-                    .item(title='work list')
-                        i.list.icon 
-                        |#{work_list.title}
-                .item
-                    i.grey.tags.icon 
-                    each five_tags
-                        .ui.small.basic.label #{this}
-            div
-            .ui.header #{bounty} karma offered
-            //- if assigned_by
-            //-     .ui.large.basic.label(title='assigned by')
-            //-         |#{assigned_by}
-            //-     .ui.small.inline.header 
+            .ui.header 
+                |#{points}
+                points offered
             if assigned_to
                 .ui.large.basic.label(title='assigned to')
                     |#{assigned_to}
-            unless complete
-                if percent_complete
-                    .rounded(style="height:5px;width:{{percent_complete}}%;background-color:grey" title="{{percent_complete}}% complete")
-                        //- 
-                        //- .ui.bottom.attached.progress(data-percent="{{percent_complete}}" title="{{percent_complete}}% complete")
-                        //-     .bar
-                            //- .progress
-                        //- .label complete
-        .spacer

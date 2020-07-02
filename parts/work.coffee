@@ -1,12 +1,12 @@
 if Meteor.isClient
-    Router.route '/work', (->
+    Router.route '/generate', (->
         @layout 'layout'
-        @render 'work'
-        ), name:'work'
+        @render 'generate'
+        ), name:'generate'
 
 
-    Template.work.onCreated ->
-        @autorun -> Meteor.subscribe('work_tag_results',
+    Template.generate.onCreated ->
+        @autorun -> Meteor.subscribe('generate_tag_results',
             selected_tags.array()
             selected_location_tags.array()
             selected_authors.array()
@@ -14,7 +14,7 @@ if Meteor.isClient
             Session.get('view_complete')
             Session.get('view_incomplete')
             )
-        @autorun -> Meteor.subscribe('work_results',
+        @autorun -> Meteor.subscribe('generate_results',
             selected_tags.array()
             selected_location_tags.array()
             selected_authors.array()
@@ -22,79 +22,88 @@ if Meteor.isClient
             Session.get('view_complete')
             Session.get('view_incomplete')
             )
-    Template.work.events
+    Template.generate.events
+
         # 'click .toggle_complete': ->
         #     Session.set('view_complete', !Session.get('view_complete'))
-        'click .new_work': (e,t)->
-            new_work_id =
+        'click .new_generate': (e,t)->
+            new_generate_id =
                 Docs.insert
-                    model:'work'
-            Router.go "/work/#{new_work_id}/edit"
+                    model:'generate'
+            Router.go "/generate/#{new_generate_id}/edit"
 
-    Template.work.helpers
+    Template.generate.helpers
         view_complete_class: ->
             if Session.get('view_complete') then 'blue' else ''
-        work_docs: ->
+        generate_docs: ->
             Docs.find
-                model:'work'
+                model:'generate'
 
 
 
 
-    Template.work_card_template.onRendered ->
-    Template.work_card_template.onCreated ->
+    Template.generate_card_template.onRendered ->
+    Template.generate_card_template.onCreated ->
         # @autorun => Meteor.subscribe 'model_docs', 'log_events'
-    Template.work_card_template.events
-    Template.work_card_template.helpers
-        # work_segment_class: ->
+    Template.generate_card_template.events
+    Template.generate_card_template.helpers
+        # generate_segment_class: ->
         #     cl=''
         #     if @complete
         #         classes += ' green'
-        #     if Session.equals('selected_work_id', @_id)
+        #     if Session.equals('selected_generate_id', @_id)
         #         classes += ' inverted blue'
         #     classes
 
 
-    Template.work_card_template.events
-
+    Template.generate_card_template.events
+        'click .record_generate': ->
+            console.log 'hi'
+            Meteor.users.update Meteor.userId(),
+                $inc: points:@points
+            $('body')
+              .toast({
+                class: 'success',
+                message: "#{@points} added to account"
+              })
 
 
 
 
 if Meteor.isServer
     Meteor.methods
-        refresh_work_stats: (work_id)->
-            work = Docs.findOne work_id
-            # console.log work
-            reservations = Docs.find({model:'reservation', work_id:work_id})
+        refresh_generate_stats: (generate_id)->
+            generate = Docs.findOne generate_id
+            # console.log generate
+            reservations = Docs.find({model:'reservation', generate_id:generate_id})
             reservation_count = reservations.count()
             total_earnings = 0
-            total_work_hours = 0
-            average_work_duration = 0
+            total_generate_hours = 0
+            average_generate_duration = 0
 
-            # shorwork_reservation =
+            # shorgenerate_reservation =
             # longest_reservation =
 
             for res in reservations.fetch()
                 total_earnings += parseFloat(res.cost)
-                total_work_hours += parseFloat(res.hour_duration)
+                total_generate_hours += parseFloat(res.hour_duration)
 
-            average_work_cost = total_earnings/reservation_count
-            average_work_duration = total_work_hours/reservation_count
+            average_generate_cost = total_earnings/reservation_count
+            average_generate_duration = total_generate_hours/reservation_count
 
-            Docs.update work_id,
+            Docs.update generate_id,
                 $set:
                     reservation_count: reservation_count
                     total_earnings: total_earnings.toFixed(0)
-                    total_work_hours: total_work_hours.toFixed(0)
-                    average_work_cost: average_work_cost.toFixed(0)
-                    average_work_duration: average_work_duration.toFixed(0)
+                    total_generate_hours: total_generate_hours.toFixed(0)
+                    average_generate_cost: average_generate_cost.toFixed(0)
+                    average_generate_duration: average_generate_duration.toFixed(0)
 
             # .ui.small.header total earnings
-            # .ui.small.header work ranking #reservations
-            # .ui.small.header work ranking $ earned
+            # .ui.small.header generate ranking #reservations
+            # .ui.small.header generate ranking $ earned
             # .ui.small.header # different renters
-            # .ui.small.header avg work time
+            # .ui.small.header avg generate time
             # .ui.small.header avg daily earnings
             # .ui.small.header avg weekly earnings
             # .ui.small.header avg monthly earnings

@@ -126,14 +126,14 @@ Meteor.methods
                         upvotes:1
                         credit:.01
             Meteor.users.update doc._author_id,
-                $inc:karma:1
+                $inc:points:1
         else
             Docs.update doc._id,
                 $inc:
                     anon_credit:.01
                     anon_upvotes:1
             Meteor.users.update doc._author_id,
-                $inc:anon_karma:1
+                $inc:anon_points:1
 
     downvote: (doc)->
         if Meteor.userId()
@@ -158,11 +158,11 @@ Meteor.methods
                         credit:-.01
                         downvotes:1
             Meteor.users.update doc._author_id,
-                $inc:karma:-1
+                $inc:points:-1
         else
             Docs.update doc._id,
                 $inc:
                     anon_credit:-1
                     anon_downvotes:1
             Meteor.users.update doc._author_id,
-                $inc:anon_karma:-1
+                $inc:anon_points:-1

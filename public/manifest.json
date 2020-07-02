@@ -1,8 +1,8 @@
 {
- "name": "dao",
- "short_name": "dao",
+ "name": "one riverside",
+ "short_name": "one riverside",
  "description": "wei wu wei",
- "background_color": "grey",
+ "background_color": "green",
  "theme_color": "grey",
  "start_url": "/",
  "display": "fullscreen",

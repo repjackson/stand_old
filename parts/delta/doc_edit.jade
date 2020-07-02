@@ -27,12 +27,12 @@ template(name='model_doc_edit')
                 //-             +watson_view
                 
             
-template(name='karma_transaction')
-    .ui.header my karma #{currentUser.karma}
-    .ui.header offer karma
+template(name='points_transaction')
+    .ui.header my points #{currentUser.points}
+    .ui.header offer points
     .ui.input
-        input.offer_karma_amount(type='number')
-    .ui.button.offer_karma
+        input.offer_points_amount(type='number')
+    .ui.button.offer_points
         i.right.chevron.icon
     each offers
         +offer

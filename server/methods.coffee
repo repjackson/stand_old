@@ -32,7 +32,7 @@
 #             Terms.insert
 #                 title:term_title
 #             # if Meteor.user()
-#             #     Meteor.users.update({_id:Meteor.userId()},{$inc: karma: 1}, -> )
+#             #     Meteor.users.update({_id:Meteor.userId()},{$inc: points: 1}, -> )
 #             # console.log 'added term', term
 #         else
 #             Terms.update({_id:found_term._id},{$inc: count: 1}, -> )

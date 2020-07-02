@@ -46,6 +46,10 @@ template(name='user_edit_info')
                 |emails
             +emails_edit
             +number_edit key='hourly_rate' label='hourly rate ($)' direct=true
+            +textarea_edit key='' label='what do you hope to receive'
+            +textarea_edit key='' label='emergency contact name'
+            +textarea_edit key='' label='emergency contact number'
+            
         .column
             //- if is_admin
             //-     .ui.segment 
@@ -58,21 +62,9 @@ template(name='user_edit_info')
             //- div
             +phone_edit key='phone' label='phone' icon='phone' direct=true
             +array_edit key='tags' label='tags' direct=true
-            .ui.header score goals
-            +number_edit key='english' label='english' min=10 max=36 direct=true label_cl='inline'
-            div
-            +number_edit key='math' label='math' min=10 max=36 direct=true label_cl='inline'
-            div
-            +number_edit key='reading' label='reading' min=10 max=36 direct=true label_cl='inline'
-            div
-            +number_edit key='science' label='science' min=10 max=36 direct=true label_cl='inline'
-            .ui.list
-                .item Top 50 colleges: 95th percentile, 31 ACT
-                .item Top 100 colleges: 91st percentile, 29 ACT
-                .item Top 200 colleges: 82nd percentile, 26 ACT
-                .item Top 300 college: 74th percentile, 24 ACT
-                .item Top 500 college: 66th percentile, 22 ACT
-
+            +textarea_edit key='' label='what excites you about being apart of this community'
+            +textarea_edit key='' label='what do you want this commnuity to know about yopu'
+            +textarea_edit key='' label='what would yuou like to contribute (think: superpowers, talents, gifts, resources)'
      
 template(name='phone_editor')
     .ui.small.header    

@@ -12,12 +12,12 @@ Template.registerHelper 'current_user', () ->
     Meteor.users.findOne username:Router.current().params.username
 
 
-Template.registerHelper 'field_value', () ->
-    # console.log @
-    parent = Template.parentData()
-    # console.log 'parent', parent
-    if parent
-        parent["#{@key}"]
+# Template.registerHelper 'field_value', () ->
+#     # console.log @
+#     parent = Template.parentData()
+#     # console.log 'parent', parent
+#     if parent
+#         parent["#{@key}"]
 
 Template.registerHelper 'is_admin', () ->
     # Meteor.users.findOne username:Router.current().params.username

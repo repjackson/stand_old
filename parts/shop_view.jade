@@ -1,11 +1,11 @@
-template(name='item_view')
+template(name='spend_view')
     with current_doc
         .ui.stackable.padded.grid
             .row
                 .five.wide.column
-                    a.ui.large.button(href="/shop")
+                    a.ui.large.button(href="/spend")
                         i.left.chevron.icon
-                        |shop
+                        |spend
                     a.ui.icon.button(href="/item/#{_id}/edit" title='edit')
                         i.pencil.grey.icon
                     div

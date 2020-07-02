@@ -1,11 +1,11 @@
 if Meteor.isClient
-    Router.route '/work/:doc_id/edit', (->
+    Router.route '/generate/:doc_id/edit', (->
         @layout 'layout'
-        @render 'work_edit'
-        ), name:'work_edit'
+        @render 'generate_edit'
+        ), name:'generate_edit'
 
-    Template.work_edit.onCreated ->
+    Template.generate_edit.onCreated ->
         @autorun => Meteor.subscribe 'doc', Router.current().params.doc_id
-    Template.work_edit.onRendered ->
-    Template.work_edit.events
-    Template.work_edit.helpers
+    Template.generate_edit.onRendered ->
+    Template.generate_edit.events
+    Template.generate_edit.helpers
