@@ -27,7 +27,7 @@ template(name='generate')
                 //-             i.calendar.icon
                 //-             i.business.time.icon
                 //-             | #{weekly_sessions} sessions
-            .sixteen.wide.column
+            .sixteen.wide.center.aligned.column
                 //- with top_generate
                 //-     +generate_card_template
                 //- i.link.refresh.icon.refresh_my_time_stats
@@ -40,11 +40,10 @@ template(name='generate')
                 //- .ui.small.compact.button soonest
                 //- .ui.small.compact.button priority
                 //- .ui.header click this item as many times as hours you've contributed
-                .largescroll
-                    .ui.cards
-                        each generate_docs
-                            +generate_card_template
-                    
+                .ui.cards
+                    each generate_docs
+                        +generate_card_template
+                
                     
 
 template(name='generate_cloud')
@@ -69,6 +68,7 @@ template(name='generate_cloud')
 
 template(name='generate_card_template')
     .ui.link.card.record_generate
+        img.ui.image(src="{{c.url image width=400 height=300 crop='fill'}}")    
         .content
             //- a.ui.header(href="/generate/#{_id}/view") #{title}
             .ui.header #{title}

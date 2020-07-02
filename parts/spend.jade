@@ -21,7 +21,7 @@ template(name='spend')
             //-     i.clock.icon
             //-     |recent
             //- .scrolling
-            .ui.stackable.four.cards
+            .ui.stackable.four.centered.cards
                 each spend_items
                     +spend_card
                 
@@ -30,11 +30,11 @@ template(name='spend')
 template(name='spend_card')                    
     //- a.ui.card(href="/item/#{_id}/view")
     .ui.link.card.record_spend
-        img.ui.image(src="{{c.url image_id width=400 height=400 gravity='face' crop='fill'}}")
+        img.ui.image(src="{{c.url image width=400 height=400 gravity='face' crop='fill'}}")
         .content
             .ui.header #{title}
             |#{description}
-            .ui.small.teal.item -#{points} points
+            .ui.small.teal.header -#{points} points
 
 
 

@@ -54,8 +54,9 @@ template(name='model_edit_fields')
     .ui.icon.large.compact.circular.button.add_field
         i.plus.green.icon
     .spacer
-    each fields
-        +field_edit
+    .ui.segments
+        each fields
+            +field_edit
         
             
 template(name='model_edit_modules')
@@ -75,24 +76,24 @@ template(name='model_edit_permissions')
 
 
 template(name='field_edit')
-    .ui.secondary.segment
+    .ui.segment
         .title.field_edit.pointer
-            |#{rank}
+            //- |#{rank}
             if icon
                 +icon name=icon cl='ui mini inline image'
                 //- i.icon(class=icon)
-            strong #{title}
+            .ui.inline.header #{title}
             .ui.basic.label #{field_type}
             if faceted
-                i.filter.icon
-            if sortable
-                i.sort.amount.down.icon
-            each view_roles
-                .ui.label #{this}
-            .ui.icon.compact.circular.button
-                i.up.caret.icon
-            .ui.icon.compact.circular.button
-                i.down.caret.icon
+                i.filter.icon(title='faceted')
+            //- if sortable
+            //-     i.sort.amount.down.icon
+            //- each view_roles
+            //-     .ui.label #{this}
+            //- .ui.icon.compact.circular.button
+            //-     i.up.caret.icon
+            //- .ui.icon.compact.circular.button
+            //-     i.down.caret.icon
             if viewing_content    
                 i.large.caret.down.icon
             else 
@@ -101,16 +102,16 @@ template(name='field_edit')
             .content
                 +text_edit key='title' label='title (human)' direct=true
                 +text_edit key='key' label='key (machine)' direct=true
-                +number_edit key='rank' label='rank' direct=true      
+                //- +number_edit key='rank' label='rank' direct=true      
                 +color_icon_edit key='icon' label='color icon' direct=true       
                 //- +textarea_edit key='description' label='description' direct=true
                 .spacer
                 +text_edit key='field_type' label='field type' direct=true
-                +key_value_edit key='field_type' value='text' icon='text'
-                +key_value_edit key='field_type' value='number' icon='number'
-                +key_value_edit key='field_type' value='float' icon='number'
+                +key_value_edit key='field_type' value='text'
+                +key_value_edit key='field_type' value='number' icon='hashtag'
+                +key_value_edit key='field_type' value='float' icon='hashtag'
                 +key_value_edit key='field_type' value='textarea' icon='list'
-                +key_value_edit key='field_type' value='image' icon='image'
+                +key_value_edit key='field_type' value='image' icon='picture'
                 //- if is_admin
                 //- +single_doc_edit key='field_type' ref_model='field_type' label='field type' direct=true        
                 //- .spacer
@@ -123,16 +124,16 @@ template(name='field_edit')
                 //- +text_edit key='ref_model' label='Reference Model' direct=true
                 .spacer
                 +boolean_edit key='faceted' label='faceted' color_icon='diamond' direct=true
-                +boolean_edit key='sortable' label='sortable' color_icon='chevron-down' direct=true
-                .spacer
+                //- +boolean_edit key='sortable' label='sortable' color_icon='chevron-down' direct=true
+                //- .spacer
                 //- if is_ref  
                 //-     +single_doc_edit key='ref_model' ref_model_slug='model' label='reference model' direct=true
                 //- else if is_user_ref
                 //-     +single_doc_edit key='role_filter' ref_model_slug='role' label='role filter' direct=true
                 //- div             
                 +remove_button
-                if is_admin
-                    +print_this
+                //- if is_admin
+                //-     +print_this
 //- template(name='view_model')
         
 template(name='field_view')
