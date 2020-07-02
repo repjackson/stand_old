@@ -63,7 +63,8 @@ if Meteor.isClient
                 $inc: points:@points
             $('body')
               .toast({
-                class: 'success',
+                class: 'success'
+                position: 'bottom right'
                 message: "#{@points} added to account"
               })
 

@@ -35,9 +35,6 @@ template(name='comments')
 
 
 
-template(name='user_card')
-
-
 template(name='viewing')
     if currentUser
         unless viewed_by
@@ -134,18 +131,18 @@ template(name='user_status')
     // else 
     //     |Offline
 
-//- template(name='user_card')
-//-     with user
-//-         .ui.small.horizontal.card
-//-             .image
-//-                 img.ui.rounded.mini.image(src="{{c.url profile_image_id width=300 height=300 gravity='face' crop='fill'}}")
-//-             .content    
-//-                 a.header(href="/user/#{username}") #{first_name} #{last_name} 
-//-                 //- .meta @#{username}
-//-                 strong $#{credit}
-//-                 small credit
-//-                 //- +emails_edit    
-//-         //- +user_status user
+template(name='user_card')
+    with user
+        .ui.small.horizontal.card
+            .image
+                img.ui.rounded.mini.image(src="{{c.url profile_image_id width=300 height=300 gravity='face' crop='fill'}}")
+            .content    
+                a.header(href="/user/#{username}") #{first_name} #{last_name} 
+                //- .meta @#{username}
+                strong $#{credit}
+                small credit
+                //- +emails_edit    
+        //- +user_status user
 
 
 template(name='small_horizontal_user_card')
@@ -434,8 +431,9 @@ template(name='user_string_toggle')
 
 template(name='key_value_edit')
     .ui.compact.button.set_key_value(class=set_key_value_class title=value)
-        if icon 
-            i.icon(class=icon)
+        if icon
+            +icon name=icon cl='ui avatar image'
+            //- i.icon(class=icon)
         unless icon_only
             if label
                 |#{label}

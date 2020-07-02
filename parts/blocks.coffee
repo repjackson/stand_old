@@ -1,7 +1,7 @@
-# if Meteor.isClient
-#     Template.print_this.events
-#         'click .print_this': ->
-#             console.log @
+if Meteor.isClient
+    Template.print_this.events
+        'click .print_this': ->
+            console.log @
 #
 #
 #
@@ -19,42 +19,42 @@
 #         Meteor.setTimeout ->
 #             $('.accordion').accordion()
 #         , 1000
-#     Template.comments.onCreated ->
-#         if Router.current().params.doc_id
-#             parent = Docs.findOne Router.current().params.doc_id
-#         else
-#             parent = Docs.findOne Template.parentData()._id
-#         if parent
-#             @autorun => Meteor.subscribe 'children', 'comment', parent._id
-#     Template.comments.helpers
-#         doc_comments: ->
-#             if Router.current().params.doc_id
-#                 parent = Docs.findOne Router.current().params.doc_id
-#             else
-#                 parent = Docs.findOne Template.parentData()._id
-#             Docs.find
-#                 parent_id:parent._id
-#                 model:'comment'
-#     Template.comments.events
-#         'keyup .add_comment': (e,t)->
-#             if e.which is 13
-#                 if Router.current().params.doc_id
-#                     parent = Docs.findOne Router.current().params.doc_id
-#                 else
-#                     parent = Docs.findOne Template.parentData()._id
-#                 # parent = Docs.findOne Router.current().params.doc_id
-#                 comment = t.$('.add_comment').val()
-#                 Docs.insert
-#                     parent_id: parent._id
-#                     model:'comment'
-#                     parent_model:parent.model
-#                     body:comment
-#                 t.$('.add_comment').val('')
-#
-#         'click .remove_comment': ->
-#             if confirm 'Confirm remove comment'
-#                 Docs.remove @_id
-#
+    Template.comments.onCreated ->
+        if Router.current().params.doc_id
+            parent = Docs.findOne Router.current().params.doc_id
+        else
+            parent = Docs.findOne Template.parentData()._id
+        if parent
+            @autorun => Meteor.subscribe 'children', 'comment', parent._id
+    Template.comments.helpers
+        doc_comments: ->
+            if Router.current().params.doc_id
+                parent = Docs.findOne Router.current().params.doc_id
+            else
+                parent = Docs.findOne Template.parentData()._id
+            Docs.find
+                parent_id:parent._id
+                model:'comment'
+    Template.comments.events
+        'keyup .add_comment': (e,t)->
+            if e.which is 13
+                if Router.current().params.doc_id
+                    parent = Docs.findOne Router.current().params.doc_id
+                else
+                    parent = Docs.findOne Template.parentData()._id
+                # parent = Docs.findOne Router.current().params.doc_id
+                comment = t.$('.add_comment').val()
+                Docs.insert
+                    parent_id: parent._id
+                    model:'comment'
+                    parent_model:parent.model
+                    body:comment
+                t.$('.add_comment').val('')
+
+        'click .remove_comment': ->
+            if confirm 'Confirm remove comment'
+                Docs.remove @_id
+
 #     Template.follow.helpers
 #         followers: ->
 #             Meteor.users.find
@@ -277,17 +277,18 @@
 #
 #
 #
-#     Template.email_validation_check.events
-#         'click .send_verification': ->
-#             console.log @
-#             if confirm 'send verification email?'
-#                 Meteor.call 'verify_email', @_id, ->
-#                     alert 'verification email sent'
-#         'click .toggle_email_verified': ->
-#             console.log @emails[0].verified
-#             if @emails[0]
-#                 Meteor.users.update @_id,
-#                     $set:"emails.0.verified":true
+if Meteor.isClient
+    Template.email_validation_check.events
+        'click .send_verification': ->
+            console.log @
+            if confirm 'send verification email?'
+                Meteor.call 'verify_email', @_id, ->
+                    alert 'verification email sent'
+        'click .toggle_email_verified': ->
+            console.log @emails[0].verified
+            if @emails[0]
+                Meteor.users.update @_id,
+                    $set:"emails.0.verified":true
 #
 #
 #     Template.add_button.onCreated ->
@@ -306,20 +307,20 @@
 #             Router.go "/m/#{@model}/#{new_id}/edit"
 #
 #
-#     Template.remove_button.events
-#         'click .remove_doc': (e,t)->
-#             if confirm "remove #{@model}?"
-#                 if $(e.currentTarget).closest('.card')
-#                     $(e.currentTarget).closest('.card').transition('fly right', 1000)
-#                 else
-#                     $(e.currentTarget).closest('.segment').transition('fly right', 1000)
-#                     $(e.currentTarget).closest('.item').transition('fly right', 1000)
-#                     $(e.currentTarget).closest('.content').transition('fly right', 1000)
-#                     $(e.currentTarget).closest('tr').transition('fly right', 1000)
-#                     $(e.currentTarget).closest('.event').transition('fly right', 1000)
-#                 Meteor.setTimeout =>
-#                     Docs.remove @_id
-#                 , 1000
+    Template.remove_button.events
+        'click .remove_doc': (e,t)->
+            if confirm "remove #{@model}?"
+                if $(e.currentTarget).closest('.card')
+                    $(e.currentTarget).closest('.card').transition('fly right', 1000)
+                else
+                    $(e.currentTarget).closest('.segment').transition('fly right', 1000)
+                    $(e.currentTarget).closest('.item').transition('fly right', 1000)
+                    $(e.currentTarget).closest('.content').transition('fly right', 1000)
+                    $(e.currentTarget).closest('tr').transition('fly right', 1000)
+                    $(e.currentTarget).closest('.event').transition('fly right', 1000)
+                Meteor.setTimeout =>
+                    Docs.remove @_id
+                , 1000
 #
 #
 #     Template.remove_icon.events
@@ -387,19 +388,19 @@
 #
 #
 #
-#     Template.key_value_edit.events
-#         'click .set_key_value': ->
-#             parent = Template.parentData()
-#             Docs.update parent._id,
-#                 $set: "#{@key}": @value
-#
-#     Template.key_value_edit.helpers
-#         set_key_value_class: ->
-#             parent = Template.parentData()
-#             # console.log parent
-#             if parent["#{@key}"] is @value then 'active' else 'basic'
-#
-#
+    Template.key_value_edit.events
+        'click .set_key_value': ->
+            parent = Template.parentData()
+            Docs.update parent._id,
+                $set: "#{@key}": @value
+
+    Template.key_value_edit.helpers
+        set_key_value_class: ->
+            parent = Template.parentData()
+            # console.log parent
+            if parent["#{@key}"] is @value then 'active' else 'basic'
+
+
 #
 #
 #     Template.user_key_value_edit.events

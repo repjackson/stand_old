@@ -9,6 +9,7 @@ template(name='model_edit_layout')
                         strong #{title}
                     |created
                     +creation_info
+                    div
                     a.ui.big.icon.circular.button(href="/m/#{slug}")
                         i.big.checkmark.green.icon
                     #delete_model.ui.icon.circular.button
@@ -20,12 +21,12 @@ template(name='model_edit_layout')
                     a.ui.compact.large.circular.button(href="/model/edit/#{current_doc._id}/fields" class="{{isActivePath regex='model_edit_fields'}}")
                         +icon name='list' cl='ui avatar image'
                         |fields
-                    a.ui.compact.large.circular.button(href="/model/edit/#{current_doc._id}/modules" class="{{isActivePath regex='model_edit_modules'}}")
-                        +icon name='module' cl='ui avatar image'
-                        |modules
-                    a.ui.compact.large.circular.button(href="/model/edit/#{current_doc._id}/permissions" class="{{isActivePath regex='model_edit_permissions'}}")
-                        +icon name='shield' cl='ui avatar image'
-                        |permissions
+                    //- a.ui.compact.large.circular.button(href="/model/edit/#{current_doc._id}/modules" class="{{isActivePath regex='model_edit_modules'}}")
+                    //-     +icon name='module' cl='ui avatar image'
+                    //-     |modules
+                    //- a.ui.compact.large.circular.button(href="/model/edit/#{current_doc._id}/permissions" class="{{isActivePath regex='model_edit_permissions'}}")
+                    //-     +icon name='shield' cl='ui avatar image'
+                    //-     |permissions
                     +yield
                     
                     
@@ -37,7 +38,10 @@ template(name='model_edit_dashboard')
         +color_icon_edit key='color_icon' label='icons8 icon' direct=true
         +textarea_edit key='description' label='description' direct=true
         +array_edit key='tags' label='tags' direct=true
-        +text_edit key='collection' label='collection' direct=true
+        //- +text_edit key='collection' label='collection' direct=true
+        +key_value_edit key='collection' value='docs' icon='document'
+        +key_value_edit key='collection' value='users' icon='groups'
+
         //- +multi_doc_edit key='actions' label='actions' ref_model='action' direct=true
         +text_edit key='app' label='app' direct=true
 template(name='model_edit_fields')
@@ -78,7 +82,7 @@ template(name='field_edit')
                 +icon name=icon cl='ui mini inline image'
                 //- i.icon(class=icon)
             strong #{title}
-            | (#{field_type})
+            .ui.basic.label #{field_type}
             if faceted
                 i.filter.icon
             if sortable
@@ -95,32 +99,37 @@ template(name='field_edit')
                 i.large.caret.right.grey.icon
         if viewing_content
             .content
-                +text_edit key='title' label='title' direct=true
-                +text_edit key='key' label='key' direct=true
+                +text_edit key='title' label='title (human)' direct=true
+                +text_edit key='key' label='key (machine)' direct=true
                 +number_edit key='rank' label='rank' direct=true      
                 +color_icon_edit key='icon' label='color icon' direct=true       
                 //- +textarea_edit key='description' label='description' direct=true
                 .spacer
                 +text_edit key='field_type' label='field type' direct=true
+                +key_value_edit key='field_type' value='text' icon='text'
+                +key_value_edit key='field_type' value='number' icon='number'
+                +key_value_edit key='field_type' value='float' icon='number'
+                +key_value_edit key='field_type' value='textarea' icon='list'
+                +key_value_edit key='field_type' value='image' icon='image'
                 //- if is_admin
                 //- +single_doc_edit key='field_type' ref_model='field_type' label='field type' direct=true        
                 //- .spacer
                 //- +text_edit key='field_type_id' label='field type id' direct=true        
                 //- +single_doc_edit key='field_type_id' ref_model_slug='field_type' label='field type id' direct=true        
-                .spacer
-                +multi_doc_edit key='view_roles' ref_model_slug='role' label='view roles' direct=true icon='eye'          
-                .spacer
-                +multi_doc_edit key='edit_roles' ref_model_slug='role' label='edit roles' direct=true icon='pencil'        
+                //- .spacer
+                //- +multi_doc_edit key='view_roles' ref_model_slug='role' label='view roles' direct=true icon='eye'          
+                //- .spacer
+                //- +multi_doc_edit key='edit_roles' ref_model_slug='role' label='edit roles' direct=true icon='pencil'        
                 //- +text_edit key='ref_model' label='Reference Model' direct=true
                 .spacer
                 +boolean_edit key='faceted' label='faceted' color_icon='diamond' direct=true
                 +boolean_edit key='sortable' label='sortable' color_icon='chevron-down' direct=true
                 .spacer
-                if is_ref  
-                    +single_doc_edit key='ref_model' ref_model_slug='model' label='reference model' direct=true
-                else if is_user_ref
-                    +single_doc_edit key='role_filter' ref_model_slug='role' label='role filter' direct=true
-                div             
+                //- if is_ref  
+                //-     +single_doc_edit key='ref_model' ref_model_slug='model' label='reference model' direct=true
+                //- else if is_user_ref
+                //-     +single_doc_edit key='role_filter' ref_model_slug='role' label='role filter' direct=true
+                //- div             
                 +remove_button
                 if is_admin
                     +print_this

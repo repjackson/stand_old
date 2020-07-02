@@ -3,7 +3,7 @@ template(name='spend')
         .four.wide.column
             .ui.inline.header 
                 +icon name='shop'
-                |spend
+                | Spend
             if is_admin
                 .ui.big.icon.button.add_spend
                     i.green.plus.icon
@@ -33,8 +33,8 @@ template(name='spend_card')
         img.ui.image(src="{{c.url image_id width=400 height=400 gravity='face' crop='fill'}}")
         .content
             .ui.header #{title}
-            .ui.link.list
-                .ui.item -#{points} points
+            |#{description}
+            .ui.small.teal.item -#{points} points
 
 
 

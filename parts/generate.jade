@@ -39,7 +39,7 @@ template(name='generate')
                 //- .ui.small.compact.button lucrative
                 //- .ui.small.compact.button soonest
                 //- .ui.small.compact.button priority
-                .ui.header click this item as many times as hours you've contributed
+                //- .ui.header click this item as many times as hours you've contributed
                 .largescroll
                     .ui.cards
                         each generate_docs
@@ -73,9 +73,10 @@ template(name='generate_card_template')
             //- a.ui.header(href="/generate/#{_id}/view") #{title}
             .ui.header #{title}
             div
+            |#{description}
             .ui.header 
-                |#{points}
-                points offered
+                |+#{points}
+                |points
             if assigned_to
                 .ui.large.basic.label(title='assigned to')
                     |#{assigned_to}

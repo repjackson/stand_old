@@ -3,11 +3,8 @@ template(name='delta')
         with current_model
             .row
                 .five.wide.column.scrolling
-                    //- a.ui.icon.button.go_home(href='/m/model' class="{{isActivePath '/m/model'}}" title='models')
-                    //-     i.large.yin.yang.icon
                     if is_loading
                         .ui.inline.header.pulsing
-                            //- i.yin.yang.loading.large.icon
                             +icon name=color_icon cl='pulsing'
                             |loading #{title}...
                     else
@@ -48,7 +45,6 @@ template(name='delta')
                     //-     |#{views}
                     div
                     each sorted_facets
-                        //- .ui.header hi
                         +facet
                 .eleven.wide.column
                     |&nbsp;
@@ -81,30 +77,30 @@ template(name='delta')
                         |&nbsp;
                         //- .ui.inline.small.grey.header
                         //-     |viewing
-                        .ui.compact.menu
-                            .ui.simple.dropdown.item(title='visible fields')
-                                | fields
-                                i.dropdown.icon
-                                .menu
-                                    each model_fields
-                                        +toggle_visible_field
-                        |&nbsp;
-                        |&nbsp;
-                        |&nbsp;
+                        //- .ui.compact.menu
+                        //-     .ui.simple.dropdown.item(title='visible fields')
+                        //-         | fields
+                        //-         i.dropdown.icon
+                        //-         .menu
+                        //-             each model_fields
+                        //-                 +toggle_visible_field
+                        //- |&nbsp;
+                        //- |&nbsp;
+                        //- |&nbsp;
                                         
-                        .ui.simple.dropdown(title='result limit')
-                            .text.large #{current_delta.limit}
-                            i.dropdown.icon
-                            .menu
-                                +set_limit amount=1
-                                +set_limit amount=5
-                                +set_limit amount=10
-                                +set_limit amount=20
-                                +set_limit amount=50
-                        |&nbsp;
-                        |&nbsp;
-                        |&nbsp;
-                        |of 
+                        //- .ui.simple.dropdown(title='result limit')
+                        //-     .text.large #{current_delta.limit}
+                        //-     i.dropdown.icon
+                        //-     .menu
+                        //-         +set_limit amount=1
+                        //-         +set_limit amount=5
+                        //-         +set_limit amount=10
+                        //-         +set_limit amount=20
+                        //-         +set_limit amount=50
+                        //- |&nbsp;
+                        //- |&nbsp;
+                        //- |&nbsp;
+                        //- |of 
                         .ui.small.inline.header(title='total results') #{current_delta.total}
                         |&nbsp;
                         |&nbsp;
@@ -130,16 +126,6 @@ template(name='delta')
                             .ui.cards
                                 each current_delta.result_ids
                                     +delta_result_card
-                        if delta_key_value_is 'view_mode' 'table'
-                            table.ui.selectable.table 
-                                thead
-                                    tr
-                                        each current_delta.viewing_fields
-                                            th.pointer.toggle_sort_column(class=table_column_header_class)
-                                                | #{title}
-                                tbody
-                                    each current_delta.result_ids
-                                        +delta_result_table_row
                         else if delta_key_value_is 'view_mode' 'list'
                             each current_delta.result_ids
                                 if is_loading
