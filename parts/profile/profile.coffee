@@ -48,7 +48,7 @@ if Meteor.isClient
     Template.profile_layout.onCreated ->
         @autorun -> Meteor.subscribe 'user_from_username', Router.current().params.username
         @autorun -> Meteor.subscribe 'user_events', Router.current().params.username
-        @autorun -> Meteor.subscribe 'model_docs', 'test'
+        @autorun -> Meteor.subscribe 'model_docs', 'spend_item'
         # @autorun -> Meteor.subscribe 'student_stats', Router.current().params.username
     Template.profile_layout.onRendered ->
         Meteor.setTimeout ->
@@ -91,6 +91,11 @@ if Meteor.isClient
                 model:'spend_item'
                 amount:1
                 target_id:target_user._id
+            Meteor.users.update Meteor.userId(),
+                $inc: points: -1
+            Meteor.users.update target_user._id,
+                $inc: points: 1
+
         'click .recalc_user_cloud': ->
             Meteor.call 'recalc_user_cloud', Router.current().params.username, ->
         'click .calc_test_sessions': ->
@@ -99,6 +104,11 @@ if Meteor.isClient
             Meteor.call 'recalc_user_act_stats', Router.current().params.username, ->
 
     Template.user_dashboard.helpers
+        spent_items: ->
+            target_user = Meteor.users.findOne(username:Router.current().params.username)
+            Docs.find
+                model:'spend_item'
+                target_id: target_user._id
         ssd: ->
             user = Meteor.users.findOne username:Router.current().params.username
             Docs.findOne

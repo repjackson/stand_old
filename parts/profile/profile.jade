@@ -55,10 +55,10 @@ template(name='user_dashboard')
     .ui.big.button.quick_give
         +icon name='initiate-money-transfer' cl='ui inline image'
         |+1
-    .ui.big.button 
+    .ui.big.button.give
         +icon name='donate' cl='ui inline image'
         |give
-    .ui.big.button
+    .ui.big.button.request
         +icon name='trust' cl='ui inline image'
         |request
     .ui.header #{level} level
@@ -74,8 +74,11 @@ template(name='user_dashboard')
             .ui.header 
                 +icon name='rain'
                 |Spent
-            each spent_items
-                .ui.header #{when}
+            .ui.list
+                each spent_items
+                    .item 
+                        .header #{when} #{author.username} #{amount}
+                        
     +user_following
     +user_groups
 
