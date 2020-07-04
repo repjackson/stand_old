@@ -15,7 +15,10 @@ template(name='profile_layout')
                         +icon name='logout-rounded' cl='ui mini inline image'
                         |log out
                 unless is_current_user
-                    +user_friend_button     
+                    +user_friend_button  
+                .ui.header #{level} level
+                .ui.header #{points}pts
+                       
                 //- a.ui.fluid.circular.button.logout_other_clients(href="#")
                 //-     //- i.globe.icon
                 //-     |log out other clients
@@ -60,14 +63,12 @@ template(name='user_dashboard')
     .ui.big.button.request
         +icon name='trust' cl='ui inline image'
         |request
-    .ui.header #{level} level
-    .ui.header #{points}pts
     .ui.stackable.two.column.grid
         .column
             .ui.header 
                 +icon name='sprout'
                 |Generated
-            .ui.list
+            .ui.list.smallscroll
                 each earned_items
                     .item
                         img.ui.avatar.image(src="{{c.url author.profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
@@ -81,7 +82,7 @@ template(name='user_dashboard')
             .ui.header 
                 +icon name='rain'
                 |Spent
-            .ui.list
+            .ui.list.smallscroll
                 each spent_items
                     .item 
                         img.ui.avatar.image(src="{{c.url target.profile_image_id height=200 width=200 gravity='face' crop='fill'}}")

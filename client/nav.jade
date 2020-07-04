@@ -10,7 +10,8 @@ template(name='nav')
             span.mobile.hidden
                 |&nbsp;
                 | Spend
-        a.item(href="/users" class="{{isActivePath '/users'}}")
+        //- a.item(href="/users" class="{{isActivePath '/users'}}")
+        a.item.set_user(href="/m/user" class="{{isActivePath '/m/user'}}")
             +icon name='groups' cl='ui mini image'
             span.mobile.hidden
                 |&nbsp;
