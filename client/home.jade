@@ -3,7 +3,13 @@ template(name='home')
         .row
             .sixteen.wide.center.aligned.column
                 if currentUser
-                    .ui.header hi #{currentUser.username}
+                    .ui.header 
+                        if currentUser.profile_image_id
+                            img.ui.avatar.image(src="{{c.url currentUser.profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
+
+                        if is_admin
+                            +icon name='shield'
+                        |hi #{currentUser.username}
                 else
                     .ui.header welcome to One Riverside
         .four.column.row
@@ -13,8 +19,11 @@ template(name='home')
                     |Explorer
                 .ui.list
                     .item 0 per diem
-                .ui.big.input.email_signup
-                    input(type='text' placeholder='input email')
+                .ui.big.input
+                    input.submit_email(type='text' placeholder='input email')
+                if is_admin
+                    each email_signups
+                        .ui.small.header #{email_address}
             .column
                 .ui.header
                     +icon name='badge'
