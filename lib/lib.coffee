@@ -18,6 +18,43 @@ if Meteor.isServer
         api_key: Meteor.settings.private.cloudinary_key
         api_secret: Meteor.settings.private.cloudinary_secret
 
+Docs.helpers
+    _author: -> Meteor.users.findOne @_author_id
+    _buyer: -> Meteor.users.findOne @buyer_id
+    when: -> moment(@_timestamp).fromNow()
+    is_visible: -> @published in [0,1]
+    is_published: -> @published is 1
+    is_anonymous: -> @published is 0
+    is_private: -> @published is -1
+
+    upvoters: ->
+        if @upvoter_ids
+            upvoters = []
+            for upvoter_id in @upvoter_ids
+                upvoter = Meteor.users.findOne upvoter_id
+                upvoters.push upvoter
+            upvoters
+    downvoters: ->
+        if @downvoter_ids
+            downvoters = []
+            for downvoter_id in @downvoter_ids
+                downvoter = Meteor.users.findOne downvoter_id
+                downvoters.push downvoter
+            downvoters
+Meteor.users.helpers
+    name: ->
+        if @nickname
+            "#{@nickname}"
+        else if @first_name and @last_name
+            "#{@first_name} #{@last_name}"
+        else
+            "#{@username}"
+    email_address: -> if @emails and @emails[0] then @emails[0].address
+    email_verified: -> if @emails and @emails[0] then @emails[0].verified
+    first_five_tags: ->
+        if @tags
+            @tags[..5]
+
 
 
 

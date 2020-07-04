@@ -185,7 +185,7 @@ a.goto_article {
 
 /* .ui.button:not(.circular)) { */
 .ui.button {
-    border-radius: 33px !important;
+    border-radius: 25px !important;
     margin: 2px !important;
     /* border-radius: 20px !important; */
     transition: all .5s ease !important;

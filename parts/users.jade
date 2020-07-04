@@ -30,13 +30,17 @@ template(name='user_cloud')
 template(name='user_item')
     .card
         a(href="/user/#{username}")
-            img.ui.image(src="{{c.url profile_image_id width=400 height=300 crop='fill'}}")    
+            img.ui.raw.image(src="{{c.url profile_image_id width=400 height=300 crop='fill'}}")    
         .content
-            a.ui.inline.header(href="/user/#{username}") #{username}
-            
+            a.ui.inline.header(href="/user/#{username}")
+                |#{name}
+                //- |#{username}
+        .content
+            .ui.basic.circular.label
+                |#{level}
             .ui.small.header #{points} points
-            each tags
-                .ui.large.label #{this}
+            each first_five_tags
+                .ui.circular.basic.label #{this}
         //- .content
         //-     +user_friend_button
         

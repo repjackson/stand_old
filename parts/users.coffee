@@ -1,4 +1,8 @@
 if Meteor.isClient
+    @selected_user_tags = new ReactiveArray []
+    @selected_user_roles = new ReactiveArray []
+
+
     Router.route '/users', (->
         @render 'users'
         ), name:'users'
@@ -18,14 +22,10 @@ if Meteor.isClient
     Template.user_item.events
 
 
-
-
-
-    @selected_tags = new ReactiveArray []
-
     Template.user_cloud.onCreated ->
-        @autorun -> Meteor.subscribe('tags',
-            selected_tags.array()
+        @autorun -> Meteor.subscribe('user_tags',
+            selected_user_tags.array()
+            selected_user_roles.array()
             Session.get('view_mode')
         )
         Session.setDefault('view_mode', 'users')

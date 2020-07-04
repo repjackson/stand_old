@@ -11,6 +11,9 @@ Template.registerHelper 'in_role', (role)->
 Template.registerHelper 'current_user', () ->
     Meteor.users.findOne username:Router.current().params.username
 
+Template.registerHelper 'target', () ->
+    Meteor.users.findOne @target_id
+
 
 # Template.registerHelper 'field_value', () ->
 #     # console.log @

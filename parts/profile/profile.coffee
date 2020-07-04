@@ -49,7 +49,7 @@ if Meteor.isClient
         @autorun -> Meteor.subscribe 'user_from_username', Router.current().params.username
         @autorun -> Meteor.subscribe 'user_events', Router.current().params.username
         @autorun -> Meteor.subscribe 'model_docs', 'spend_item'
-        # @autorun -> Meteor.subscribe 'student_stats', Router.current().params.username
+        @autorun -> Meteor.subscribe 'all_users', 'spend_item'
     Template.profile_layout.onRendered ->
         Meteor.setTimeout ->
             $('.button').popup()
@@ -67,11 +67,11 @@ if Meteor.isClient
             Docs.find {
                 model:'user_section'
             }, sort:title:1
-        student_classrooms: ->
-            user = Meteor.users.findOne username:Router.current().params.username
-            Docs.find
-                model:'classroom'
-                student_ids: $in: [user._id]
+        # student_classrooms: ->
+        #     user = Meteor.users.findOne username:Router.current().params.username
+        #     Docs.find
+        #         model:'classroom'
+        #         student_ids: $in: [user._id]
         ssd: ->
             user = Meteor.users.findOne username:Router.current().params.username
             Docs.findOne
@@ -104,11 +104,18 @@ if Meteor.isClient
             Meteor.call 'recalc_user_act_stats', Router.current().params.username, ->
 
     Template.user_dashboard.helpers
-        spent_items: ->
-            target_user = Meteor.users.findOne(username:Router.current().params.username)
-            Docs.find
+        earned_items: ->
+            current_user = Meteor.users.findOne(username:Router.current().params.username)
+            Docs.find {
                 model:'spend_item'
-                target_id: target_user._id
+                target_id: current_user._id
+            }, sort: _timestamp:-1
+        spent_items: ->
+            current_user = Meteor.users.findOne(username:Router.current().params.username)
+            Docs.find {
+                model:'spend_item'
+                _author_id: current_user._id
+            }, sort: _timestamp:-1
         ssd: ->
             user = Meteor.users.findOne username:Router.current().params.username
             Docs.findOne

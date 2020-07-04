@@ -62,9 +62,9 @@ template(name='user_edit_info')
             //- div
             +phone_edit key='phone' label='phone' icon='phone' direct=true
             +array_edit key='tags' label='tags' direct=true
-            +textarea_edit key='' label='what excites you about being apart of this community'
-            +textarea_edit key='' label='what do you want this commnuity to know about yopu'
-            +textarea_edit key='' label='what would yuou like to contribute (think: superpowers, talents, gifts, resources)'
+            +textarea_edit key='excites_blurb' label='what excites you about being apart of this community'
+            +textarea_edit key='community_blurb' label='what do you want this community to know about you?'
+            +textarea_edit key='contribute_blurb' label='what would yuou like to contribute (think: superpowers, talents, gifts, resources)'
      
 template(name='phone_editor')
     .ui.small.header    
