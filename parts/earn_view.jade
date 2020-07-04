@@ -1,12 +1,12 @@
-template(name='generate_view')
+template(name='earn_view')
     with current_doc
         .ui.stackable.padded.grid
             .row
                 .five.wide.column
-                    a.ui.large.button(href="/generate")
+                    a.ui.large.button(href="/earn")
                         i.left.chevron.icon
-                        |generate
-                    a.ui.icon.button(href="/generate/#{_id}/edit" title='edit')
+                        |earn
+                    a.ui.icon.button(href="/earn/#{_id}/edit" title='edit')
                         i.pencil.grey.icon
                     div
                     +author_info

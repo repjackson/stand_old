@@ -162,9 +162,9 @@ Meteor.methods
             title: {$regex:"#{project_title}", $options: 'i'}
             }).fetch()
 
-    lookup_generate_list: (title)->
+    lookup_earn_list: (title)->
         Docs.find({
-            model:'generate_list'
+            model:'earn_list'
             title: {$regex:"#{title}", $options: 'i'}
             }).fetch()
 

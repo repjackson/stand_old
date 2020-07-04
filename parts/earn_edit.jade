@@ -1,9 +1,9 @@
-template(name='generate_edit')
+template(name='earn_edit')
     with current_doc
         .ui.stackable.padded.grid
             .row 
                 .four.wide.column
-                    a.ui.fluid.large.button(href="/generate/#{_id}/view") 
+                    a.ui.fluid.large.button(href="/earn/#{_id}/view") 
                         i.checkmark.icon
                         |save
                     +remove_button
@@ -16,7 +16,7 @@ template(name='generate_edit')
                     //- +number_edit key='actual_hours' label='actual hours'
                 
                 .eight.wide.column
-                    .ui.header edit generate
+                    .ui.header edit earn
                     +text_edit key='title' label='title'
                     +image_edit key='image_id' label='image'
                     +textarea_edit key='description' label='description'

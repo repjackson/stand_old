@@ -5,7 +5,7 @@ if Meteor.isClient
 
     Router.route '/', (->
         @layout 'layout'
-        @render 'generate'
+        @render 'earn'
         ), name:'home'
 
 

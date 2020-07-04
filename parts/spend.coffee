@@ -38,8 +38,10 @@ if Meteor.isClient
         'click .record_spend': ->
             Meteor.users.update Meteor.userId(),
                 $inc: points:-@points
-            $('body')
-              .toast({
+            $('body').toast({
                 class: 'info',
                 message: "#{@points} spent"
-              })
+            })
+            Docs.insert
+                model:'spend_item'
+                parent_id: @_id

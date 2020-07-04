@@ -4,27 +4,26 @@ template(name='profile_layout')
     with user
         .ui.stackable.padded.grid
             .twelve.wide.column
-                //- a.ui.circular.button(href="/user/#{username}/dashboard" class="{{isActivePath regex='user_dashboard'}}")
-                //-     +icon name='dashboard' cl='ui inline mini image'
-                //-     |dashboard
-                //- a.ui.circular.button(href="/user/#{username}/about" class="{{isActivePath regex=user_about}}")
-                //-     +icon name='info' cl='ui inline mini image'
-                //-     |about
+                a.ui.circular.large.compact.button(href="/user/#{username}/dashboard" class="{{isActivePath regex='user_dashboard'}}")
+                    +icon name='dashboard' cl='ui inline mini image'
+                    |dashboard
+                a.ui.circular.large.compact.button(href="/user/#{username}/about" class="{{isActivePath regex=user_about}}")
+                    +icon name='info' cl='ui inline mini image'
+                    |about
 
-                //- a.ui.circular.button(href="/user/#{username}/events" class="{{isActivePath regex='user_events'}}")
-                //-     +icon name='calendar' cl='ui inline mini image'
-                //-     |generate
-                //- a.ui.circular.button(href="/user/#{username}/spend" class="{{isActivePath regex='user_spend'}}")
-                //-     +icon name='spend' cl='ui inline mini image'
-                //-     |spend
-                //- a.ui.circular.button(href="/user/#{username}/friends" class="{{isActivePath regex='user_friends'}}")
-                //-     +icon name='groups' cl='ui inline mini image'
-                //-     |friends
-                //- a.ui.circular.button(href="/user/#{username}/messages" class="{{isActivePath regex='user_messages'}}")
-                //-     +icon name='chat' cl='ui inline mini image'
-                //-     |messages
-                //- if is_current_user
-                //- +user_friend_button            
+                a.ui.circular.large.compact.button(href="/user/#{username}/events" class="{{isActivePath regex='user_events'}}")
+                    +icon name='sprout' cl='ui inline mini image'
+                    |generated
+                a.ui.circular.large.compact.button(href="/user/#{username}/spend" class="{{isActivePath regex='user_spend'}}")
+                    +icon name='rain' cl='ui inline mini image'
+                    |spent
+                a.ui.circular.large.compact.button(href="/user/#{username}/friends" class="{{isActivePath regex='user_friends'}}")
+                    +icon name='groups' cl='ui inline mini image'
+                    |friends
+                a.ui.circular.large.compact.button(href="/user/#{username}/messages" class="{{isActivePath regex='user_messages'}}")
+                    +icon name='chat' cl='ui inline mini image'
+                    |chat
+                div   
                 +yield    
             .four.wide.center.aligned.column
                 img.ui.centered.small.circular.profile_image.image(src="{{c.url profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
@@ -33,6 +32,9 @@ template(name='profile_layout')
                 a.ui.fluid.circular.compact.large.button(href="/user/#{username}/edit")
                     +icon name='settings' cl='ui mini inline image'
                     |account
+                unless is_current_user
+                    +user_friend_button     
+                    
                 .spacer
                 a.ui.fluid.circular.compact.large.button.logout(href="#")
                     +icon name='logout-rounded' cl='ui mini inline image'
@@ -50,18 +52,32 @@ template(name='profile_layout')
 
 
 template(name='user_dashboard')
+    .ui.big.button.quick_give
+        +icon name='initiate-money-transfer' cl='ui inline image'
+        |+1
+    .ui.big.button 
+        +icon name='donate' cl='ui inline image'
+        |give
+    .ui.big.button
+        +icon name='trust' cl='ui inline image'
+        |request
     .ui.header #{level} level
     .ui.header #{points}pts
     .ui.stackable.two.column.grid
         .column
             .ui.header 
-                +icon name='receive-cash'
-                |earned
+                +icon name='sprout'
+                |Generated
+            each earned
+                .ui.header #{when}
         .column
             .ui.header 
-                +icon name='donate'
-                |spent
-                
+                +icon name='rain'
+                |Spent
+            each spent_items
+                .ui.header #{when}
+    +user_following
+    +user_groups
 
 template(name='user_groups')
     .ui.center.aligned.header 

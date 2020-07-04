@@ -11,10 +11,6 @@ if Meteor.isClient
         @layout 'profile_layout'
         @render 'user_about'
         ), name:'user_about'
-    Router.route '/user/:username/internships', (->
-        @layout 'profile_layout'
-        @render 'user_internships'
-        ), name:'user_internships'
     Router.route '/user/:username/contact', (->
         @layout 'profile_layout'
         @render 'user_contact'
@@ -23,18 +19,10 @@ if Meteor.isClient
         @layout 'profile_layout'
         @render 'user_stats'
         ), name:'user_stats'
-    Router.route '/user/:username/jobs', (->
+    Router.route '/user/:username/earn', (->
         @layout 'profile_layout'
-        @render 'user_jobs'
-        ), name:'user_jobs'
-    Router.route '/user/:username/feed', (->
-        @layout 'profile_layout'
-        @render 'user_feed'
-        ), name:'user_feed'
-    Router.route '/user/:username/generate', (->
-        @layout 'profile_layout'
-        @render 'user_generate'
-        ), name:'user_generate'
+        @render 'user_earn'
+        ), name:'user_earn'
     Router.route '/user/:username/messages', (->
         @layout 'profile_layout'
         @render 'user_messages'
@@ -47,10 +35,10 @@ if Meteor.isClient
         @layout 'profile_layout'
         @render 'user_friends'
         ), name:'user_friends'
-    Router.route '/user/:username/awards', (->
+    Router.route '/user/:username/badges', (->
         @layout 'profile_layout'
-        @render 'user_awards'
-        ), name:'user_awards'
+        @render 'user_badges'
+        ), name:'user_badges'
     Router.route '/user/:username/events', (->
         @layout 'profile_layout'
         @render 'user_events'
@@ -69,7 +57,6 @@ if Meteor.isClient
         Meteor.setTimeout ->
             $('.progress').progress();
         , 2000
-
 
         Session.setDefault 'view_side', false
 
@@ -98,6 +85,12 @@ if Meteor.isClient
                 'sixteen wide column'
 
     Template.user_dashboard.events
+        'click .quick_give': ->
+            target_user = Meteor.users.findOne(username:Router.current().params.username)
+            Docs.insert
+                model:'spend_item'
+                amount:1
+                target_id:target_user._id
         'click .recalc_user_cloud': ->
             Meteor.call 'recalc_user_cloud', Router.current().params.username, ->
         'click .calc_test_sessions': ->
@@ -150,8 +143,6 @@ if Meteor.isClient
         'click .logout': ->
             Router.go '/login'
             Meteor.logout()
-
-
 
 
     Template.user_alerts_small.helpers

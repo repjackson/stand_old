@@ -7,6 +7,18 @@ if Meteor.isClient
     Template.registerHelper 'fixed', (input) ->
         if input
             input.toFixed(2)
+    Template.registerHelper 'sortable_fields', () ->
+        model = Docs.findOne
+            model:'model'
+            slug:Router.current().params.model_slug
+        if model
+            Docs.find {
+                model:'field'
+                parent_id:model._id
+                sortable:true
+            }, sort:rank:1
+
+
     Template.registerHelper 'current_delta', () -> Docs.findOne model:'delta'
     Template.registerHelper 'view_template', ->
         # console.log 'view template this', @
