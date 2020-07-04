@@ -1,0 +1,46 @@
+template(name='home')
+    .ui.stackable.padded.grid
+        .row
+            .sixteen.wide.center.aligned.column
+                if currentUser
+                    .ui.header hi #{currentUser.username}
+                else
+                    .ui.header welcome to one riverside
+            .four.wide.column
+                .ui.header 
+                    +icon name='line-chart'
+                    |stats
+            .four.wide.column
+                .ui.header 
+                    +icon name='sprout'
+                    |Generate
+            .four.wide.column
+                .ui.header 
+                    +icon name='rain'
+                    |Spend
+            .four.wide.column
+                .ui.header 
+                    +icon name='compass'
+                    |explore
+                .ui.big.input.email_signup
+                    input(type='text' placeholder='input email')
+        //- .row
+        //-     .four.wide.column
+        //-         .ui.header 
+        //-             +icon name='diamond-care-1'
+        //-             |join
+        //-         .ui.big.input.email_signup
+        //-             input(type='text')
+        .three.column.row
+            .column
+                .ui.large.header
+                    +icon name='badge'
+                    |membership
+            .column
+                .ui.large.header
+                    +icon name='worker-male'
+                    |regenerator
+            .column
+                .ui.large.header
+                    +icon name='shield'
+                    |steward
