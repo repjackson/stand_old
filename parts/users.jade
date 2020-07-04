@@ -41,8 +41,16 @@ template(name='user_item')
             .ui.small.header #{points} points
             each first_five_tags
                 .ui.circular.basic.label #{this}
+            if is_admin
+                +addtoset_user key='levels' value='l1'
+                +addtoset_user key='levels' value='l2'
+                +addtoset_user key='levels' value='l3'
+                +addtoset_user key='levels' value='l4'
         //- .content
         //-     +user_friend_button
         
         //- .ui.button send credit
                 
+
+template(name='addtoset_user')
+    .ui.button.toggle_value(class=ats_class) #{key} #{value}

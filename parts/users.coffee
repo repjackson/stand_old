@@ -13,13 +13,43 @@ if Meteor.isClient
 
     Template.users.helpers
         users: ->
-            Meteor.users.find()
-
+            # match = {}
+            if Meteor.user()
+                if 'admin' in Meteor.user().roles
+                    Meteor.users.find(
+                    )
+                else
+                    Meteor.users.find(
+                        levels:$in:['l1']
+                        # roles:$in:['member']
+                    )
+            else
+                Meteor.users.find(
+                    # levels:$in:['l1']
+                )
 
     Template.user_item.helpers
 
 
     Template.user_item.events
+
+    Template.addtoset_user.helpers
+        ats_class: ->
+            if @["#{@key}"] is @value
+                console.log 'yes'
+            else
+                console.log 'oh god no'
+
+
+    Template.addtoset_user.events
+        'click .toggle_value': ->
+            console.log @
+            console.log Template.parentData(2)
+            # Meteor.users.update Template.parentData(2)._id,
+            #     $addToSet:
+            #         "#{@key}"
+
+
 
 
     Template.user_cloud.onCreated ->

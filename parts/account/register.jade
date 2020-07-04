@@ -8,21 +8,20 @@ template(name='register')
                     //-     i.large.home.icon
                         
                     div
-                    i.big.yin.yang.icon
+                    .ui.big.header One Riverside
+                    //- i.big.yin.yang.icon
                     .ui.inline.header register
                 //- if message
                 //-     h4.ui.center.aligned.header #{message}
-                //- .ui.small.inline.header 
-                //-     |First Name
-                //- .ui.fluid.input(class=login_class)
-                //-     input.first_name(type='text')
-                //- .ui.small.inline.header 
-                //-     |Last Name
-                //- .ui.fluid.input(class=login_class)
-                //-     input.last_name(type='text')
                 .ui.small.inline.header 
-                    i.user.outline.grey.icon
-                    |username
+                    |First Name
+                .ui.fluid.input(class=login_class)
+                    input.first_name(type='text')
+                .ui.small.inline.header 
+                    |Last Name
+                .ui.fluid.input(class=login_class)
+                    input.last_name(type='text')
+                //- .ui.small.inlnjkjhjgm 
                 .ui.fluid.icon.input(class=login_class)
                     //- if email_valid
                     if username_valid

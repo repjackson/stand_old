@@ -9,12 +9,12 @@ if Meteor.isClient
     Template.register.onCreated ->
         Session.set 'email', null
     Template.register.events
-        # 'keyup .first_name': ->
-        #     first_name = $('.first_name').val()
-        #     Session.set 'first_name', first_name
-        # 'keyup .last_name': ->
-        #     last_name = $('.last_name').val()
-        #     Session.set 'last_name', last_name
+        'keyup .first_name': ->
+            first_name = $('.first_name').val()
+            Session.set 'first_name', first_name
+        'keyup .last_name': ->
+            last_name = $('.last_name').val()
+            Session.set 'last_name', last_name
         'keyup .email': ->
             email = $('.email').val()
             Session.set 'email', email
@@ -63,8 +63,8 @@ if Meteor.isClient
             #     }
             Meteor.call 'create_user', options, (err,res)=>
                 console.log res
-                # Meteor.users.update res,
-                #     $addToSet: roles: 'teacher'
+                Meteor.users.update res,
+                    $addToSet: roles: 'member'
                 Meteor.loginWithPassword username, password, (err,res)=>
                     if err
                         alert err.reason
@@ -76,8 +76,8 @@ if Meteor.isClient
                         Meteor.users.update Meteor.userId(),
                             $set:
                                 app:'stand'
-                                # first_name: Session.get('first_name')
-                                # last_name: Session.get('last_name')
+                                first_name: Session.get('first_name')
+                                last_name: Session.get('last_name')
                         Router.go '/'
             # else
             #     Meteor.loginWithPassword username, password, (err,res)=>
