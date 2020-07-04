@@ -5,8 +5,9 @@ if Meteor.isClient
         ), name:'home'
 
     Template.home.onCreated ->
-        # @autorun => Meteor.subscribe 'model_docs', 'home'
-        # @autorun => Meteor.subscribe 'all_users'
+        @autorun => Meteor.subscribe 'model_docs', 'debit'
+        @autorun => Meteor.subscribe 'model_docs', 'credit'
+        @autorun => Meteor.subscribe 'all_users'
         @autorun -> Meteor.subscribe('home_tag_results',
             selected_tags.array()
             selected_location_tags.array()
@@ -23,9 +24,12 @@ if Meteor.isClient
             )
 
     Template.home.helpers
-        home_items: ->
+        credits: ->
             Docs.find
-                model:'home'
+                model:'credit'
+        debits: ->
+            Docs.find
+                model:'debit'
     Template.home.events
         'click .add_home': ->
             new_id =

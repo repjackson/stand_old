@@ -48,8 +48,8 @@ if Meteor.isClient
     Template.profile_layout.onCreated ->
         @autorun -> Meteor.subscribe 'user_from_username', Router.current().params.username
         @autorun -> Meteor.subscribe 'user_events', Router.current().params.username
-        @autorun -> Meteor.subscribe 'model_docs', 'spend_item'
-        @autorun -> Meteor.subscribe 'all_users', 'spend_item'
+        @autorun -> Meteor.subscribe 'model_docs', 'debit'
+        @autorun -> Meteor.subscribe 'all_users'
     Template.profile_layout.onRendered ->
         Meteor.setTimeout ->
             $('.button').popup()
@@ -88,7 +88,7 @@ if Meteor.isClient
         'click .quick_give': ->
             target_user = Meteor.users.findOne(username:Router.current().params.username)
             Docs.insert
-                model:'spend_item'
+                model:'debit'
                 amount:1
                 target_id:target_user._id
             Meteor.users.update Meteor.userId(),
@@ -107,13 +107,13 @@ if Meteor.isClient
         earned_items: ->
             current_user = Meteor.users.findOne(username:Router.current().params.username)
             Docs.find {
-                model:'spend_item'
+                model:'credit'
                 target_id: current_user._id
             }, sort: _timestamp:-1
         spent_items: ->
             current_user = Meteor.users.findOne(username:Router.current().params.username)
             Docs.find {
-                model:'spend_item'
+                model:'debit'
                 _author_id: current_user._id
             }, sort: _timestamp:-1
         ssd: ->
@@ -121,11 +121,11 @@ if Meteor.isClient
             Docs.findOne
                 model:'student_stats'
                 user_id:user._id
-        student_classrooms: ->
-            user = Meteor.users.findOne username:Router.current().params.username
-            Docs.find
-                model:'classroom'
-                student_ids: $in: [user._id]
+        # student_classrooms: ->
+        #     user = Meteor.users.findOne username:Router.current().params.username
+        #     Docs.find
+        #         model:'classroom'
+        #         student_ids: $in: [user._id]
         user_events: ->
             Docs.find {
                 model:'log_event'
@@ -140,11 +140,11 @@ if Meteor.isClient
         #         model:'log_event'
         #         event_type:'debit'
         #     }, sort: _timestamp: -1
-        user_models: ->
-            user = Meteor.users.findOne username:Router.current().params.username
-            Docs.find
-                model:'model'
-                _id:$in:user.model_ids
+        # user_models: ->
+        #     user = Meteor.users.findOne username:Router.current().params.username
+        #     Docs.find
+        #         model:'model'
+        #         _id:$in:user.model_ids
 
 
     Template.profile_layout.events
