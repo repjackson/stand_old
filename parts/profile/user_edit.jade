@@ -9,26 +9,26 @@ template(name='user_edit_layout')
                         | #{current_user.first_name} #{current_user.last_name}
                     //- +i name='pencil'
                     .ui.small.inline.header @#{current_user.username}
-                    a.ui.fluid.large.button(href="/user/#{current_user._id}/") 
+                    a.ui.fluid.large.green.button(href="/user/#{current_user.username}/") 
                         i.checkmark.icon
                         strong save
                     .ui.vertical.fluid.pointing.large.menu
-                        a.item(href="/user/#{current_user._id}/edit/info" class="{{isActivePath regex='user_edit_info'}}") 
+                        a.item(href="/user/#{current_user.username}/edit/info" class="{{isActivePath regex='user_edit_info'}}") 
                             |info
                             i.info.icon 
-                        a.item(href="/user/#{current_user._id}/edit/account" class="{{isActivePath regex='user_edit_account'}}") 
+                        a.item(href="/user/#{current_user.username}/edit/account" class="{{isActivePath regex='user_edit_account'}}") 
                             |account
                             i.cog.icon 
-                        a.item(href="/user/#{current_user._id}/edit/friends" class="{{isActivePath regex='user_edit_friends'}}") 
+                        a.item(href="/user/#{current_user.username}/edit/friends" class="{{isActivePath regex='user_edit_friends'}}") 
                             |friends
                             i.users.icon 
-                        a.item(href="/user/#{current_user._id}/edit/alerts" class="{{isActivePath regex='user_edit_alerts'}}") 
+                        a.item(href="/user/#{current_user.username}/edit/alerts" class="{{isActivePath regex='user_edit_alerts'}}") 
                             |alerts
                             i.bell.icon 
-                        a.item(href="/user/#{current_user._id}/edit/privacy" class="{{isActivePath regex='user_edit_privacy'}}") 
+                        a.item(href="/user/#{current_user.username}/edit/privacy" class="{{isActivePath regex='user_edit_privacy'}}") 
                             | privacy
                             i.lock.icon 
-                        a.item(href="/user/#{current_user._id}/edit/membership" class="{{isActivePath regex='user_edit_membership'}}") 
+                        a.item(href="/user/#{current_user.username}/edit/membership" class="{{isActivePath regex='user_edit_membership'}}") 
                             | membership
                             i.shield.icon 
                 .twelve.wide.column
@@ -39,19 +39,12 @@ template(name='user_edit_info')
         .column
             +image_edit key='profile_image_id' icon='picture' title='profile image' direct=true
         .column
-            +text_edit key='first_name' label='first name' direct=true
-            +text_edit key='last_name' label='last name' direct=true
-            .ui.header 
-                i.envelope.outline.icon
-                |emails
-            +emails_edit
-            +number_edit key='hourly_rate' label='hourly rate ($)' direct=true
             +textarea_edit key='' label='what do you hope to receive'
             +textarea_edit key='' label='emergency contact name'
             +textarea_edit key='' label='emergency contact number'
             
         .column
-            //- if is_admin
+            //- if Ais_admin
             //-     .ui.segment 
             //-         .ui.small.header 
             //-             i.shield.icon 
@@ -189,6 +182,13 @@ template(name='user_edit_account')
                         i.remove.icon
                         |delete user
         .column
+            +text_edit key='first_name' label='first name' direct=true
+            +text_edit key='last_name' label='last name' direct=true
+            .ui.header 
+                i.envelope.outline.icon
+                |emails
+            +emails_edit
+        
             +username_edit
         //- +phone_editor
     

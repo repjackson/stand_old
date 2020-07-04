@@ -1,0 +1,14 @@
+template(name='user_about')
+    .ui.header user info
+    with current_user
+        if tags 
+            .ui.tags.icon 
+            each tags
+                +user_info_tag
+
+template(name='user_info_tag')
+    .ui.button 
+        if term 
+            if term.image 
+                img.ui.tiny.inline.image(src=term.image)
+        |#{this}

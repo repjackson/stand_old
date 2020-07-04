@@ -15,7 +15,17 @@ template(name='profile_layout')
                         +icon name='logout-rounded' cl='ui mini inline image'
                         |log out
                 unless is_current_user
-                    +user_friend_button  
+                    +user_friend_button 
+                    .ui.fluid.compact.button.quick_give
+                        +icon name='initiate-money-transfer' cl='ui inline mini image'
+                        |quick +1
+                    .ui.fluid.compact.button.give
+                        +icon name='donate' cl='ui inline mini image'
+                        |give
+                    .ui.fluid.compact.button.request
+                        +icon name='trust' cl='ui inline mini image'
+                        |request
+             
                 .ui.header #{level} level
                 .ui.header #{points}pts
                        
@@ -54,15 +64,6 @@ template(name='profile_layout')
 
 
 template(name='user_dashboard')
-    .ui.big.button.quick_give
-        +icon name='initiate-money-transfer' cl='ui inline image'
-        |+1
-    .ui.big.button.give
-        +icon name='donate' cl='ui inline image'
-        |give
-    .ui.big.button.request
-        +icon name='trust' cl='ui inline image'
-        |request
     .ui.stackable.two.column.grid
         .column
             .ui.header 

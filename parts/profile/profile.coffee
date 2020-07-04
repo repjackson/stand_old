@@ -19,10 +19,10 @@ if Meteor.isClient
         @layout 'profile_layout'
         @render 'user_stats'
         ), name:'user_stats'
-    Router.route '/user/:username/earn', (->
+    Router.route '/user/:username/generate', (->
         @layout 'profile_layout'
-        @render 'user_earn'
-        ), name:'user_earn'
+        @render 'user_generate'
+        ), name:'user_generate'
     Router.route '/user/:username/messages', (->
         @layout 'profile_layout'
         @render 'user_messages'
@@ -104,7 +104,7 @@ if Meteor.isClient
             Meteor.call 'recalc_user_act_stats', Router.current().params.username, ->
 
     Template.user_dashboard.helpers
-        earned_items: ->
+        generated_items: ->
             current_user = Meteor.users.findOne(username:Router.current().params.username)
             Docs.find {
                 model:'credit'
