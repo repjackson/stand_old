@@ -3,6 +3,14 @@ template(name='users')
         .four.wide.column
             +user_cloud
         .twelve.wide.column
+            .ui.button 
+                |debit count
+            .ui.button 
+                |debit amount
+            .ui.button 
+                |credit count
+            .ui.button 
+                |credit amount
             .ui.stackable.four.cards
                 each users
                     +user_item
@@ -36,13 +44,19 @@ template(name='user_item')
                 |#{name}
                 //- |#{username}
         .content
-            .ui.basic.circular.label
-                |#{level}
+            each levels
+                .ui.label #{this}
+            .ui.list
+                .item #{debit_count} debits
+                .item #{global_debit_count_rank} debit count rank
+                .item #{credit_count} credits
+                .item #{global_credit_count_rank} credit count rank
             .ui.small.header #{points} points
             each first_five_tags
                 .ui.circular.basic.label #{this}
+            
             if is_admin
-                +addtoset_user key='levels' value='l1'
+                +addtoset_user key='levels' value='member'
                 +addtoset_user key='levels' value='l2'
                 +addtoset_user key='levels' value='l3'
                 +addtoset_user key='levels' value='l4'

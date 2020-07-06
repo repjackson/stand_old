@@ -9,7 +9,7 @@ if Meteor.isClient
 
 
     Template.users.onCreated ->
-        @autorun -> Meteor.subscribe 'all_users'
+        @autorun -> Meteor.subscribe 'all_members'
 
     Template.users.helpers
         users: ->
@@ -20,11 +20,11 @@ if Meteor.isClient
                 else
                     Meteor.users.find(
                         # levels:$in:['l1']
-                        # roles:$in:['member']
+                        roles:$in:['member']
                     )
             else
                 Meteor.users.find(
-                    # levels:$in:['l1']
+                    levels:$in:['member']
                 )
 
     Template.user_item.helpers
@@ -43,10 +43,10 @@ if Meteor.isClient
     Template.addtoset_user.events
         'click .toggle_value': ->
             console.log @
-            console.log Template.parentData(2)
-            # Meteor.users.update Template.parentData(2)._id,
-            #     $addToSet:
-            #         "#{@key}"
+            console.log Template.parentData(1)
+            Meteor.users.update Template.parentData(1)._id,
+                $addToSet:
+                    "#{@key}": @value
 
 
 
@@ -78,6 +78,23 @@ if Meteor.isClient
 
 
 if Meteor.isServer
+    Meteor.publish 'all_members', ->
+        # match = {}
+        if Meteor.user()
+            if 'admin' in Meteor.user().roles
+                Meteor.users.find()
+            else
+                Meteor.users.find(
+                    # levels:$in:['l1']
+                    roles:$in:['member']
+                )
+        else
+            Meteor.users.find(
+                levels:$in:['member']
+            )
+
+
+
     Meteor.publish 'tags', (
         selected_tags,
         view_mode

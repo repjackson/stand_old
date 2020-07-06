@@ -86,6 +86,14 @@ if Meteor.isClient
                 'sixteen wide column'
 
     Template.profile_layout.events
+        'click .give': ->
+            user = Meteor.users.findOne(username:Router.current().params.username)
+            new_debit_id =
+                Docs.insert
+                    model:'debit'
+                    target_id: user._id
+            Router.go "/debit/#{new_debit_id}/edit"
+
         'click .refresh_user_stats': ->
             user = Meteor.users.findOne(username:Router.current().params.username)
             Meteor.call 'calc_user_stats', user._id, ->

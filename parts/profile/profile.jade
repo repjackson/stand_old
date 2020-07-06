@@ -11,7 +11,9 @@ template(name='profile_layout')
                     i.refresh.icon
                     |refresh stats
                 .ui.header #{debit_count} debits
+                .ui.header #{global_debit_count_rank} debit count rank
                 .ui.header #{credit_count} credits
+                .ui.header #{global_credit_count_rank} credit count rank
                 if is_current_user
                     a.ui.fluid.circular.compact.large.button(href="/user/#{username}/edit")
                         +icon name='settings' cl='ui mini inline image'
@@ -27,9 +29,9 @@ template(name='profile_layout')
                     .ui.fluid.compact.button.give
                         +icon name='donate' cl='ui inline mini image'
                         |give
-                    .ui.fluid.compact.button.request
+                    .ui.fluid.compact.button.offer
                         +icon name='trust' cl='ui inline mini image'
-                        |request
+                        |offer
              
                 .ui.header #{level} level
                 .ui.header #{points}pts
@@ -80,7 +82,7 @@ template(name='user_dashboard')
                         img.ui.avatar.image(src="{{c.url author.profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
                         .content
                             .header #{when} from 
-                                a(href="/user/#{username}")
+                                a(href="/user/#{author.username}")
                                     |#{author.username}
                             .description
                                 strong #{amount} 
