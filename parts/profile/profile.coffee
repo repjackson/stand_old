@@ -88,7 +88,7 @@ if Meteor.isClient
     Template.profile_layout.events
         'click .refresh_user_stats': ->
             user = Meteor.users.findOne(username:Router.current().params.username)
-            Meteor.call 'refresh_user_stats', user._id, ->
+            Meteor.call 'calc_user_stats', user._id, ->
 
 
 
@@ -112,10 +112,10 @@ if Meteor.isClient
             Meteor.call 'recalc_user_act_stats', Router.current().params.username, ->
 
     Template.user_dashboard.helpers
-        generated_items: ->
+        earned_items: ->
             current_user = Meteor.users.findOne(username:Router.current().params.username)
             Docs.find {
-                model:'credit'
+                model:'debit'
                 target_id: current_user._id
             }, sort: _timestamp:-1
         spent_items: ->
