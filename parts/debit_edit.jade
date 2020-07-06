@@ -8,7 +8,10 @@ template(name='debit_edit')
                         i.large.red.remove.icon
                 
                 .eight.wide.column
-                    .ui.header target #{target.username}
+                    .ui.header sender
+                        #{author.username}
+                    .ui.header recipient
+                        #{target.username}
                     +number_edit key='amount' label='amount' direct=true
                     +text_edit key='description' label='description' direct=true
                     +image_edit key='image_id' label='image' direct=true

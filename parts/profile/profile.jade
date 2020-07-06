@@ -47,7 +47,7 @@ template(name='profile_layout')
         
             .twelve.wide.column
                 a.ui.large.tertiary.button(href="/user/#{username}/dashboard" class="{{isActivePath regex='user_dashboard'}}")
-                    +icon name='dashboard' cl='ui inline mini image'
+                    +icon name='home' cl='ui inline mini image'
                     |dashboard
                 a.ui.large.tertiary.button(href="/user/#{username}/about" class="{{isActivePath regex=user_about}}")
                     +icon name='info' cl='ui inline mini image'
