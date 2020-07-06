@@ -20,7 +20,7 @@ if Meteor.isClient
                 else
                     Meteor.users.find(
                         # levels:$in:['l1']
-                        roles:$in:['member']
+                        levels:$in:['member']
                     )
             else
                 Meteor.users.find(
@@ -62,18 +62,18 @@ if Meteor.isClient
     Template.user_cloud.helpers
         all_tags: ->
             doc_count = Docs.find().count()
-            if 0 < doc_count < 3 then Tags.find { count: $lt: doc_count } else Tags.find()
+            if 0 < doc_count < 3 then User_tags.find { count: $lt: doc_count } else Tags.find()
 
-        selected_tags: ->
+        selected_user_tags: ->
             # model = 'event'
             # console.log "selected_#{model}_tags"
-            selected_tags.array()
+            selected_user_tags.array()
 
 
     Template.user_cloud.events
-        'click .select_tag': -> selected_tags.push @name
-        'click .unselect_tag': -> selected_tags.remove @valueOf()
-        'click #clear_tags': -> selected_tags.clear()
+        'click .select_tag': -> selected_user_tags.push @name
+        'click .unselect_tag': -> selected_user_tags.remove @valueOf()
+        'click #clear_tags': -> selected_user_tags.clear()
 
 
 
@@ -96,13 +96,13 @@ if Meteor.isServer
 
 
     Meteor.publish 'tags', (
-        selected_tags,
+        selected_user_tags,
         view_mode
         limit
     )->
         self = @
         match = {}
-        if selected_tags.length > 0 then match.tags = $all: selected_tags
+        if selected_user_tags.length > 0 then match.tags = $all: selected_user_tags
         match.model = 'item'
         if view_mode is 'users'
             match.bought = $ne:true
@@ -127,7 +127,7 @@ if Meteor.isServer
             { $project: "tags": 1 }
             { $unwind: "$tags" }
             { $group: _id: "$tags", count: $sum: 1 }
-            { $match: _id: $nin: selected_tags }
+            { $match: _id: $nin: selected_user_tags }
             { $sort: count: -1, _id: 1 }
             { $limit: calc_limit }
             { $project: _id: 0, name: '$_id', count: 1 }

@@ -4,10 +4,10 @@ template(name='profile_layout')
     with user
         .ui.stackable.padded.grid
             .four.wide.center.aligned.column
-                img.ui.centered.small.circular.profile_image.image(src="{{c.url profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
+                img.ui.centered.small.profile_image.image(src="{{c.url profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
                 a.ui.large.center.aligned.header(href="/user/#{username}") #{username}
                 .spacer
-                .ui.button.refresh_user_stats
+                .ui.tertiary.button.refresh_user_stats
                     i.refresh.icon
                     |refresh stats
                 .ui.header #{debit_count} debits
@@ -15,53 +15,53 @@ template(name='profile_layout')
                 .ui.header #{credit_count} credits
                 .ui.header #{global_credit_count_rank} credit count rank
                 if is_current_user
-                    a.ui.fluid.circular.compact.large.button(href="/user/#{username}/edit")
+                    a.ui.fluid.large.tertiary.button(href="/user/#{username}/edit")
                         +icon name='settings' cl='ui mini inline image'
                         |account
-                    a.ui.fluid.circular.compact.large.button.logout(href="#")
+                    a.ui.fluid.large.tertiary.button.logout(href="#")
                         +icon name='logout-rounded' cl='ui mini inline image'
                         |log out
                 unless is_current_user
                     +user_friend_button 
-                    .ui.fluid.compact.button.quick_give
+                    .ui.fluid.tertiary.button.quick_give
                         +icon name='initiate-money-transfer' cl='ui inline mini image'
                         |quick +1
-                    .ui.fluid.compact.button.give
+                    .ui.fluid.tertiary.button.give
                         +icon name='donate' cl='ui inline mini image'
                         |give
-                    .ui.fluid.compact.button.offer
+                    .ui.fluid.tertiary.button.offer
                         +icon name='trust' cl='ui inline mini image'
                         |offer
              
                 .ui.header #{level} level
                 .ui.header #{points}pts
                        
-                //- a.ui.fluid.circular.button.logout_other_clients(href="#")
+                //- a.ui.fluid.tertiary.button.logout_other_clients(href="#")
                 //-     //- i.globe.icon
                 //-     |log out other clients
                 .ui.header 
                     +icon name='shield'
                     |roles
                 each roles
-                    .ui.circular.label #{this}
+                    .ui.label #{this}
         
             .twelve.wide.column
-                a.ui.circular.large.compact.button(href="/user/#{username}/dashboard" class="{{isActivePath regex='user_dashboard'}}")
+                a.ui.large.tertiary.button(href="/user/#{username}/dashboard" class="{{isActivePath regex='user_dashboard'}}")
                     +icon name='dashboard' cl='ui inline mini image'
                     |dashboard
-                a.ui.circular.large.compact.button(href="/user/#{username}/about" class="{{isActivePath regex=user_about}}")
+                a.ui.large.tertiary.button(href="/user/#{username}/about" class="{{isActivePath regex=user_about}}")
                     +icon name='info' cl='ui inline mini image'
                     |about
-                a.ui.circular.large.compact.button(href="/user/#{username}/generated" class="{{isActivePath regex='user_generated'}}")
+                a.ui.large.tertiary.button(href="/user/#{username}/generated" class="{{isActivePath regex='user_generated'}}")
                     +icon name='sprout' cl='ui inline mini image'
                     |generated
-                a.ui.circular.large.compact.button(href="/user/#{username}/spent" class="{{isActivePath regex='user_spent'}}")
+                a.ui.large.tertiary.button(href="/user/#{username}/spent" class="{{isActivePath regex='user_spent'}}")
                     +icon name='rain' cl='ui inline mini image'
                     |spent
-                a.ui.circular.large.compact.button(href="/user/#{username}/friends" class="{{isActivePath regex='user_friends'}}")
+                a.ui.large.tertiary.button(href="/user/#{username}/friends" class="{{isActivePath regex='user_friends'}}")
                     +icon name='groups' cl='ui inline mini image'
                     |friends
-                a.ui.circular.large.compact.button(href="/user/#{username}/messages" class="{{isActivePath regex='user_messages'}}")
+                a.ui.large.tertiary.button(href="/user/#{username}/messages" class="{{isActivePath regex='user_messages'}}")
                     +icon name='chat' cl='ui inline mini image'
                     |chat
                 div   
@@ -111,13 +111,13 @@ template(name='user_groups')
 
 template(name='user_friend_button')
     if is_friend
-        .ui.blue.fade.animated.circular.button.unfriend
+        .ui.blue.fade.animated.tertiary.button.unfriend
             .visible.content
                 |friend
             .hidden.content
                 i.minus.icon
     else
-        .ui.basic.circular.button.friend
+        .ui.basic.tertiary.button.friend
             i.plus.icon
             |friend
 

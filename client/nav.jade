@@ -1,27 +1,27 @@
 template(name='nav')
     .ui.fluid.attached.borderless.inverted.menu.topnav
         a.item(href="/" class="{{isActivePath regex='home'}}")
-            +icon name='home' cl='ui mini image'
+            +icon name='home' cl='ui avatar image'
         a.item(href="/earn" class="{{isActivePath regex='earn'}}")
             //- +icon name='work' cl='ui mini image'
-            +icon name='sprout' cl='ui mini image'
+            +icon name='sprout' cl='ui avatar image'
             span.mobile.hidden
                 |&nbsp;
                 | Generate
         a.item(href="/spend" class="{{isActivePath regex='spend'}}")
-            +icon name='rain' cl='ui mini image'
-            //- +icon name='shop' cl='ui mini image'
+            +icon name='rain' cl='ui avatar image'
+            //- +icon name='shop' cl='ui avatar image'
             span.mobile.hidden
                 |&nbsp;
                 | Spend
         //- a.item.set_user(href="/m/user" class="{{isActivePath '/m/user'}}")
         a.item(href="/users" class="{{isActivePath '/users'}}")
-            +icon name='groups' cl='ui mini image'
+            +icon name='groups' cl='ui avatar image'
             span.mobile.hidden
                 |&nbsp;
                 | Directory
         //- a.item(href="/tribes")
-        //-     +icon name='campfire' cl='ui mini image'
+        //-     +icon name='campfire' cl='ui avatar image'
         //-     |tribes
         .right.menu
             if currentUser
