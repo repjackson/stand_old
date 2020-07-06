@@ -16,11 +16,10 @@ if Meteor.isClient
             # match = {}
             if Meteor.user()
                 if 'admin' in Meteor.user().roles
-                    Meteor.users.find(
-                    )
+                    Meteor.users.find()
                 else
                     Meteor.users.find(
-                        levels:$in:['l1']
+                        # levels:$in:['l1']
                         # roles:$in:['member']
                     )
             else

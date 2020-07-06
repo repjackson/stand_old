@@ -7,6 +7,11 @@ template(name='profile_layout')
                 img.ui.centered.small.circular.profile_image.image(src="{{c.url profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
                 a.ui.large.center.aligned.header(href="/user/#{username}") #{username}
                 .spacer
+                .ui.button.refresh_user_stats
+                    i.refresh.icon
+                    |refresh stats
+                .ui.header #{debit_count} debits
+                .ui.header #{credit_count} credits
                 if is_current_user
                     a.ui.fluid.circular.compact.large.button(href="/user/#{username}/edit")
                         +icon name='settings' cl='ui mini inline image'
@@ -92,7 +97,6 @@ template(name='user_dashboard')
                             .description
                                 a(href="/user/#{target.username}")
                                     |#{target.username}
-                        
     +user_following
     +user_groups
 

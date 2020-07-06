@@ -47,8 +47,9 @@ if Meteor.isClient
 
     Template.profile_layout.onCreated ->
         @autorun -> Meteor.subscribe 'user_from_username', Router.current().params.username
-        @autorun -> Meteor.subscribe 'user_events', Router.current().params.username
+        # @autorun -> Meteor.subscribe 'user_events', Router.current().params.username
         @autorun -> Meteor.subscribe 'model_docs', 'debit'
+        @autorun -> Meteor.subscribe 'model_docs', 'credit'
         @autorun -> Meteor.subscribe 'all_users'
     Template.profile_layout.onRendered ->
         Meteor.setTimeout ->
@@ -84,7 +85,13 @@ if Meteor.isClient
             else
                 'sixteen wide column'
 
-    Template.user_dashboard.events
+    Template.profile_layout.events
+        'click .refresh_user_stats': ->
+            user = Meteor.users.findOne(username:Router.current().params.username)
+            Meteor.call 'refresh_user_stats', user._id, ->
+
+
+
         'click .quick_give': ->
             target_user = Meteor.users.findOne(username:Router.current().params.username)
             Docs.insert
@@ -96,6 +103,7 @@ if Meteor.isClient
             Meteor.users.update target_user._id,
                 $inc: points: 1
 
+    Template.user_dashboard.events
         'click .recalc_user_cloud': ->
             Meteor.call 'recalc_user_cloud', Router.current().params.username, ->
         'click .calc_test_sessions': ->
