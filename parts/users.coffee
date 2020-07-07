@@ -9,23 +9,25 @@ if Meteor.isClient
 
 
     Template.users.onCreated ->
-        @autorun -> Meteor.subscribe 'all_members'
+        @autorun -> Meteor.subscribe 'all_members', selected_user_tags.array()
 
     Template.users.helpers
         users: ->
-            # match = {}
-            if Meteor.user()
-                if 'admin' in Meteor.user().roles
-                    Meteor.users.find()
-                else
-                    Meteor.users.find(
-                        # levels:$in:['l1']
-                        levels:$in:['member']
-                    )
-            else
-                Meteor.users.find(
-                    levels:$in:['member']
-                )
+            match = {}
+            if selected_user_tags.array().length > 0 then match.tags = $all: selected_user_tags.array()
+            Meteor.users.find match
+            # if Meteor.user()
+            #     if 'admin' in Meteor.user().roles
+            #         Meteor.users.find()
+            #     else
+            #         Meteor.users.find(
+            #             # levels:$in:['l1']
+            #             levels:$in:['member']
+            #         )
+            # else
+            #     Meteor.users.find(
+            #         levels:$in:['member']
+            #     )
 
     Template.user_item.helpers
 
@@ -61,8 +63,8 @@ if Meteor.isClient
 
     Template.user_cloud.helpers
         all_tags: ->
-            doc_count = Docs.find().count()
-            if 0 < doc_count < 3 then User_tags.find { count: $lt: doc_count } else Tags.find()
+            user_count = Meteor.users.find().count()
+            if 0 < user_count < 3 then User_tags.find { count: $lt: user_count } else User_tags.find()
 
         selected_user_tags: ->
             # model = 'event'
@@ -78,24 +80,26 @@ if Meteor.isClient
 
 
 if Meteor.isServer
-    Meteor.publish 'all_members', ->
-        # match = {}
-        if Meteor.user()
-            if 'admin' in Meteor.user().roles
-                Meteor.users.find()
-            else
-                Meteor.users.find(
-                    # levels:$in:['l1']
-                    roles:$in:['member']
-                )
-        else
-            Meteor.users.find(
-                levels:$in:['member']
-            )
+    Meteor.publish 'all_members', (selected_user_tags)->
+        match = {}
+        if selected_user_tags.length > 0 then match.tags = $all: selected_user_tags
+        Meteor.users.find match
+        # if Meteor.user()
+        #     if 'admin' in Meteor.user().roles
+        #         Meteor.users.find()
+        #     else
+        #         Meteor.users.find(
+        #             # levels:$in:['l1']
+        #             roles:$in:['member']
+        #         )
+        # else
+        #     Meteor.users.find(
+        #         levels:$in:['member']
+        #     )
 
 
 
-    Meteor.publish 'tags', (
+    Meteor.publish 'user_tags', (
         selected_user_tags,
         view_mode
         limit
@@ -103,43 +107,38 @@ if Meteor.isServer
         self = @
         match = {}
         if selected_user_tags.length > 0 then match.tags = $all: selected_user_tags
-        match.model = 'item'
-        if view_mode is 'users'
-            match.bought = $ne:true
-            match._author_id = $ne: Meteor.userId()
-        if view_mode is 'bought'
-            match.bought = true
-            match.buyer_id = Meteor.userId()
-        if view_mode is 'selling'
-            match.bought = $ne:true
-            match._author_id = Meteor.userId()
-        if view_mode is 'sold'
-            match.bought = true
-            match._author_id = Meteor.userId()
+        # match.model = 'item'
+        # if view_mode is 'users'
+        #     match.bought = $ne:true
+        #     match._author_id = $ne: Meteor.userId()
+        # if view_mode is 'bought'
+        #     match.bought = true
+        #     match.buyer_id = Meteor.userId()
+        # if view_mode is 'selling'
+        #     match.bought = $ne:true
+        #     match._author_id = Meteor.userId()
+        # if view_mode is 'sold'
+        #     match.bought = true
+        #     match._author_id = Meteor.userId()
 
-        if limit
-            console.log 'limit', limit
-            calc_limit = limit
-        else
-            calc_limit = 20
-        cloud = Docs.aggregate [
+        cloud = Meteor.users.aggregate [
             { $match: match }
             { $project: "tags": 1 }
             { $unwind: "$tags" }
             { $group: _id: "$tags", count: $sum: 1 }
             { $match: _id: $nin: selected_user_tags }
             { $sort: count: -1, _id: 1 }
-            { $limit: calc_limit }
+            { $limit: 20 }
             { $project: _id: 0, name: '$_id', count: 1 }
             ]
 
         # console.log 'filter: ', filter
         # console.log 'cloud: ', cloud
 
-        cloud.forEach (tag, i) ->
-            self.added 'tags', Random.id(),
-                name: tag.name
-                count: tag.count
+        cloud.forEach (user_tag, i) ->
+            self.added 'user_tags', Random.id(),
+                name: user_tag.name
+                count: user_tag.count
                 index: i
 
         self.ready()

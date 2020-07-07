@@ -19,17 +19,15 @@ template(name='users')
 
 
 template(name='user_cloud')
-    .ui.grey.header 
-        i.tags.icon
-        |tags
-    if selected_tags
-        #clear_tags.ui.primary.icon.large.button
+    i.tags.icon
+    if selected_user_tags
+        #clear_tags.ui.primary.icon.button
             i.remove.icon
-        each selected_tags
-            .unselect_tag.ui.primary.large.button
+        each selected_user_tags
+            .unselect_tag.ui.primary.button
                 strong #{this}
     each all_tags
-        .ui.large.compact.button.select_tag(class=cloud_tag_class) 
+        .ui.compact.button.select_tag(class=cloud_tag_class) 
             strong #{this.name}
 
 
