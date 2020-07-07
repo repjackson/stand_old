@@ -1,5 +1,5 @@
 template(name='profile_layout')
-    //- img.ui.fluid.image.home_banner(src="{{c.url 'nightbg' width=1000 height=1000 crop='crop'}}")    
+    //- img.ui.image.home_banner(src="{{c.url 'nightbg' width=1000 height=1000 crop='crop'}}")    
     +nav
     with user
         .ui.stackable.padded.grid
@@ -16,28 +16,28 @@ template(name='profile_layout')
                     .item #{credit_count} credits
                         .ui.label ##{global_credit_count_rank}
                 if is_current_user
-                    a.ui.fluid.large.tertiary.button(href="/user/#{username}/edit")
+                    a.ui.large.tertiary.button(href="/user/#{username}/edit")
                         +icon name='settings' cl='ui mini inline image'
                         |account
-                    a.ui.fluid.large.tertiary.button.logout(href="#")
+                    a.ui.large.tertiary.button.logout(href="#")
                         +icon name='logout-rounded' cl='ui mini inline image'
                         |log out
                 unless is_current_user
                     +user_friend_button 
-                    .ui.fluid.tertiary.button.quick_give
+                    .ui.tertiary.button.quick_give
                         +icon name='initiate-money-transfer' cl='ui inline mini image'
                         |quick +1
-                    .ui.fluid.tertiary.button.give
+                    .ui.tertiary.button.give
                         +icon name='donate' cl='ui inline mini image'
                         |give
-                    .ui.fluid.tertiary.button.offer
+                    .ui.tertiary.button.offer
                         +icon name='trust' cl='ui inline mini image'
                         |offer
              
                 .ui.header #{level} level
                 .ui.header #{points}pts
                        
-                //- a.ui.fluid.tertiary.button.logout_other_clients(href="#")
+                //- a.ui.tertiary.button.logout_other_clients(href="#")
                 //-     //- i.globe.icon
                 //-     |log out other clients
                 .ui.header 
@@ -53,21 +53,27 @@ template(name='profile_layout')
                 a.ui.large.tertiary.button(href="/user/#{username}/about" class="{{isActivePath regex=user_about}}")
                     +icon name='info' cl='ui inline mini image'
                     |about
-                a.ui.large.tertiary.disabled.button(href="/user/#{username}/generated" class="{{isActivePath regex='user_generated'}}")
+                a.ui.large.tertiary.button(href="/user/#{username}/generated" class="{{isActivePath regex='user_generated'}}")
                     +icon name='sprout' cl='ui inline mini image'
                     |generated
-                a.ui.large.tertiary.disabled.button(href="/user/#{username}/spent" class="{{isActivePath regex='user_spent'}}")
+                a.ui.large.tertiary.button(href="/user/#{username}/spent" class="{{isActivePath regex='user_spent'}}")
                     +icon name='rain' cl='ui inline mini image'
                     |spent
-                a.ui.large.tertiary.disabled.button(href="/user/#{username}/posts" class="{{isActivePath regex='user_posts'}}")
+                a.ui.large.tertiary.button(href="/user/#{username}/posts" class="{{isActivePath regex='user_posts'}}")
                     +icon name='rss' cl='ui inline mini image'
                     |posts
-                a.ui.large.tertiary.disabled.button(href="/user/#{username}/photos" class="{{isActivePath regex='user_posts'}}")
+                a.ui.large.tertiary.button(href="/user/#{username}/events" class="{{isActivePath regex='user_events'}}")
+                    +icon name='rss' cl='ui inline mini image'
+                    |events
+                a.ui.large.tertiary.button(href="/user/#{username}/pictures" class="{{isActivePath regex='user_pictures'}}")
                     +icon name='picture' cl='ui inline mini image'
-                    |photos
+                    |pictures
                 a.ui.large.tertiary.button(href="/user/#{username}/friends" class="{{isActivePath regex='user_friends'}}")
                     +icon name='groups' cl='ui inline mini image'
                     |friends
+                a.ui.large.tertiary.button(href="/user/#{username}/badges" class="{{isActivePath regex='user_badges'}}")
+                    +icon name='verified-badge' cl='ui inline mini image'
+                    |badges
                 a.ui.large.tertiary.button(href="/user/#{username}/messages" class="{{isActivePath regex='user_messages'}}")
                     +icon name='chat' cl='ui inline mini image'
                     |chat
@@ -124,6 +130,7 @@ template(name='user_friend_button')
     if is_friend
         .ui.blue.fade.animated.tertiary.button.unfriend
             .visible.content
+                i.checkmark.icon
                 |friend
             .hidden.content
                 i.minus.icon

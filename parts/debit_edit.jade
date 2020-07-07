@@ -8,11 +8,19 @@ template(name='debit_edit')
                         i.large.red.remove.icon
                 
                 .eight.wide.column
-                    .ui.header sender
-                        #{author.username}
-                    .ui.header recipient
-                        #{target.username}
+                    .ui.stackable.two.column.grid
+                        .column
+                            .ui.header sender
+                                |#{_author.username}
+                        .column
+                            .ui.header recipient
+                                |#{target.username}
+                            
                     +number_edit key='amount' label='amount' direct=true
+                    +key_value_edit key='amount' value=1
+                    +key_value_edit key='amount' value=5
+                    +key_value_edit key='amount' value=10
+                    +key_value_edit key='amount' value=20
                     +text_edit key='description' label='description' direct=true
                     +image_edit key='image_id' label='image' direct=true
                     div 

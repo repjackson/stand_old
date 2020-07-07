@@ -31,14 +31,6 @@ if Meteor.isClient
         @layout 'profile_layout'
         @render 'user_bookmarks'
         ), name:'user_bookmarks'
-    Router.route '/user/:username/generated', (->
-        @layout 'profile_layout'
-        @render 'user_generated'
-        ), name:'user_generated'
-    Router.route '/user/:username/spent', (->
-        @layout 'profile_layout'
-        @render 'user_spent'
-        ), name:'user_spent'
     Router.route '/user/:username/friends', (->
         @layout 'profile_layout'
         @render 'user_friends'

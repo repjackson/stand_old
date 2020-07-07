@@ -3,12 +3,15 @@ template(name='earn')
         .row
             .four.wide.column
                 .ui.inline.header 
-                    i.earn.icon
+                    +icon name='sprout'
                     | Generate
                 .ui.icon.large.button.new_earn
                     i.green.plus.icon
                 div
                 +earn_cloud
+                .ui.header 
+                    +icon name='sun'
+                    |per diem
                 with currentUser
                     .ui.list
                         .item(title='hours today')
