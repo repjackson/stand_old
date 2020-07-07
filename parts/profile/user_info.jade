@@ -5,6 +5,14 @@ template(name='user_about')
             .ui.tags.icon 
             each tags
                 +user_info_tag
+        +textarea_view key='profile_hope_receive' label='What do you hope to receive?' direct=true
+        .spacer
+        +textarea_view key='profile_excites_blurb' label='What excites you about being apart of this community?' direct=true
+        .spacer
+        +textarea_view key='profile_community_blurb' label='What do you want this community to know about you?' direct=true
+        .spacer
+        +textarea_view key='profile_contribute_blurb' label='What would you like to contribute (think: superpowers, talents, gifts, resources)' direct=true
+        .spacer
 
 template(name='user_info_tag')
     .ui.basic.tertiary.button 

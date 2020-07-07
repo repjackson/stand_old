@@ -11,9 +11,10 @@ template(name='users')
                 |credit count
             .ui.button 
                 |credit amount
-            .ui.stackable.four.cards
-                each users
-                    +user_item
+            .scrolling
+                .ui.stackable.four.cards
+                    each users
+                        +user_item
 
 
 

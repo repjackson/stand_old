@@ -39,19 +39,19 @@ template(name='user_edit_info')
         .column
             +array_edit key='tags' label='tags' direct=true
             .spacer
-            +textarea_edit key='' label='What do you hope to receive?'
+            +textarea_edit key='profile_hope_receive' label='What do you hope to receive?' direct=true
             .spacer
-            +textarea_edit key='excites_blurb' label='What excites you about being apart of this community?'
+            +textarea_edit key='profile_excites_blurb' label='What excites you about being apart of this community?' direct=true
             .spacer
-            +textarea_edit key='community_blurb' label='What do you want this community to know about you?'
+            +textarea_edit key='profile_community_blurb' label='What do you want this community to know about you?' direct=true
             .spacer
             
         .column
-            +textarea_edit key='contribute_blurb' label='What would you like to contribute (think: superpowers, talents, gifts, resources)'
+            +textarea_edit key='profile_contribute_blurb' label='What would you like to contribute (think: superpowers, talents, gifts, resources)' direct=true
             .spacer
-            +textarea_edit key='' label='emergency contact name'
+            +textarea_edit key='emergency_contact_name' label='emergency contact name' direct=true
             .spacer
-            +textarea_edit key='' label='emergency contact number'
+            +textarea_edit key='emergency_contact_number' label='emergency contact number' direct=true
      
 template(name='phone_editor')
     .ui.small.header    
