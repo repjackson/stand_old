@@ -1,17 +1,17 @@
 template(name='home')
     .ui.stackable.padded.grid
-        .row
-            .sixteen.wide.center.aligned.column
-                if currentUser
-                    .ui.header 
-                        if currentUser.profile_image_id
-                            img.ui.avatar.image(src="{{c.url currentUser.profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
-
-                        if is_admin
-                            +icon name='shield'
-                        |hi #{currentUser.username}
-                else
-                    .ui.header Welcome to One Riverside
+        //- .row
+        //-     .sixteen.wide.center.aligned.column
+        //-         if currentUser
+        //-             .ui.header 
+        //-                 if currentUser.profile_image_id
+        //-                     img.ui.avatar.image(src="{{c.url currentUser.profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
+        //- 
+        //-                 if is_admin
+        //-                     +icon name='shield'
+        //-                 |hi #{currentUser.username}
+        //-         else
+        //-             .ui.header Welcome to One Riverside
         .four.column.row
             .column
                 .ui.header
@@ -20,22 +20,35 @@ template(name='home')
                 .ui.selection.link.list
                     each news_items
                         a.item(href="/debit/#{_id}/view")
-                            .header
-                                strong #{amount}pt
-                                | #{_author_username}
-                                |>
-                                |#{target.username}
-                            .description 
+                            .content
+                                .header
+                                    .ui.basic.label #{amount}pt
+                                    img.ui.avatar.image(src="{{c.url _author.profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
+                                    | #{_author_username}
+                                    |>
+                                    img.ui.avatar.image(src="{{c.url target.profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
+                                    |#{target.username}
                                 .meta #{when}
-                                |#{description}
-                            each tags 
-                                .ui.mini.basic.label #{this}
+                                .description 
+                                    |#{description}
+                                each tags 
+                                    .ui.mini.basic.label #{this}
             .column
-                .ui.header 
-                    +icon name='leaderboard'
-                    |leaderboard
-                .ui.small.header
+                //- .ui.header 
+                //-     +icon name='leaderboard'
+                //-     |leaderboard
+                .ui.header
+                    +icon name='donate'
                     |most given
+                .ui.selection.link.list
+                    each most_given
+                        //- a.item(href="/user/#{username}") #{username} ##{global_debit_count_rank}
+                        a.item(href="/user/#{username}")
+                            img.ui.avatar.image(src="{{c.url profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
+
+                            .content
+                                .header #{username}:
+                                    |#{debit_count}
                 //- .ui.header
                 //-     +icon name='picture'
                 //-     |photos
@@ -44,7 +57,17 @@ template(name='home')
                 //-         .item #{post}
             .column
                 .ui.header
+                    +icon name='get-cash'
                     |most received
+                .ui.selection.link.list
+                    each most_received
+                        a.item(href="/user/#{username}")
+                            img.ui.avatar.image(src="{{c.url profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
+                            .content
+                                .header
+                                    |#{username}:
+                                    |#{credit_count}
+                    
                 //- .ui.header
                 //-     +icon name='chat'
                 //-     |posts
@@ -91,27 +114,27 @@ template(name='home')
                 .ui.list
                     .item 50 per diem            
     
-        .row
-            .eight.wide.column
-                .ui.header 
-                    +icon name='sprout'
-                    |Generated
-                each credits
-                    .item #{when}
-            .eight.wide.column
-                .ui.header 
-                    +icon name='rain'
-                    |Spent
-                .ui.list.smallscroll
-                    each debits
-                        .item
-                            img.ui.avatar.image(src="{{c.url author.profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
-                            .content
-                                .header #{when} from 
-                                    a(href="/user/#{username}")
-                                        |#{author.username}
-                                .description
-                                    strong #{amount} 
+        //- .row
+        //-     .eight.wide.column
+        //-         .ui.header 
+        //-             +icon name='sprout'
+        //-             |Generated
+        //-         each credits
+        //-             .item #{when}
+        //-     .eight.wide.column
+        //-         .ui.header 
+        //-             +icon name='rain'
+        //-             |Spent
+        //-         .ui.list.smallscroll
+        //-             each debits
+        //-                 .item
+        //-                     img.ui.avatar.image(src="{{c.url author.profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
+        //-                     .content
+        //-                         .header #{when} from 
+        //-                             a(href="/user/#{username}")
+        //-                                 |#{author.username}
+        //-                         .description
+        //-                             strong #{amount} 
         //- .row
         //-     .four.wide.column
         //-         .ui.header 

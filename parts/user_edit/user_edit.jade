@@ -22,9 +22,9 @@ template(name='user_edit_layout')
                         a.item(href="/user/#{current_user.username}/edit/friends" class="{{isActivePath regex='user_edit_friends'}}") 
                             |friends
                             i.users.icon 
-                        a.item(href="/user/#{current_user.username}/edit/alerts" class="{{isActivePath regex='user_edit_alerts'}}") 
-                            |alerts
-                            i.bell.icon 
+                        //- a.item(href="/user/#{current_user.username}/edit/alerts" class="{{isActivePath regex='user_edit_alerts'}}") 
+                        //-     |alerts
+                        //-     i.bell.icon 
                         a.item(href="/user/#{current_user.username}/edit/privacy" class="{{isActivePath regex='user_edit_privacy'}}") 
                             | privacy
                             i.lock.icon 
@@ -37,6 +37,7 @@ template(name='user_edit_layout')
 template(name='user_edit_info')
     .ui.two.column.stackable.grid
         .column
+            +array_edit key='tags' label='tags' direct=true
             .spacer
             +textarea_edit key='' label='What do you hope to receive?'
             .spacer
@@ -59,18 +60,18 @@ template(name='phone_editor')
     .ui.icon.fluid.input(title='Add Phone')
         i.plus.icon
         input#phone.form-control(type='phone', name='phone', value='{{newNumber}}')
-    if current_user.profile.phone
-        if current_user.profile.phone_verified
-            .ui.label verified
-        else
-            p
-                .ui.label not verified
-                a.resend_verification(href='#')
-                    |resend code
-                .ui.small.icon.button.remove_phone(title='remove phone')
-                    i.remove.icon
-    else
-        .ui.fluid.button.update_phone add phone
+    //- if current_user.profile.phone
+    //-     if current_user.profile.phone_verified
+    //-         .ui.label verified
+    //-     else
+    //-         p
+    //-             .ui.label not verified
+    //-             a.resend_verification(href='#')
+    //-                 |resend code
+    //-             .ui.small.icon.button.remove_phone(title='remove phone')
+    //-                 i.remove.icon
+    //- else
+    //-     .ui.fluid.button.update_phone add phone
 
 
 
@@ -173,9 +174,8 @@ template(name='user_edit_account')
             +emails_edit
             +username_edit
             +phone_edit key='phone' label='phone' icon='phone' direct=true
-            +array_edit key='tags' label='tags' direct=true
 
-            +phone_editor
+            //- +phone_editor
     
 template(name='username_edit')
     .ui.small.header 

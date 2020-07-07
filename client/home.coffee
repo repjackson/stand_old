@@ -32,6 +32,16 @@ if Meteor.isClient
                 sort:
                     _timestamp: -1
                 limit:10
+        most_given: ->
+            Meteor.users.find {global_debit_count_rank:$exists:true},
+                sort:
+                    global_debit_count_rank:1
+                limit:10
+        most_received: ->
+            Meteor.users.find {global_credit_count_rank:$exists:true},
+                sort:
+                    global_credit_count_rank:1
+                limit:10
         credits: ->
             Docs.find
                 model:'credit'
