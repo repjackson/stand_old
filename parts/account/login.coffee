@@ -71,7 +71,7 @@ if Meteor.isClient
                             # if Meteor.user().roles and 'admin' in Meteor.user().roles
                             #     Router.go "/admin"
                             # else
-                            Router.go "/user/#{Meteor.userId()}"
+                            Router.go "/user/#{Meteor.user().username}"
 
 
     Template.login.helpers

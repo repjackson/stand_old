@@ -64,10 +64,10 @@ if Meteor.isClient
     Template.profile_layout.helpers
         route_slug: -> "user_#{@slug}"
         user: -> Meteor.users.findOne username:Router.current().params.username
-        user_sections: ->
-            Docs.find {
-                model:'user_section'
-            }, sort:title:1
+        # user_sections: ->
+        #     Docs.find {
+        #         model:'user_section'
+        #     }, sort:title:1
         # student_classrooms: ->
         #     user = Meteor.users.findOne username:Router.current().params.username
         #     Docs.find
@@ -79,11 +79,11 @@ if Meteor.isClient
                 model:'student_stats'
                 user_id:user._id
         view_side: -> Session.get 'view_side'
-        main_column_class: ->
-            if Session.get 'view_side'
-                'fourteen wide column'
-            else
-                'sixteen wide column'
+        # main_column_class: ->
+        #     if Session.get 'view_side'
+        #         'fourteen wide column'
+        #     else
+        #         'sixteen wide column'
 
     Template.profile_layout.events
         'click .give': ->
@@ -92,6 +92,14 @@ if Meteor.isClient
                 Docs.insert
                     model:'debit'
                     target_id: user._id
+            Router.go "/debit/#{new_debit_id}/edit"
+
+        'click .offer': ->
+            user = Meteor.users.findOne(username:Router.current().params.username)
+            new_debit_id =
+                Docs.insert
+                    model:'offer'
+                    target_ids: [user._id]
             Router.go "/debit/#{new_debit_id}/edit"
 
         'click .refresh_user_stats': ->
