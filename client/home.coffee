@@ -25,6 +25,13 @@ if Meteor.isClient
             )
 
     Template.home.helpers
+        news_items: ->
+            Docs.find {
+                model:'debit'
+            },
+                sort:
+                    _timestamp: -1
+                limit:10
         credits: ->
             Docs.find
                 model:'credit'

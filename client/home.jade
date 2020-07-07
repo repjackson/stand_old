@@ -11,7 +11,7 @@ template(name='home')
                             +icon name='shield'
                         |hi #{currentUser.username}
                 else
-                    .ui.header welcome to One Riverside
+                    .ui.header Welcome to One Riverside
         .four.column.row
             .column
                 .ui.header
@@ -19,28 +19,47 @@ template(name='home')
                     |news
                 .ui.selection.link.list
                     each news_items
-                        .item #{title}
+                        a.item(href="/debit/#{_id}/view")
+                            .header
+                                strong #{amount}pt
+                                | #{_author_username}
+                                |>
+                                |#{target.username}
+                            .description 
+                                .meta #{when}
+                                |#{description}
+                            each tags 
+                                .ui.mini.basic.label #{this}
+            .column
+                .ui.header 
+                    +icon name='leaderboard'
+                    |leaderboard
+                .ui.small.header
+                    |most given
+                //- .ui.header
+                //-     +icon name='picture'
+                //-     |photos
+                //- .ui.selection.link.list
+                //-     each photos
+                //-         .item #{post}
             .column
                 .ui.header
-                    +icon name='picture'
-                    |photos
-                .ui.selection.link.list
-                    each photos
-                        .item #{post}
+                    |most received
+                //- .ui.header
+                //-     +icon name='chat'
+                //-     |posts
+                //- .ui.selection.link.list
+                //-     each user_posts
+                //-         .item #{post}
             .column
                 .ui.header
-                    +icon name='chat'
-                    |posts
-                .ui.selection.link.list
-                    each user_posts
-                        .item #{post}
-            .column
-                .ui.header
-                    +icon name='calendar'
-                    |events
-                .ui.selection.link.list
-                    each user_events
-                        .item #{post}
+                    |most total
+                //- .ui.header
+                //-     +icon name='calendar'
+                //-     |events
+                //- .ui.selection.link.list
+                //-     each user_events
+                //-         .item #{post}
         .four.column.row
             .column
                 .ui.header

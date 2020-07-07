@@ -36,12 +36,13 @@ if Meteor.isClient
 
     Template.spend_card.events
         'click .record_spend': ->
-            Meteor.users.update Meteor.userId(),
-                $inc: points:-@points
-            $('body').toast({
-                class: 'info',
-                message: "#{@points} spent"
-            })
-            Docs.insert
-                model:'spend_item'
-                parent_id: @_id
+            if Meteor.user()
+                Meteor.users.update Meteor.userId(),
+                    $inc: points:-@points
+                $('body').toast({
+                    class: 'info',
+                    message: "#{@points} spent"
+                })
+                Docs.insert
+                    model:'spend_item'
+                    parent_id: @_id

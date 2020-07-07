@@ -27,10 +27,11 @@ if Meteor.isClient
         # 'click .toggle_complete': ->
         #     Session.set('view_complete', !Session.get('view_complete'))
         'click .new_earn': (e,t)->
-            new_earn_id =
-                Docs.insert
-                    model:'earn'
-            Router.go "/earn/#{new_earn_id}/edit"
+            if currentUser
+                new_earn_id =
+                    Docs.insert
+                        model:'earn'
+                Router.go "/earn/#{new_earn_id}/edit"
 
     Template.earn.helpers
         view_complete_class: ->
@@ -58,18 +59,19 @@ if Meteor.isClient
 
     Template.earn_card_template.events
         'click .record_earn': ->
-            console.log 'hi'
-            Meteor.users.update Meteor.userId(),
-                $inc: points:@points
-            $('body')
-              .toast({
-                class: 'success'
-                position: 'bottom right'
-                message: "#{@points} added to account"
-              })
-            Docs.insert
-                model:'earn_item'
-                parent_id: @_id
+            if Meteor.user()
+                # console.log 'hi'
+                Meteor.users.update Meteor.userId(),
+                    $inc: points:@points
+                $('body')
+                  .toast({
+                    class: 'success'
+                    position: 'bottom right'
+                    message: "#{@points} added to account"
+                  })
+                Docs.insert
+                    model:'earn_item'
+                    parent_id: @_id
 
 
 

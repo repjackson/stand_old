@@ -46,11 +46,10 @@ template(name='user_item')
         .content
             each levels
                 .ui.label #{this}
-            .ui.list
-                .item #{debit_count} debits
-                .item #{global_debit_count_rank} debit count rank
-                .item #{credit_count} credits
-                .item #{global_credit_count_rank} credit count rank
+            strong #{debit_count} debits
+            span ##{global_debit_count_rank}
+            strong #{credit_count} credits
+            span ##{global_credit_count_rank}
             .ui.small.header #{points} points
             each first_five_tags
                 .ui.circular.basic.label #{this}

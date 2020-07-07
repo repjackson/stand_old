@@ -5,8 +5,9 @@ template(name='earn')
                 .ui.inline.header 
                     +icon name='sprout'
                     | Generate
-                .ui.icon.large.button.new_earn
-                    i.green.plus.icon
+                if currentUser
+                    .ui.icon.large.button.new_earn
+                        i.green.plus.icon
                 div
                 +earn_cloud
                 .ui.header 
