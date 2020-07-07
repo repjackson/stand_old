@@ -7,6 +7,7 @@ if Meteor.isClient
     Template.home.onCreated ->
         @autorun => Meteor.subscribe 'model_docs', 'debit'
         @autorun => Meteor.subscribe 'model_docs', 'credit'
+        @autorun => Meteor.subscribe 'model_docs', 'offer'
         @autorun => Meteor.subscribe 'model_docs', 'email_signup'
         @autorun => Meteor.subscribe 'all_users'
         @autorun -> Meteor.subscribe('home_tag_results',
@@ -42,6 +43,9 @@ if Meteor.isClient
                 sort:
                     global_credit_count_rank:1
                 limit:10
+        offers: ->
+            Docs.find
+                model:'offer'
         credits: ->
             Docs.find
                 model:'credit'

@@ -38,7 +38,8 @@ template(name='login')
                         .ui.center.aligned.basic.segment
                             .ui.header no '#{username}' user
                             a.ui.basic.button(href='/register')
-                                i.user.plus.icon
+                                //- i.user.plus.icon
+                                +icon name='add-user-male' cl='ui mini inline image'
                                 | register
                 .ui.center.aligned.basic.segment    
                     a.ui.basic.button(href='/forgot_password')

@@ -15,24 +15,25 @@ template(name='home')
         .four.column.row
             .column
                 .ui.header
-                    +icon name='rss'
-                    |news
-                .ui.selection.link.list
-                    each news_items
-                        a.item(href="/debit/#{_id}/view")
-                            .content
-                                .header
-                                    .ui.basic.label #{amount}pt
-                                    img.ui.avatar.image(src="{{c.url _author.profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
-                                    | #{_author_username}
-                                    |>
-                                    img.ui.avatar.image(src="{{c.url target.profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
-                                    |#{target.username}
-                                .meta #{when}
-                                .description 
-                                    |#{description}
-                                each tags 
-                                    .ui.tiny.basic.label #{this}
+                    +icon name='payment-history'
+                    |latest debits
+                .smallscroll
+                    .ui.selection.link.list
+                        each news_items
+                            a.item(href="/debit/#{_id}/view")
+                                .content
+                                    .header
+                                        .ui.basic.label #{amount}pt
+                                        img.ui.avatar.image(src="{{c.url _author.profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
+                                        | #{_author_username}
+                                        |>
+                                        img.ui.avatar.image(src="{{c.url target.profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
+                                        |#{target.username}
+                                    .meta #{when}
+                                    .description 
+                                        |#{description}
+                                    each tags 
+                                        .ui.tiny.basic.label #{this}
             .column
                 //- .ui.header 
                 //-     +icon name='leaderboard'
@@ -40,15 +41,16 @@ template(name='home')
                 .ui.header
                     +icon name='donate'
                     |most given
-                .ui.selection.link.list
-                    each most_given
-                        //- a.item(href="/user/#{username}") #{username} ##{global_debit_count_rank}
-                        a.item(href="/user/#{username}")
-                            img.ui.avatar.image(src="{{c.url profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
+                .smallscroll
+                    .ui.selection.link.list
+                        each most_given
+                            //- a.item(href="/user/#{username}") #{username} ##{global_debit_count_rank}
+                            a.item(href="/user/#{username}")
+                                img.ui.avatar.image(src="{{c.url profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
 
-                            .content
-                                .header #{username}:
-                                    |#{debit_count}
+                                .content
+                                    .header #{username}:
+                                        |#{debit_count}
                 //- .ui.header
                 //-     +icon name='picture'
                 //-     |photos
@@ -59,15 +61,16 @@ template(name='home')
                 .ui.header
                     +icon name='get-cash'
                     |most received
-                .ui.selection.link.list
-                    each most_received
-                        a.item(href="/user/#{username}")
-                            img.ui.avatar.image(src="{{c.url profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
-                            .content
-                                .header
-                                    |#{username}:
-                                    |#{credit_count}
-                    
+                .smallscroll
+                    .ui.selection.link.list
+                        each most_received
+                            a.item(href="/user/#{username}")
+                                img.ui.avatar.image(src="{{c.url profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
+                                .content
+                                    .header
+                                        |#{username}:
+                                        |#{credit_count}
+                        
                 //- .ui.header
                 //-     +icon name='chat'
                 //-     |posts
@@ -76,7 +79,18 @@ template(name='home')
                 //-         .item #{post}
             .column
                 .ui.header
-                    |most total
+                    +icon name='trust'
+                    |offers
+                .smallscroll
+                    .ui.selection.list
+                        each offers
+                            a.item(href="/offer/#{_id}/view")
+                                .header #{amount}pts
+                                |#{_author.username}
+                                |#{description}
+                                |#{when}
+                //- .ui.header
+                //-     |most total
                 //- .ui.header
                 //-     +icon name='calendar'
                 //-     |events

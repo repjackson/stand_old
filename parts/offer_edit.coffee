@@ -15,6 +15,8 @@ if Meteor.isClient
                 Docs.remove @_id
 
         'click .submit': ->
+            Docs.update Router.current().params.doc_id,
+                $set:published:true
             if confirm 'confirm?'
                 Meteor.call 'send_offer', @_id, =>
                     Router.go "/offer/#{@_id}/view"

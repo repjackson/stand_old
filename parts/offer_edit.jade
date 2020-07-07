@@ -8,12 +8,21 @@ template(name='offer_edit')
                         i.large.red.remove.icon
                 
                 .eight.wide.column
+                    .ui.header 
+                        +icon name='trust'
+                        |edit offer
+                .four.wide.column
+            .row 
+                .four.wide.column
+                .eight.wide.column
                     .ui.stackable.two.column.grid
                         .column
-                            .ui.header sender
+                            .ui.header 
+                                small author
                                 |#{_author.username}
                         .column
-                            .ui.header recipient
+                            .ui.header 
+                                |recipient
                                 |#{target.username}
                             
                     +number_edit key='amount' label='amount' direct=true

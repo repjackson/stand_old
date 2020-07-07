@@ -47,7 +47,7 @@ if Meteor.isClient
 
     Template.profile_layout.onCreated ->
         @autorun -> Meteor.subscribe 'user_from_username', Router.current().params.username
-        # @autorun -> Meteor.subscribe 'user_events', Router.current().params.username
+        @autorun -> Meteor.subscribe 'user_offers', Router.current().params.username
         @autorun -> Meteor.subscribe 'model_docs', 'debit'
         @autorun -> Meteor.subscribe 'model_docs', 'credit'
         @autorun -> Meteor.subscribe 'all_users'
@@ -73,12 +73,12 @@ if Meteor.isClient
         #     Docs.find
         #         model:'classroom'
         #         student_ids: $in: [user._id]
-        ssd: ->
-            user = Meteor.users.findOne username:Router.current().params.username
-            Docs.findOne
-                model:'student_stats'
-                user_id:user._id
-        view_side: -> Session.get 'view_side'
+        # ssd: ->
+        #     user = Meteor.users.findOne username:Router.current().params.username
+        #     Docs.findOne
+        #         model:'student_stats'
+        #         user_id:user._id
+        # view_side: -> Session.get 'view_side'
         # main_column_class: ->
         #     if Session.get 'view_side'
         #         'fourteen wide column'
@@ -140,11 +140,11 @@ if Meteor.isClient
                 model:'debit'
                 _author_id: current_user._id
             }, sort: _timestamp:-1
-        ssd: ->
-            user = Meteor.users.findOne username:Router.current().params.username
-            Docs.findOne
-                model:'student_stats'
-                user_id:user._id
+        # ssd: ->
+        #     user = Meteor.users.findOne username:Router.current().params.username
+        #     Docs.findOne
+        #         model:'student_stats'
+        #         user_id:user._id
         # student_classrooms: ->
         #     user = Meteor.users.findOne username:Router.current().params.username
         #     Docs.find
@@ -153,6 +153,13 @@ if Meteor.isClient
         user_events: ->
             Docs.find {
                 model:'log_event'
+            }, sort: _timestamp: -1
+        user_offers: ->
+            user = Meteor.users.findOne username:Router.current().params.username
+
+            Docs.find {
+                model:'offer'
+                _author_id:user._id
             }, sort: _timestamp: -1
         # user_finances: ->
         #     Docs.find {
@@ -213,6 +220,12 @@ if Meteor.isClient
 
 
 if Meteor.isServer
+    Meteor.publish 'user_offers', (username)->
+        user = Meteor.users.findOne username:username
+        Docs.find
+            model:'offer'
+            _author_id:user._id
+
     Meteor.publish 'user_bookmarks', (user_id)->
         user = Meteor.users.findOne user_id
         Docs.find
