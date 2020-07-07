@@ -10,10 +10,11 @@ template(name='profile_layout')
                 .ui.tertiary.button.refresh_user_stats
                     i.refresh.icon
                     |refresh stats
-                .ui.header #{debit_count} debits
-                .ui.header #{global_debit_count_rank} debit count rank
-                .ui.header #{credit_count} credits
-                .ui.header #{global_credit_count_rank} credit count rank
+                .ui.large.list
+                    .item #{debit_count} debits
+                        .ui.label ##{global_debit_count_rank}
+                    .item #{credit_count} credits
+                        .ui.label ##{global_credit_count_rank}
                 if is_current_user
                     a.ui.fluid.large.tertiary.button(href="/user/#{username}/edit")
                         +icon name='settings' cl='ui mini inline image'
@@ -52,12 +53,18 @@ template(name='profile_layout')
                 a.ui.large.tertiary.button(href="/user/#{username}/about" class="{{isActivePath regex=user_about}}")
                     +icon name='info' cl='ui inline mini image'
                     |about
-                a.ui.large.tertiary.button(href="/user/#{username}/generated" class="{{isActivePath regex='user_generated'}}")
+                a.ui.large.tertiary.disabled.button(href="/user/#{username}/generated" class="{{isActivePath regex='user_generated'}}")
                     +icon name='sprout' cl='ui inline mini image'
                     |generated
-                a.ui.large.tertiary.button(href="/user/#{username}/spent" class="{{isActivePath regex='user_spent'}}")
+                a.ui.large.tertiary.disabled.button(href="/user/#{username}/spent" class="{{isActivePath regex='user_spent'}}")
                     +icon name='rain' cl='ui inline mini image'
                     |spent
+                a.ui.large.tertiary.disabled.button(href="/user/#{username}/posts" class="{{isActivePath regex='user_posts'}}")
+                    +icon name='rss' cl='ui inline mini image'
+                    |posts
+                a.ui.large.tertiary.disabled.button(href="/user/#{username}/photos" class="{{isActivePath regex='user_posts'}}")
+                    +icon name='picture' cl='ui inline mini image'
+                    |photos
                 a.ui.large.tertiary.button(href="/user/#{username}/friends" class="{{isActivePath regex='user_friends'}}")
                     +icon name='groups' cl='ui inline mini image'
                     |friends
@@ -86,6 +93,8 @@ template(name='user_dashboard')
                                     |#{author.username}
                             .description
                                 strong #{amount} 
+                            if is_admin
+                                +remove_button
         .column
             .ui.header 
                 +icon name='rain'
@@ -99,6 +108,8 @@ template(name='user_dashboard')
                             .description
                                 a(href="/user/#{target.username}")
                                     |#{target.username}
+                            if is_admin
+                                +remove_button
     +user_following
     +user_groups
 

@@ -1,33 +1,33 @@
 template(name='earn')
     .ui.stackable.padded.grid
         .row
-            //- .four.wide.column
-            //-     .ui.inline.header 
-            //-         i.earn.icon
-            //-         |earn
-            //-     .ui.icon.large.button.new_earn
-            //-         i.green.plus.icon
-            //-     div
-            //-     +earn_cloud
-                //- with currentUser
-                //-     .ui.list
-                //-         .item(title='hours today')
-                //-             i.sun.icon
-                //-             i.clock.icon
-                //-             | #{daily_hours}hrs
-                //-         .item(title='weekly hours')
-                //-             i.calendar.icon
-                //-             i.clock.icon
-                //-             | #{weekly_hours}hrs
-                //-         .item(title='sessions today')
-                //-             i.sun.icon
-                //-             i.business.time.icon
-                //-             | #{daily_sessions} sessions
-                //-         .item(title='weekly sessions')
-                //-             i.calendar.icon
-                //-             i.business.time.icon
-                //-             | #{weekly_sessions} sessions
-            .sixteen.wide.center.aligned.column
+            .four.wide.column
+                .ui.inline.header 
+                    i.earn.icon
+                    | Generate
+                .ui.icon.large.button.new_earn
+                    i.green.plus.icon
+                div
+                +earn_cloud
+                with currentUser
+                    .ui.list
+                        .item(title='hours today')
+                            i.sun.icon
+                            i.clock.icon
+                            | #{daily_hours}hrs
+                        .item(title='weekly hours')
+                            i.calendar.icon
+                            i.clock.icon
+                            | #{weekly_hours}hrs
+                        .item(title='sessions today')
+                            i.sun.icon
+                            i.business.time.icon
+                            | #{daily_sessions} sessions
+                        .item(title='weekly sessions')
+                            i.calendar.icon
+                            i.business.time.icon
+                            | #{weekly_sessions} sessions
+            .twelve.wide.center.aligned.column
                 //- with top_earn
                 //-     +earn_card_template
                 //- i.link.refresh.icon.refresh_my_time_stats

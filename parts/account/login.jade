@@ -4,7 +4,7 @@ template(name='login')
             .eight.wide.column
                 .ui.center.aligned.basic.segment
                     .ui.big.blue.inline.header 
-                        //- +icon name='hammer-and-anvil' 
+                        +icon name='1-circle' cl='ui inline compact image'                    
                         |One Riverside
                     .ui.inline.header login
                 div
@@ -26,24 +26,25 @@ template(name='login')
                 //- if username
                 if logging_in
                     .spacer
-                    .ui.fluid.big.circular.blue.button.enter(title="login #{username}" class=enter_class)
+                    .ui.fluid.big.green.circular.tertiary.button.enter(title="login #{username}" class=enter_class)
                         |login
                         strong #{username}
                         |&nbsp;
                         //- i.sign.in.alternate.icon
+                        //- +icon name='login-rounded-right' cl='ui avatar image'
                         i.right.chevron.icon
                 else
                     if username
                         .ui.center.aligned.basic.segment
                             .ui.header no '#{username}' user
-                            a.ui.button(href='/register')
+                            a.ui.basic.button(href='/register')
                                 i.user.plus.icon
                                 | register
                 .ui.center.aligned.basic.segment    
-                    a.ui.button(href='/forgot_password')
+                    a.ui.basic.button(href='/forgot_password')
                         i.refresh.icon
                         |forgot password
-                    a.ui.button(href='/register') 
+                    a.ui.basic.button(href='/register') 
                         i.user.plus.icon
                         |register
                     //- .ui.center.aligned.inline.header see the front desk to register an account

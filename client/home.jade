@@ -15,6 +15,35 @@ template(name='home')
         .four.column.row
             .column
                 .ui.header
+                    +icon name='rss'
+                    |news
+                .ui.selection.link.list
+                    each news_items
+                        .item #{title}
+            .column
+                .ui.header
+                    +icon name='picture'
+                    |photos
+                .ui.selection.link.list
+                    each photos
+                        .item #{post}
+            .column
+                .ui.header
+                    +icon name='chat'
+                    |posts
+                .ui.selection.link.list
+                    each user_posts
+                        .item #{post}
+            .column
+                .ui.header
+                    +icon name='calendar'
+                    |events
+                .ui.selection.link.list
+                    each user_events
+                        .item #{post}
+        .four.column.row
+            .column
+                .ui.header
                     +icon name='compass'
                     |Explorer
                 .ui.list

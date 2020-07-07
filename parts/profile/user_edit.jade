@@ -6,8 +6,8 @@ template(name='user_edit_layout')
             .row
                 .four.wide.column
                     .ui.center.aligned.large.inline.header
-                        | #{current_user.first_name} #{current_user.last_name}
-                    //- +i name='pencil'
+                        +i name='settings'
+                        | #{current_user.name}
                     .ui.small.inline.header @#{current_user.username}
                     a.ui.fluid.large.green.button(href="/user/#{current_user.username}/") 
                         i.checkmark.icon
@@ -37,27 +37,20 @@ template(name='user_edit_layout')
 template(name='user_edit_info')
     .ui.two.column.stackable.grid
         .column
-            +image_edit key='profile_image_id' icon='picture' title='profile image' direct=true
-        .column
-            +textarea_edit key='' label='what do you hope to receive'
-            +textarea_edit key='' label='emergency contact name'
-            +textarea_edit key='' label='emergency contact number'
+            .spacer
+            +textarea_edit key='' label='What do you hope to receive?'
+            .spacer
+            +textarea_edit key='excites_blurb' label='What excites you about being apart of this community?'
+            .spacer
+            +textarea_edit key='community_blurb' label='What do you want this community to know about you?'
+            .spacer
             
         .column
-            //- if Ais_admin
-            //-     .ui.segment 
-            //-         .ui.small.header 
-            //-             i.shield.icon 
-            //-             |admin
-            //-         +text_edit key='student_code' label='student code' direct=true
-            //-         +text_edit key='parent_code' label='parent code' direct=true
-            //-         +number_edit key='credit' label='credit' icon='money' direct=true
-            //- div
-            +phone_edit key='phone' label='phone' icon='phone' direct=true
-            +array_edit key='tags' label='tags' direct=true
-            +textarea_edit key='excites_blurb' label='what excites you about being apart of this community'
-            +textarea_edit key='community_blurb' label='what do you want this community to know about you?'
-            +textarea_edit key='contribute_blurb' label='what would yuou like to contribute (think: superpowers, talents, gifts, resources)'
+            +textarea_edit key='contribute_blurb' label='What would you like to contribute (think: superpowers, talents, gifts, resources)'
+            .spacer
+            +textarea_edit key='' label='emergency contact name'
+            .spacer
+            +textarea_edit key='' label='emergency contact number'
      
 template(name='phone_editor')
     .ui.small.header    
@@ -143,17 +136,6 @@ template(name='user_edit_friends')
     
     
     
-template(name='user_edit_tutoring')
-    .ui.header
-        i.chalkboard.icon
-        | tutoring
-    +boolean_edit key='accepting_students' label='accepting students' direct=true
-    each user_students
-        .ui.header #{name}
-    
-    
-    
-    
     
 template(name='user_edit_privacy')
     .ui.header
@@ -173,8 +155,9 @@ template(name='user_edit_account')
     .ui.header 
         i.cog.icons
         |account
-    .ui.two.column.grid
+    .ui.two.column.stackable.grid
         .column
+            +image_edit key='profile_image_id' icon='picture' title='profile image' direct=true
             +password_edit
             if is_admin
                 with current_user
@@ -188,9 +171,11 @@ template(name='user_edit_account')
                 i.envelope.outline.icon
                 |emails
             +emails_edit
-        
             +username_edit
-        //- +phone_editor
+            +phone_edit key='phone' label='phone' icon='phone' direct=true
+            +array_edit key='tags' label='tags' direct=true
+
+            +phone_editor
     
 template(name='username_edit')
     .ui.small.header 
