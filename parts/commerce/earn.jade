@@ -6,31 +6,37 @@ template(name='earn')
                     +icon name='sprout'
                     | Generate
                 if currentUser
-                    .ui.icon.large.button.new_earn
-                        i.green.plus.icon
+                    if is_admin
+                        .ui.icon.large.button.new_earn
+                            i.green.plus.icon
                 div
                 +earn_cloud
                 .ui.header 
                     +icon name='sun'
                     |per diem
+                .ui.large.list
+                    .item 0 explorer
+                    .item 0 member
+                    .item 30 regenerator
+                    .item 50 steward
                 with currentUser
-                    .ui.list
-                        .item(title='hours today')
-                            i.sun.icon
-                            i.clock.icon
-                            | #{daily_hours}hrs
-                        .item(title='weekly hours')
-                            i.calendar.icon
-                            i.clock.icon
-                            | #{weekly_hours}hrs
-                        .item(title='sessions today')
-                            i.sun.icon
-                            i.business.time.icon
-                            | #{daily_sessions} sessions
-                        .item(title='weekly sessions')
-                            i.calendar.icon
-                            i.business.time.icon
-                            | #{weekly_sessions} sessions
+                    //- .ui.list
+                    //-     .item(title='hours today')
+                    //-         i.sun.icon
+                    //-         i.clock.icon
+                    //-         | #{daily_hours}hrs
+                    //-     .item(title='weekly hours')
+                    //-         i.calendar.icon
+                    //-         i.clock.icon
+                    //-         | #{weekly_hours}hrs
+                    //-     .item(title='sessions today')
+                    //-         i.sun.icon
+                    //-         i.business.time.icon
+                    //-         | #{daily_sessions} sessions
+                    //-     .item(title='weekly sessions')
+                    //-         i.calendar.icon
+                    //-         i.business.time.icon
+                    //-         | #{weekly_sessions} sessions
             .twelve.wide.center.aligned.column
                 //- with top_earn
                 //-     +earn_card_template
@@ -44,9 +50,12 @@ template(name='earn')
                 //- .ui.small.compact.button soonest
                 //- .ui.small.compact.button priority
                 //- .ui.header click this item as many times as hours you've contributed
-                .ui.cards
-                    each earn_docs
-                        +earn_card_template
+                .ui.header upcoming shifts
+                each upcoming_shifts
+                    .ui.header #{when}
+                //- .ui.cards
+                //-     each earn_docs
+                //-         +earn_card_template
                 
                     
 

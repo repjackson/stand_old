@@ -1,18 +1,22 @@
 template(name='user_debits')  
-    .ui.center.aligned.header 
-        +icon name='chat'
-        |user debits
-    if currentUser
-        .ui.fluid.icon.input
-            i.plus.icon
-            input.new_message(type='text' placeholder='new message...')
-    each user_messages
-        .ui.segment
-            .ui.small.header #{body}
-            div
-            +user_list_toggle key='read_by_ids' label='mark read' icon='eye'
-            if can_edit
-                +remove_button
-            //- div
-            +author_info
-            +creation_info
+    .ui.header 
+        +icon name='sprout'
+        |spent
+    .ui.link.list.scrolling
+        each spent_items
+            .item
+                if target.profile_image_id
+                    img.ui.avatar.image(src="{{c.url target.profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
+                strong #{amount}pt 
+                .content
+                    a(href="/debit/#{_id}/view")
+                        |#{when} to 
+                    a(href="/user/#{target.username}")
+                        |#{target.username}
+                .content
+                    .description
+                        |#{description}
+                        each tags
+                            .ui.mini.basic.label #{this}
+                    if is_admin
+                        +remove_button

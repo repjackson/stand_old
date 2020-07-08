@@ -13,24 +13,27 @@ if Meteor.isClient
         @autorun => Meteor.subscribe 'model_docs', 'credit'
 
     Template.user_credits.events
-        'keyup .new_credit': (e,t)->
-            if e.which is 13
-                val = $('.new_credit').val()
-                console.log val
-                target_user = Meteor.users.findOne(username:Router.current().params.username)
-                Docs.insert
-                    model:'credit'
-                    body: val
-                    target_user_id: target_user._id
+        # 'keyup .new_credit': (e,t)->
+        #     if e.which is 13
+        #         val = $('.new_credit').val()
+        #         console.log val
+        #         target_user = Meteor.users.findOne(username:Router.current().params.username)
+        #         Docs.insert
+        #             model:'credit'
+        #             body: val
+        #             target_user_id: target_user._id
 
 
 
     Template.user_credits.helpers
         user_credits: ->
             target_user = Meteor.users.findOne(username:Router.current().params.username)
-            Docs.find
-                model:'credit'
+            Docs.find {
+                model:'debit'
                 target_user_id: target_user._id
+            },
+                sort:_timestamp:-1
+
 
         slots: ->
             Docs.find
@@ -40,5 +43,7 @@ if Meteor.isClient
 
 if Meteor.isServer
     Meteor.publish 'user_credits', (username)->
+        user = Meteor.users.findOne username:username
         Docs.find
-            model:'credit'
+            model:'debit'
+            target_id:user._id

@@ -5,11 +5,8 @@ if Meteor.isClient
         ), name:'user_debits'
 
     Template.user_debits.onCreated ->
-        @autorun => Meteor.subscribe 'docs', selected_tags.array(), 'thought'
-
-
-    Template.user_debits.onCreated ->
-        @autorun => Meteor.subscribe 'user_debits', Router.current().params.username
+        @autorun -> Meteor.subscribe 'user_model_docs', 'debit', Router.current().params.username
+        # @autorun => Meteor.subscribe 'user_debits', Router.current().params.username
         @autorun => Meteor.subscribe 'model_docs', 'debit'
 
     Template.user_debits.events
@@ -26,11 +23,14 @@ if Meteor.isClient
 
 
     Template.user_debits.helpers
-        user_debits: ->
-            target_user = Meteor.users.findOne(username:Router.current().params.username)
-            Docs.find
+        spent_items: ->
+            current_user = Meteor.users.findOne(username:Router.current().params.username)
+            Docs.find {
                 model:'debit'
-                target_user_id: target_user._id
+                _author_id: current_user._id
+                # target_user_id: target_user._id
+            },
+                sort:_timestamp:-1
 
         slots: ->
             Docs.find

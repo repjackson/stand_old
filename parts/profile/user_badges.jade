@@ -1,0 +1,16 @@
+template(name='user_badges')  
+    .ui.center.aligned.header 
+        +icon name='verified-badge'
+        |user badges
+    if is_steward
+        .ui.button add badge
+    each user_badges
+        .ui.segment
+            .ui.small.header #{body}
+            div
+            +user_list_toggle key='read_by_ids' label='mark read' icon='eye'
+            if can_edit
+                +remove_button
+            //- div
+            +author_info
+            +creation_info

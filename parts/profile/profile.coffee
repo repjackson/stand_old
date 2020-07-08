@@ -19,10 +19,6 @@ if Meteor.isClient
         @layout 'profile_layout'
         @render 'user_stats'
         ), name:'user_stats'
-    Router.route '/user/:username/generate', (->
-        @layout 'profile_layout'
-        @render 'user_generate'
-        ), name:'user_generate'
     Router.route '/user/:username/messages', (->
         @layout 'profile_layout'
         @render 'user_messages'
@@ -35,10 +31,6 @@ if Meteor.isClient
         @layout 'profile_layout'
         @render 'user_friends'
         ), name:'user_friends'
-    Router.route '/user/:username/badges', (->
-        @layout 'profile_layout'
-        @render 'user_badges'
-        ), name:'user_badges'
     Router.route '/user/:username/events', (->
         @layout 'profile_layout'
         @render 'user_events'
@@ -48,7 +40,7 @@ if Meteor.isClient
     Template.profile_layout.onCreated ->
         @autorun -> Meteor.subscribe 'user_from_username', Router.current().params.username
         @autorun -> Meteor.subscribe 'user_offers', Router.current().params.username
-        @autorun -> Meteor.subscribe 'model_docs', 'debit'
+        @autorun -> Meteor.subscribe 'user_model_docs', 'debit', Router.current().params.username
         # @autorun -> Meteor.subscribe 'model_docs', 'credit'
         @autorun -> Meteor.subscribe 'all_users'
     Template.profile_layout.onRendered ->
@@ -232,11 +224,11 @@ if Meteor.isServer
         Docs.find
             _id:$in:user.bookmark_ids
 
-    Meteor.publish 'user_model_docs', (user_id, model)->
-        # user = Meteor.users.findOne user_id
+    Meteor.publish 'user_model_docs', (model, username)->
+        user = Meteor.users.findOne username:username
         Docs.find
             model:model
-            _author_id:username
+            _author_id:user._id
 
     Meteor.publish 'user_events', (user_id)->
         user = Meteor.users.findOne user_id

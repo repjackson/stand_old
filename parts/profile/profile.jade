@@ -4,7 +4,7 @@ template(name='profile_layout')
     with user
         .ui.stackable.padded.grid
             .four.wide.center.aligned.column
-                img.ui.centered.small.profile_image.image(src="{{c.url profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
+                img.ui.centered.small.profile_image.circular.image(src="{{c.url profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
                 a.ui.large.center.aligned.header(href="/user/#{username}") #{username}
                 .spacer
                 .ui.tertiary.button.refresh_user_stats
@@ -21,10 +21,10 @@ template(name='profile_layout')
                 .ui.list 
                     .item #{total_bandwith} total bandwith
                     .item #{debit_credit_ratio} debit_credit_ratio
-                    .item #{dc_ratio_inverted} dc_ratio_inverted
-                    .item #{credit_debit_ratio} credit_debit_ratio
-                    .item #{cd_ratio_inverted} cd_ratio_inverted
-                .ui.small.header #{one_score} one score
+                    .item {{fixed dc_ratio_inverted}} dc_ratio_inverted
+                    .item {{fixed credit_debit_ratio}} credit_debit_ratio
+                    .item {{fixed cd_ratio_inverted}} cd_ratio_inverted
+                .ui.small.header {{fixed one_score}} one score
                 if is_admin
                     a.ui.basic.button(href="/user/#{username}/edit")
                         +icon name='shield' cl='ui mini inline image'
@@ -74,18 +74,18 @@ template(name='profile_layout')
                 a.ui.large.tertiary.button(href="/user/#{username}/spent" class="{{isActivePath regex='user_spent'}}")
                     +icon name='rain' cl='ui inline mini image'
                     |spent
-                //- a.ui.large.tertiary.button(href="/user/#{username}/posts" class="{{isActivePath regex='user_posts'}}")
-                //-     +icon name='rss' cl='ui inline mini image'
-                //-     |posts
+                a.ui.large.tertiary.button(href="/user/#{username}/posts" class="{{isActivePath regex='user_posts'}}")
+                    +icon name='rss' cl='ui inline mini image'
+                    |posts
                 a.ui.large.tertiary.button(href="/user/#{username}/events" class="{{isActivePath regex='user_events'}}")
                     +icon name='calendar' cl='ui inline mini image'
                     |events
-                //- a.ui.large.tertiary.button(href="/user/#{username}/pictures" class="{{isActivePath regex='user_pictures'}}")
-                //-     +icon name='picture' cl='ui inline mini image'
-                //-     |pictures
-                //- a.ui.large.tertiary.button(href="/user/#{username}/friends" class="{{isActivePath regex='user_friends'}}")
-                //-     +icon name='groups' cl='ui inline mini image'
-                //-     |friends
+                a.ui.large.tertiary.button(href="/user/#{username}/pictures" class="{{isActivePath regex='user_pictures'}}")
+                    +icon name='picture' cl='ui inline mini image'
+                    |pictures
+                a.ui.large.tertiary.button(href="/user/#{username}/friends" class="{{isActivePath regex='user_friends'}}")
+                    +icon name='groups' cl='ui inline mini image'
+                    |friends
                 a.ui.large.tertiary.button(href="/user/#{username}/badges" class="{{isActivePath regex='user_badges'}}")
                     +icon name='verified-badge' cl='ui inline mini image'
                     |badges
@@ -101,27 +101,7 @@ template(name='profile_layout')
 template(name='user_dashboard')
     .ui.stackable.three.column.grid
         .column
-            .ui.header 
-                +icon name='sprout'
-                |Generated
-            .ui.link.list.smallscroll
-                each earned_items
-                    .item
-                        if author.profile_image_id
-                            img.ui.avatar.image(src="{{c.url author.profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
-                        strong #{amount}pt 
-                        .content
-                            a(href="/debit/#{_id}/view")
-                                |#{when} from 
-                            a(href="/user/#{author.username}")
-                                |#{author.username}
-                        .content
-                            .description
-                                |#{description}
-                                each tags
-                                    .ui.mini.basic.label #{this}
-                            if is_admin
-                                +remove_button
+            +user_credits_small
         .column
             .ui.header 
                 +icon name='rain'

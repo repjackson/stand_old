@@ -83,7 +83,8 @@ Template.registerHelper 'is_loading', -> Session.get 'is_loading'
 Template.registerHelper 'dev', -> Meteor.isDevelopment
 Template.registerHelper 'fixed', (number)->
     # console.log number
-    (number*100).toFixed()
+    number.toFixed(2)
+    # (number*100).toFixed()
 Template.registerHelper 'to_percent', (number)->
     # console.log number
     (number*100).toFixed()
