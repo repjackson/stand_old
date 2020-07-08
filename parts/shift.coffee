@@ -53,6 +53,12 @@ if Meteor.isClient
     Template.shifts.onCreated ->
         @autorun -> Meteor.subscribe 'selected_shifts', selected_shift_tags.array()
 
+    Template.shifts.events
+        'click .add_shift': ->
+            new_shift_id =
+                Docs.insert
+                    model:'shift'
+            Router.go "/shift/#{new_shift_id}/edit"
     Template.shifts.helpers
         shifts: ->
             match = {model:'shift'}

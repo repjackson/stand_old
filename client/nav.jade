@@ -2,34 +2,39 @@ template(name='nav')
     .ui.fluid.attached.borderless.inverted.menu.topnav
         a.item(href="/" class="{{isActivePath regex='home'}}")
             //- +icon name='home' cl='ui avatar image'
-            +icon name='1-circle' cl='ui avatar image'
+            //- +icon name='1-circle' cl='ui avatar image'
             span.mobile.hidden
                 |&nbsp;
                 |OneRiverside
         a.item(href="/generate" class="{{isActivePath regex='generate'}}")
             //- +icon name='work' cl='ui mini image'
-            +icon name='sprout' cl='ui avatar image'
+            //- +icon name='sprout' cl='ui avatar image'
+            i.plus.icon
             span.mobile.hidden
                 |&nbsp;
                 | Generate
         a.item(href="/spend" class="{{isActivePath regex='spend'}}")
-            +icon name='rain' cl='ui avatar image'
+            //- +icon name='rain' cl='ui avatar image'
             //- +icon name='shop' cl='ui avatar image'
+            i.minus.icon
             span.mobile.hidden
                 |&nbsp;
                 | Spend
         a.item(href="/users" class="{{isActivePath '/users'}}")
-            +icon name='groups' cl='ui avatar image'
+            //- +icon name='groups' cl='ui avatar image'
+            i.users.icon
             span.mobile.hidden
                 |&nbsp;
                 | Directory
         a.item(href="/badges" class="{{isActivePath '/badges'}}")
-            +icon name='verified-badge' cl='ui avatar image'
+            //- +icon name='verified-badge' cl='ui avatar image'
+            i.certificate.icon
             span.mobile.hidden
                 |&nbsp;
                 | Badges
         a.item(href="/shifts" class="{{isActivePath '/shifts'}}")
-            +icon name='calendar' cl='ui avatar image'
+            //- +icon name='calendar' cl='ui avatar image'
+            i.calendar.icon
             span.mobile.hidden
                 |&nbsp;
                 | Shifts
@@ -37,6 +42,8 @@ template(name='nav')
         //-     +icon name='campfire' cl='ui avatar image'
         //-     |tribes
         .right.menu
+            a.item(href="/help")
+                i.question.icon
             if currentUser
                 if is_admin
                     a.item(href="/m/model" class="{{isActivePath regex='delta'}}")
