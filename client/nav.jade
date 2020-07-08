@@ -18,12 +18,16 @@ template(name='nav')
             span.mobile.hidden
                 |&nbsp;
                 | Spend
-        //- a.item.set_user(href="/m/user" class="{{isActivePath '/m/user'}}")
         a.item(href="/users" class="{{isActivePath '/users'}}")
             +icon name='groups' cl='ui avatar image'
             span.mobile.hidden
                 |&nbsp;
                 | Directory
+        a.item(href="/badges" class="{{isActivePath '/badges'}}")
+            +icon name='verified-badge' cl='ui avatar image'
+            span.mobile.hidden
+                |&nbsp;
+                | Badges
         //- a.item(href="/tribes")
         //-     +icon name='campfire' cl='ui avatar image'
         //-     |tribes

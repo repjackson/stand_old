@@ -3,9 +3,26 @@ Meteor.publish 'user_from_username', (username)->
     Meteor.users.find
         username:username
 
+Meteor.publish 'target_from_debit_id', (debit_id)->
+    # console.log 'pulling doc'
+    debit = Docs.findOne debit_id
+    Meteor.users.find
+        _id:debit.target_id
+
+Meteor.publish 'author_from_doc_id', (doc_id)->
+    # console.log 'pulling doc'
+    doc = Docs.findOne doc_id
+    Meteor.users.find
+        _id:doc._author_id
 
 
-Meteor.publish 'current_doc ', (doc_id)->
+Meteor.publish 'children', (model, parent_id)->
+    match = {}
+    Docs.find
+        model:model
+        parent_id:parent_id
+
+Meteor.publish 'current_doc', (doc_id)->
     console.log 'pulling doc'
     Docs.find doc_id
 
@@ -17,12 +34,6 @@ Meteor.publish 'alerts', ->
         model:'alert'
         to_user_id:Meteor.userId()
         read:$ne:true
-
-# Meteor.publish 'alerts', ->
-#     Docs.find
-#         model:'alert'
-#         to_user_id:Meteor.userId()
-#         read:$ne:true
 
 
 Meteor.publish 'model_docs', (model)->

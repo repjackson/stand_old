@@ -1,6 +1,7 @@
 @Docs = new Meteor.Collection 'docs'
 @Tags = new Meteor.Collection 'tags'
 @User_tags = new Meteor.Collection 'user_tags'
+@Badge_tags = new Meteor.Collection 'badge_tags'
 @Terms = new Meteor.Collection 'terms'
 @Location_tag_results = new Meteor.Collection 'location_tag_results'
 @Author_results = new Meteor.Collection 'author_results'

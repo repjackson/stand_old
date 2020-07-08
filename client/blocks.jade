@@ -28,9 +28,8 @@ template(name='comments')
                 .content
                     .ui.header #{body}
                     .meta #{when}
-                        unless is_frontdesk
-                            |by 
-                            a(href="/user/#{author.username}") #{author.first_name} #{author.last_name}
+                        |by 
+                        a(href="/user/#{author.username}") #{author.first_name} #{author.last_name}
                         if currentUser
                             +voting_small
                             if can_edit
@@ -207,7 +206,7 @@ template(name='user_info')
             img.ui.avatar.inline.image(src="{{c.url user.profile_image_id width=300 height=300 gravity='face' crop='fill'}}")
         //- .visible.content
         |#{user.name}
-        //- |@#{user.username}
+        |@#{user.username}
         +user_status user
         //- .hidden.content
         //-     |view

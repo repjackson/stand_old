@@ -9,7 +9,7 @@ if Meteor.isClient
 
 
     Template.users.onCreated ->
-        @autorun -> Meteor.subscribe 'all_members', selected_user_tags.array()
+        @autorun -> Meteor.subscribe 'selected_users', selected_user_tags.array()
 
     Template.users.helpers
         users: ->
@@ -63,7 +63,7 @@ if Meteor.isClient
 
     Template.user_cloud.helpers
         all_tags: ->
-            user_count = Meteor.users.find().count()
+            user_count = Meteor.users.find(_id:$ne:Meteor.userId()).count()
             if 0 < user_count < 3 then User_tags.find { count: $lt: user_count } else User_tags.find()
 
         selected_user_tags: ->
@@ -80,7 +80,7 @@ if Meteor.isClient
 
 
 if Meteor.isServer
-    Meteor.publish 'all_members', (selected_user_tags)->
+    Meteor.publish 'selected_users', (selected_user_tags)->
         match = {}
         if selected_user_tags.length > 0 then match.tags = $all: selected_user_tags
         Meteor.users.find match
@@ -128,7 +128,7 @@ if Meteor.isServer
             { $group: _id: "$tags", count: $sum: 1 }
             { $match: _id: $nin: selected_user_tags }
             { $sort: count: -1, _id: 1 }
-            { $limit: 20 }
+            { $limit: 42 }
             { $project: _id: 0, name: '$_id', count: 1 }
             ]
 

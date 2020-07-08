@@ -12,11 +12,24 @@ template(name='home')
         //-                 |hi #{currentUser.username}
         //-         else
         //-             .ui.header Welcome to One Riverside
-        .four.column.row
+        .five.column.row
             .column
                 .ui.header
-                    +icon name='payment-history'
-                    |latest debits
+                    +icon name='line-chart'
+                    |one score
+                .smallscroll
+                    .ui.selection.link.list
+                        each one_score_users
+                            a.item(href="/user/#{username}")
+                                img.ui.avatar.image(src="{{c.url profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
+
+                                .content
+                                    .header #{username}:
+                                        |#{one_score}
+            .column
+                .ui.header
+                    +icon name='birthday'
+                    |latest celebrations
                 .smallscroll
                     .ui.selection.link.list
                         each news_items

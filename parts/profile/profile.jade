@@ -15,6 +15,15 @@ template(name='profile_layout')
                         .ui.label ##{global_debit_count_rank}
                     .item #{credit_count} credits
                         .ui.label ##{global_credit_count_rank}
+                    .item #{total_debit_amount} total points given
+                    .item #{total_credit_amount} total points received
+                    .item #{calculated_user_balance} calculated user balance
+                .ui.list 
+                    .item #{total_bandwith} total bandwith
+                    .item #{debit_credit_ratio} debit_credit_ratio
+                    .item #{credit_debit_ratio} credit_debit_ratio
+                    .item #{de_ratio_inverted} de_ratio_inverted
+                .ui.small.header #{one_score} one score
                 if is_current_user
                     a.ui.large.tertiary.button(href="/user/#{username}/edit")
                         +icon name='settings' cl='ui mini inline image'

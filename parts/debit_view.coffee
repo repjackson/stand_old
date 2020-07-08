@@ -5,6 +5,8 @@ if Meteor.isClient
         ), name:'debit_view'
 
     Template.debit_view.onCreated ->
+        @autorun => Meteor.subscribe 'target_from_debit_id', Router.current().params.doc_id
+        @autorun => Meteor.subscribe 'author_from_doc_id', Router.current().params.doc_id
         @autorun => Meteor.subscribe 'doc', Router.current().params.doc_id
     Template.debit_view.onRendered ->
 

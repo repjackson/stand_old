@@ -6,7 +6,6 @@ if Meteor.isClient
 
     Template.home.onCreated ->
         @autorun => Meteor.subscribe 'model_docs', 'debit'
-        @autorun => Meteor.subscribe 'model_docs', 'credit'
         @autorun => Meteor.subscribe 'model_docs', 'offer'
         @autorun => Meteor.subscribe 'model_docs', 'email_signup'
         @autorun => Meteor.subscribe 'all_users'
@@ -42,6 +41,11 @@ if Meteor.isClient
             Meteor.users.find {global_credit_count_rank:$exists:true},
                 sort:
                     global_credit_count_rank:1
+                limit:10
+        one_score_users: ->
+            Meteor.users.find {one_score:$exists:true},
+                sort:
+                    one_score:-1
                 limit:10
         offers: ->
             Docs.find

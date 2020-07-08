@@ -20,12 +20,12 @@ if Meteor.isClient
 #             $('.accordion').accordion()
 #         , 1000
     Template.comments.onCreated ->
-        if Router.current().params.doc_id
-            parent = Docs.findOne Router.current().params.doc_id
-        else
-            parent = Docs.findOne Template.parentData()._id
-        if parent
-            @autorun => Meteor.subscribe 'children', 'comment', parent._id
+        # if Router.current().params.doc_id
+        #     parent = Docs.findOne Router.current().params.doc_id
+        # else
+        #     parent = Docs.findOne Template.parentData()._id
+        # if parent
+        @autorun => Meteor.subscribe 'children', 'comment', Router.current().params.doc_id
     Template.comments.helpers
         doc_comments: ->
             if Router.current().params.doc_id
@@ -55,18 +55,18 @@ if Meteor.isClient
             if confirm 'Confirm remove comment'
                 Docs.remove @_id
 
-#     Template.follow.helpers
-#         followers: ->
-#             Meteor.users.find
-#                 _id: $in: @follower_ids
-#         following: -> @follower_ids and Meteor.userId() in @follower_ids
-#     Template.follow.events
-#         'click .follow': ->
-#             Docs.update @_id,
-#                 $addToSet:follower_ids:Meteor.userId()
-#         'click .unfollow': ->
-#             Docs.update @_id,
-#                 $pull:follower_ids:Meteor.userId()
+    Template.follow.helpers
+        followers: ->
+            Meteor.users.find
+                _id: $in: @follower_ids
+        following: -> @follower_ids and Meteor.userId() in @follower_ids
+    Template.follow.events
+        'click .follow': ->
+            Docs.update @_id,
+                $addToSet:follower_ids:Meteor.userId()
+        'click .unfollow': ->
+            Docs.update @_id,
+                $pull:follower_ids:Meteor.userId()
 #
 #
 #
@@ -87,20 +87,20 @@ if Meteor.isClient
 #
 #
 #
-#     Template.voting.events
-#         'click .upvote': (e,t)->
-#             $(e.currentTarget).closest('.button').transition('pulse',200)
-#             Meteor.call 'upvote', @
-#         'click .downvote': (e,t)->
-#             $(e.currentTarget).closest('.button').transition('pulse',200)
-#             Meteor.call 'downvote', @
-#     Template.voting_small.events
-#         'click .upvote': (e,t)->
-#             $(e.currentTarget).closest('.button').transition('pulse',200)
-#             Meteor.call 'upvote', @
-#         'click .downvote': (e,t)->
-#             $(e.currentTarget).closest('.button').transition('pulse',200)
-#             Meteor.call 'downvote', @
+    Template.voting.events
+        'click .upvote': (e,t)->
+            # $(e.currentTarget).closest('.button').transition('pulse',200)
+            Meteor.call 'upvote', @, ->
+        'click .downvote': (e,t)->
+            # $(e.currentTarget).closest('.button').transition('pulse',200)
+            Meteor.call 'downvote', @, ->
+    Template.voting_small.events
+        'click .upvote': (e,t)->
+            # $(e.currentTarget).closest('.button').transition('pulse',200)
+            Meteor.call 'upvote', @, ->
+        'click .downvote': (e,t)->
+            # $(e.currentTarget).closest('.button').transition('pulse',200)
+            Meteor.call 'downvote', @, ->
 #
 #
 #
@@ -123,15 +123,15 @@ if Meteor.isClient
 #     #
 #     #         Meteor.call 'call_watson', doc._id, @key, @mode
 #
-#     Template.voting_full.events
-#         'click .upvote': (e,t)->
-#             $(e.currentTarget).closest('.button').transition('pulse',200)
-#             Meteor.call 'upvote', @
-#         'click .downvote': (e,t)->
-#             $(e.currentTarget).closest('.button').transition('pulse',200)
-#             Meteor.call 'downvote', @
-#
-#
+    Template.voting_full.events
+        'click .upvote': (e,t)->
+            # $(e.currentTarget).closest('.button').transition('pulse',200)
+            Meteor.call 'upvote', @, ->
+        'click .downvote': (e,t)->
+            # $(e.currentTarget).closest('.button').transition('pulse',200)
+            Meteor.call 'downvote', @, ->
+
+
 #
 #
 #     Template.role_editor.onCreated ->
@@ -166,12 +166,12 @@ if Meteor.isClient
 #
 #
 #
-#
-#     Template.user_info.onCreated ->
-#         @autorun => Meteor.subscribe 'user_from_id', @data
-#     Template.user_info.helpers
-#         user: -> Meteor.users.findOne @valueOf()
-#
+
+    Template.user_info.onCreated ->
+        @autorun => Meteor.subscribe 'user_from_id', @data
+    Template.user_info.helpers
+        user: -> Meteor.users.findOne @valueOf()
+
 #
 #     Template.toggle_edit.events
 #         'click .toggle_edit': ->
@@ -197,26 +197,26 @@ if Meteor.isClient
 #
 #
 #
-#     Template.bookmark_button.events
-#         'click .toggle': (e,t)->
-#             console.log @
-#             # $(e.currentTarget).closest('.button').transition('pulse',200)
-#             if Meteor.user().bookmark_ids and @_id in Meteor.user().bookmark_ids
-#                 Meteor.users.update Meteor.userId(),
-#                     $pull:"bookmark_ids": @_id
-#             else
-#                 Meteor.users.update Meteor.userId(),
-#                     $addToSet:"bookmark_ids": @_id
-#
-#     Template.bookmark_button.helpers
-#         bookmark_button_class: ->
-#             if Meteor.user()
-#                 if Meteor.user().bookmark_ids and @_id in Meteor.user().bookmark_ids then 'active' else 'basic'
-#             else
-#                 'disabled'
-#
-#         bookmarked: ->
-#             if Meteor.user().bookmark_ids and @_id in Meteor.user().bookmark_ids then true else false
+    Template.bookmark_button.events
+        'click .toggle': (e,t)->
+            console.log @
+            # $(e.currentTarget).closest('.button').transition('pulse',200)
+            if Meteor.user().bookmark_ids and @_id in Meteor.user().bookmark_ids
+                Meteor.users.update Meteor.userId(),
+                    $pull:"bookmark_ids": @_id
+            else
+                Meteor.users.update Meteor.userId(),
+                    $addToSet:"bookmark_ids": @_id
+
+    Template.bookmark_button.helpers
+        bookmark_button_class: ->
+            if Meteor.user()
+                if Meteor.user().bookmark_ids and @_id in Meteor.user().bookmark_ids then 'active' else 'basic'
+            else
+                'disabled'
+
+        bookmarked: ->
+            if Meteor.user().bookmark_ids and @_id in Meteor.user().bookmark_ids then true else false
 #
 #
 #
@@ -250,29 +250,29 @@ if Meteor.isClient
 #
 #
 #
-#     Template.viewing.events
-#         'click .mark_read': (e,t)->
-#             Docs.update @_id,
-#                 $inc:views:1
-#             unless @read_ids and Meteor.userId() in @read_ids
-#                 Meteor.call 'mark_read', @_id, ->
-#                     # $(e.currentTarget).closest('.comment').transition('pulse')
-#                     $('.unread_icon').transition('pulse')
-#         'click .mark_unread': (e,t)->
-#             Docs.update @_id,
-#                 $inc:views:-1
-#             Meteor.call 'mark_unread', @_id, ->
-#                 # $(e.currentTarget).closest('.comment').transition('pulse')
-#                 $('.unread_icon').transition('pulse')
-#     Template.viewing.helpers
-#         viewed_by: -> Meteor.userId() in @read_ids
-#         readers: ->
-#             readers = []
-#             if @read_ids
-#                 for reader_id in @read_ids
-#                     unless reader_id is @author_id
-#                         readers.push Meteor.users.findOne reader_id
-#             readers
+    Template.viewing.events
+        'click .mark_read': (e,t)->
+            Docs.update @_id,
+                $inc:views:1
+            unless @read_ids and Meteor.userId() in @read_ids
+                Meteor.call 'mark_read', @_id, ->
+                    # $(e.currentTarget).closest('.comment').transition('pulse')
+                    $('.unread_icon').transition('pulse')
+        'click .mark_unread': (e,t)->
+            Docs.update @_id,
+                $inc:views:-1
+            Meteor.call 'mark_unread', @_id, ->
+                # $(e.currentTarget).closest('.comment').transition('pulse')
+                $('.unread_icon').transition('pulse')
+    Template.viewing.helpers
+        viewed_by: -> Meteor.userId() in @read_ids
+        readers: ->
+            readers = []
+            if @read_ids
+                for reader_id in @read_ids
+                    unless reader_id is @author_id
+                        readers.push Meteor.users.findOne reader_id
+            readers
 #
 #
 #
@@ -310,6 +310,22 @@ if Meteor.isClient
     Template.remove_button.events
         'click .remove_doc': (e,t)->
             if confirm "remove #{@model}?"
+                # if $(e.currentTarget).closest('.card')
+                #     $(e.currentTarget).closest('.card').transition('fly right', 1000)
+                # else
+                #     $(e.currentTarget).closest('.segment').transition('fly right', 1000)
+                #     $(e.currentTarget).closest('.item').transition('fly right', 1000)
+                #     $(e.currentTarget).closest('.content').transition('fly right', 1000)
+                #     $(e.currentTarget).closest('tr').transition('fly right', 1000)
+                #     $(e.currentTarget).closest('.event').transition('fly right', 1000)
+                # Meteor.setTimeout =>
+                Docs.remove @_id
+                # , 1000
+
+
+    Template.remove_icon.events
+        'click .remove_doc': (e,t)->
+            if confirm "remove #{@model}?"
                 if $(e.currentTarget).closest('.card')
                     $(e.currentTarget).closest('.card').transition('fly right', 1000)
                 else
@@ -321,23 +337,7 @@ if Meteor.isClient
                 Meteor.setTimeout =>
                     Docs.remove @_id
                 , 1000
-#
-#
-#     Template.remove_icon.events
-#         'click .remove_doc': (e,t)->
-#             if confirm "remove #{@model}?"
-#                 if $(e.currentTarget).closest('.card')
-#                     $(e.currentTarget).closest('.card').transition('fly right', 1000)
-#                 else
-#                     $(e.currentTarget).closest('.segment').transition('fly right', 1000)
-#                     $(e.currentTarget).closest('.item').transition('fly right', 1000)
-#                     $(e.currentTarget).closest('.content').transition('fly right', 1000)
-#                     $(e.currentTarget).closest('tr').transition('fly right', 1000)
-#                     $(e.currentTarget).closest('.event').transition('fly right', 1000)
-#                 Meteor.setTimeout =>
-#                     Docs.remove @_id
-#                 , 1000
-#
+
 #
 #     Template.view_user_button.events
 #         'click .view_user': ->

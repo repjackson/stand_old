@@ -49,7 +49,7 @@ if Meteor.isClient
         @autorun -> Meteor.subscribe 'user_from_username', Router.current().params.username
         @autorun -> Meteor.subscribe 'user_offers', Router.current().params.username
         @autorun -> Meteor.subscribe 'model_docs', 'debit'
-        @autorun -> Meteor.subscribe 'model_docs', 'credit'
+        # @autorun -> Meteor.subscribe 'model_docs', 'credit'
         @autorun -> Meteor.subscribe 'all_users'
     Template.profile_layout.onRendered ->
         Meteor.setTimeout ->
@@ -104,7 +104,8 @@ if Meteor.isClient
 
         'click .refresh_user_stats': ->
             user = Meteor.users.findOne(username:Router.current().params.username)
-            Meteor.call 'calc_user_stats', user._id, ->
+            # Meteor.call 'calc_user_stats', user._id, ->
+            Meteor.call 'recalc_one_stats', user._id, ->
 
 
 
@@ -475,50 +476,63 @@ if Meteor.isServer
 
 
 
-        recalc_student_stats: (user_id)->
+        recalc_one_stats: (user_id)->
             user = Meteor.users.findOne user_id
             unless user
                 user = Meteor.users.findOne username
             user_id = user._id
             # console.log classroom
-            student_stats_doc = Docs.findOne
-                model:'student_stats'
-                user_id: user_id
-
-            unless student_stats_doc
-                new_stats_doc_id = Docs.insert
-                    model:'student_stats'
-                    user_id: user_id
-                student_stats_doc = Docs.findOne new_stats_doc_id
+            # student_stats_doc = Docs.findOne
+            #     model:'student_stats'
+            #     user_id: user_id
+            #
+            # unless student_stats_doc
+            #     new_stats_doc_id = Docs.insert
+            #         model:'student_stats'
+            #         user_id: user_id
+            #     student_stats_doc = Docs.findOne new_stats_doc_id
 
             debits = Docs.find({
-                model:'log_event'
-                event_type:'debit'
-                _author_username:username})
+                model:'debit'
+                amount:$exists:true
+                _author_id:user_id})
             debit_count = debits.count()
             total_debit_amount = 0
             for debit in debits.fetch()
                 total_debit_amount += debit.amount
 
+            console.log 'total debit amount', total_debit_amount
+
             credits = Docs.find({
-                model:'log_event'
-                event_type:'credit'
-                _author_username:username})
+                model:'debit'
+                amount:$exists:true
+                target_id:user_id})
             credit_count = credits.count()
             total_credit_amount = 0
             for credit in credits.fetch()
                 total_credit_amount += credit.amount
 
-            student_balance = total_credit_amount-total_debit_amount
+            console.log 'total credit amount', total_credit_amount
+            calculated_user_balance = total_credit_amount-total_debit_amount
 
             # average_credit_per_student = total_credit_amount/student_count
             # average_debit_per_student = total_debit_amount/student_count
+            total_bandwith = Math.abs(total_credit_amount)+Math.abs(total_debit_amount)
+            # debit_credit_ratio = total_debit_amount/total_credit_amount
+            credit_debit_ratio = total_credit_amount/total_debit_amount
+            de_ratio_inverted = 1/debit_credit_ratio
 
+            one_score = total_bandwith*de_ratio_inverted
 
-            Docs.update student_stats_doc._id,
+            Meteor.users.update user_id,
                 $set:
                     credit_count: credit_count
                     debit_count: debit_count
                     total_credit_amount: total_credit_amount
                     total_debit_amount: total_debit_amount
-                    student_balance: student_balance
+                    total_bandwith: total_bandwith
+                    calculated_user_balance: calculated_user_balance
+                    # debit_credit_ratio: debit_credit_ratio
+                    credit_debit_ratio: credit_debit_ratio
+                    de_ratio_inverted: de_ratio_inverted
+                    one_score: one_score
