@@ -11,10 +11,10 @@ template(name='earn')
                             i.green.plus.icon
                 div
                 +earn_cloud
-                .ui.header 
+                .ui.small.header 
                     +icon name='sun'
                     |per diem
-                .ui.large.list
+                .ui.list
                     .item 0 explorer
                     .item 0 member
                     .item 30 regenerator
@@ -53,9 +53,10 @@ template(name='earn')
                 .ui.header 
                     +icon name='clock'
                     |upcoming shifts
-                if is_steward
+                if in_role 'steward'
                     .ui.button.add_shift
                         i.plus.icon
+                        |add shift
                 each upcoming_shifts
                     .ui.header #{when}
                 //- .ui.cards

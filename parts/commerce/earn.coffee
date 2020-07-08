@@ -1,5 +1,5 @@
 if Meteor.isClient
-    Router.route '/earn', (->
+    Router.route '/generate', (->
         @layout 'layout'
         @render 'earn'
         ), name:'earn'

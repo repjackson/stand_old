@@ -6,7 +6,7 @@ template(name='nav')
             span.mobile.hidden
                 |&nbsp;
                 |OneRiverside
-        a.item(href="/earn" class="{{isActivePath regex='earn'}}")
+        a.item(href="/generate" class="{{isActivePath regex='generate'}}")
             //- +icon name='work' cl='ui mini image'
             +icon name='sprout' cl='ui avatar image'
             span.mobile.hidden
@@ -28,6 +28,11 @@ template(name='nav')
             span.mobile.hidden
                 |&nbsp;
                 | Badges
+        a.item(href="/shifts" class="{{isActivePath '/shifts'}}")
+            +icon name='calendar' cl='ui avatar image'
+            span.mobile.hidden
+                |&nbsp;
+                | Shifts
         //- a.item(href="/tribes")
         //-     +icon name='campfire' cl='ui avatar image'
         //-     |tribes
