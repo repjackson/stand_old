@@ -1,3 +1,5 @@
+template(name='ibig')    
+    img.ui.image(src="https://img.icons8.com/dusk/256/000000/#{name}.png" class=cl)
 template(name='icon')    
     img.ui.image(src="https://img.icons8.com/dusk/48/000000/#{name}.png" class=cl)
     //- img.ui.image(src="https://img.icons8.com/plasticine/48/000000/#{name}.png" class=cl)
@@ -323,14 +325,14 @@ template(name='voting_full')
     if upvoter_ids
         div
         .ui.small.grey.inline.header(title='upvoters')
-            i.thumbs.up.outline.small.icon
+            i.thumbs.up.outline.green.icon
             //- |upvoters
         each upvoter_ids
             +user_info
     if downvoter_ids
         div
         .ui.small.grey.inline.header(title='downvoters')
-            i.thumbs.up.outline.small.icon
+            i.thumbs.down.outline.red.icon
             //- |downvoters
         each downvoter_ids
             +user_info

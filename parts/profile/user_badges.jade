@@ -14,3 +14,9 @@ template(name='user_badges')
             //- div
             +author_info
             +creation_info
+    each all_badges
+        .ui.large.basic.button 
+            +icon name=icon cl='ui centered image'
+            .content
+                a.header(href="/badge/#{_id}/view") #{title}
+        

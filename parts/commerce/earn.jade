@@ -50,7 +50,12 @@ template(name='earn')
                 //- .ui.small.compact.button soonest
                 //- .ui.small.compact.button priority
                 //- .ui.header click this item as many times as hours you've contributed
-                .ui.header upcoming shifts
+                .ui.header 
+                    +icon name='clock'
+                    |upcoming shifts
+                if is_steward
+                    .ui.button.add_shift
+                        i.plus.icon
                 each upcoming_shifts
                     .ui.header #{when}
                 //- .ui.cards

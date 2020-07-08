@@ -11,6 +11,7 @@ if Meteor.isClient
     Template.user_badges.onCreated ->
         @autorun => Meteor.subscribe 'user_badges', Router.current().params.username
         @autorun => Meteor.subscribe 'model_docs', 'credit'
+        @autorun => Meteor.subscribe 'model_docs', 'badge'
 
     Template.user_badges.events
         'keyup .new_credit': (e,t)->
@@ -31,6 +32,11 @@ if Meteor.isClient
             Docs.find
                 model:'credit'
                 target_user_id: target_user._id
+
+        all_badges: ->
+            target_user = Meteor.users.findOne(username:Router.current().params.username)
+            Docs.find
+                model:'badge'
 
         slots: ->
             Docs.find

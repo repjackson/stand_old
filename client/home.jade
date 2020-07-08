@@ -25,7 +25,7 @@ template(name='home')
                                     img.ui.avatar.image(src="{{c.url profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
                                 .content
                                     .header #{username}:
-                                        |#{one_score}
+                                        |{{fixed one_score}}
             .column
                 .ui.header
                     +icon name='birthday'
