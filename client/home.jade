@@ -21,8 +21,8 @@ template(name='home')
                     .ui.selection.link.list
                         each one_score_users
                             a.item(href="/user/#{username}")
-                                img.ui.avatar.image(src="{{c.url profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
-
+                                if profile_image_id
+                                    img.ui.avatar.image(src="{{c.url profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
                                 .content
                                     .header #{username}:
                                         |#{one_score}
@@ -37,10 +37,12 @@ template(name='home')
                                 .content
                                     .header
                                         .ui.basic.label #{amount}pt
-                                        img.ui.avatar.image(src="{{c.url _author.profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
+                                        if _author.profile_image_id
+                                            img.ui.avatar.image(src="{{c.url _author.profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
                                         | #{_author_username}
                                         |>
-                                        img.ui.avatar.image(src="{{c.url target.profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
+                                        if target.profile_image_id
+                                            img.ui.avatar.image(src="{{c.url target.profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
                                         |#{target.username}
                                     .meta #{when}
                                     .description 
@@ -59,8 +61,8 @@ template(name='home')
                         each most_given
                             //- a.item(href="/user/#{username}") #{username} ##{global_debit_count_rank}
                             a.item(href="/user/#{username}")
-                                img.ui.avatar.image(src="{{c.url profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
-
+                                if profile_image_id
+                                    img.ui.avatar.image(src="{{c.url profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
                                 .content
                                     .header #{username}:
                                         |#{debit_count}
@@ -78,7 +80,8 @@ template(name='home')
                     .ui.selection.link.list
                         each most_received
                             a.item(href="/user/#{username}")
-                                img.ui.avatar.image(src="{{c.url profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
+                                if profile_image_id
+                                    img.ui.avatar.image(src="{{c.url profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
                                 .content
                                     .header
                                         |#{username}:
