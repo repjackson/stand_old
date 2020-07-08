@@ -189,7 +189,7 @@ Meteor.methods
 
     agg: (query, key, collection)->
         # console.log 'running agg', query
-        limit=20
+        limit=10
         options = { explain:false }
         pipe =  [
             { $match: query }

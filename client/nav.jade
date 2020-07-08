@@ -1,54 +1,59 @@
 template(name='nav')
-    .ui.fluid.attached.borderless.inverted.menu.topnav
+    .ui.fluid.attached.borderless.inverted.large.menu.topnav
         a.item(href="/" class="{{isActivePath regex='home'}}")
             //- +icon name='home' cl='ui avatar image'
+            i.home.icon
             //- +icon name='1-circle' cl='ui avatar image'
             span.mobile.hidden
-                |&nbsp;
+                //- |&nbsp;
                 |OneRiverside
         a.item(href="/generate" class="{{isActivePath regex='generate'}}")
             //- +icon name='work' cl='ui mini image'
             //- +icon name='sprout' cl='ui avatar image'
             i.plus.icon
             span.mobile.hidden
-                |&nbsp;
-                | Generate
+                //- |&nbsp;
+                | generate
         a.item(href="/spend" class="{{isActivePath regex='spend'}}")
             //- +icon name='rain' cl='ui avatar image'
             //- +icon name='shop' cl='ui avatar image'
             i.minus.icon
             span.mobile.hidden
-                |&nbsp;
-                | Spend
-        a.item(href="/users" class="{{isActivePath '/users'}}")
-            //- +icon name='groups' cl='ui avatar image'
-            i.users.icon
-            span.mobile.hidden
-                |&nbsp;
-                | Directory
+                //- |&nbsp;
+                | gift
+        //- a.item(href="/users" class="{{isActivePath '/users'}}")
         a.item(href="/badges" class="{{isActivePath '/badges'}}")
             //- +icon name='verified-badge' cl='ui avatar image'
             i.certificate.icon
             span.mobile.hidden
-                |&nbsp;
-                | Badges
+                //- |&nbsp;
+                | badges
         a.item(href="/shifts" class="{{isActivePath '/shifts'}}")
             //- +icon name='calendar' cl='ui avatar image'
             i.calendar.icon
             span.mobile.hidden
-                |&nbsp;
-                | Shifts
+                //- |&nbsp;
+                | shifts
         //- a.item(href="/tribes")
         //-     +icon name='campfire' cl='ui avatar image'
         //-     |tribes
         .right.menu
+            if currentUser
+                a.item(href="/m/user" class="{{isActivePath '/m/user'}}")
+                    //- +icon name='groups' cl='ui avatar image'
+                    i.users.large.icon
+                    span.mobile.hidden
+                        //- |&nbsp;
+                        | directory
+        
             a.item(href="/help")
                 i.question.icon
             if currentUser
                 if is_admin
-                    a.item(href="/m/model" class="{{isActivePath regex='delta'}}")
-                        +icon name='database' cl='ui mini image'
-                        |db
+                    a.item(href="/m/model" class="{{isActivePath regex='delta'}}" title='admin')
+                        //- +icon name='database' cl='ui mini image'
+                        i.database.icon
+                        //- |db
                 a.large.item(href="/user/#{currentUser.username}" class="{{isActivePath regex='profile_layout'}}")
                     //- i.large.user.large.icon
                     if currentUser.profile_image_id

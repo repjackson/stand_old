@@ -21,12 +21,12 @@ template(name='model_edit_layout')
                     a.ui.compact.large.circular.button(href="/model/edit/#{current_doc._id}/fields" class="{{isActivePath regex='model_edit_fields'}}")
                         +icon name='list' cl='ui avatar image'
                         |fields
-                    //- a.ui.compact.large.circular.button(href="/model/edit/#{current_doc._id}/modules" class="{{isActivePath regex='model_edit_modules'}}")
-                    //-     +icon name='module' cl='ui avatar image'
-                    //-     |modules
-                    //- a.ui.compact.large.circular.button(href="/model/edit/#{current_doc._id}/permissions" class="{{isActivePath regex='model_edit_permissions'}}")
-                    //-     +icon name='shield' cl='ui avatar image'
-                    //-     |permissions
+                    a.ui.compact.large.circular.button(href="/model/edit/#{current_doc._id}/modules" class="{{isActivePath regex='model_edit_modules'}}")
+                        +icon name='module' cl='ui avatar image'
+                        |modules
+                    a.ui.compact.large.circular.button(href="/model/edit/#{current_doc._id}/permissions" class="{{isActivePath regex='model_edit_permissions'}}")
+                        +icon name='shield' cl='ui avatar image'
+                        |permissions
                     +yield
                     
                     
@@ -55,9 +55,9 @@ template(name='model_edit_fields')
     .ui.icon.large.compact.circular.button.add_field
         i.plus.green.icon
     .spacer
-    .ui.segments
-        each fields
-            +field_edit
+    //- .ui.segments
+    each fields
+        +field_edit
         
             
 template(name='model_edit_modules')
@@ -87,10 +87,10 @@ template(name='field_edit')
             .ui.basic.label #{field_type}
             if faceted
                 i.filter.icon(title='faceted')
-            //- if sortable
-            //-     i.sort.amount.down.icon
-            //- each view_roles
-            //-     .ui.label #{this}
+            if sortable
+                i.sort.amount.down.icon
+            each view_roles
+                .ui.label #{this}
             //- .ui.icon.compact.circular.button
             //-     i.up.caret.icon
             //- .ui.icon.compact.circular.button
@@ -125,7 +125,7 @@ template(name='field_edit')
                 //- +text_edit key='ref_model' label='Reference Model' direct=true
                 .spacer
                 +boolean_edit key='faceted' label='faceted' color_icon='diamond' direct=true
-                //- +boolean_edit key='sortable' label='sortable' color_icon='chevron-down' direct=true
+                +boolean_edit key='sortable' label='sortable' color_icon='chevron-down' direct=true
                 //- .spacer
                 //- if is_ref  
                 //-     +single_doc_edit key='ref_model' ref_model_slug='model' label='reference model' direct=true
@@ -133,8 +133,8 @@ template(name='field_edit')
                 //-     +single_doc_edit key='role_filter' ref_model_slug='role' label='role filter' direct=true
                 //- div             
                 +remove_button
-                //- if is_admin
-                //-     +print_this
+                if is_admin
+                    +print_this
 //- template(name='view_model')
         
 template(name='field_view')

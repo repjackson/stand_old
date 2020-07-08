@@ -15,6 +15,10 @@ Meteor.publish 'author_from_doc_id', (doc_id)->
     Meteor.users.find
         _id:doc._author_id
 
+Meteor.publish 'user_from_id', (user_id)->
+    Meteor.users.find
+        _id:user_id
+
 
 Meteor.publish 'children', (model, parent_id)->
     match = {}
@@ -53,7 +57,11 @@ Meteor.publish 'all_users', ()->
 
 
 Meteor.publish 'doc', (doc_id)->
-    Docs.find doc_id
+    found_doc = Docs.findOne doc_id
+    if found_doc
+        Docs.find doc_id
+    else
+        Meteor.users.find doc_id
 
 
 

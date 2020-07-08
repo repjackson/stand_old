@@ -15,15 +15,16 @@ template(name='profile_layout')
                         .ui.label ##{global_debit_count_rank}
                     .item #{credit_count} credits
                         .ui.label ##{global_credit_count_rank}
-                    .item #{total_debit_amount} total points given
-                    .item #{total_credit_amount} total points received
+                    .item #{total_debit_amount}pts total given
+                    .item #{total_credit_amount}pts total received
                     .item #{calculated_user_balance} calculated user balance
-                .ui.list 
-                    .item #{total_bandwith} total bandwith
-                    .item #{debit_credit_ratio} debit_credit_ratio
-                    .item {{fixed dc_ratio_inverted}} dc_ratio_inverted
-                    .item {{fixed credit_debit_ratio}} credit_debit_ratio
-                    .item {{fixed cd_ratio_inverted}} cd_ratio_inverted
+                if is_admin
+                    .ui.list 
+                        .item #{total_bandwith} total bandwith
+                        .item #{debit_credit_ratio} debit_credit_ratio
+                        .item {{fixed dc_ratio_inverted}} dc_ratio_inverted
+                        .item {{fixed credit_debit_ratio}} credit_debit_ratio
+                        .item {{fixed cd_ratio_inverted}} cd_ratio_inverted
                 .ui.small.header {{fixed one_score}} one score
                 if is_admin
                     a.ui.basic.button(href="/user/#{username}/edit")
@@ -49,7 +50,9 @@ template(name='profile_layout')
                             +icon name='trust' cl='ui inline mini image'
                             |offer
              
-                .ui.header #{level} level
+                .ui.header levels
+                    each levels
+                        |#{this}
                 .ui.header #{points}pts
                        
                 //- a.ui.tertiary.button.logout_other_clients(href="#")
@@ -74,18 +77,18 @@ template(name='profile_layout')
                 a.ui.large.tertiary.button(href="/user/#{username}/spent" class="{{isActivePath regex='user_spent'}}")
                     +icon name='rain' cl='ui inline mini image'
                     |spent
-                a.ui.large.tertiary.button(href="/user/#{username}/posts" class="{{isActivePath regex='user_posts'}}")
-                    +icon name='rss' cl='ui inline mini image'
-                    |posts
+                //- a.ui.large.tertiary.button(href="/user/#{username}/posts" class="{{isActivePath regex='user_posts'}}")
+                //-     +icon name='rss' cl='ui inline mini image'
+                //-     |posts
                 a.ui.large.tertiary.button(href="/user/#{username}/events" class="{{isActivePath regex='user_events'}}")
                     +icon name='calendar' cl='ui inline mini image'
                     |events
-                a.ui.large.tertiary.button(href="/user/#{username}/pictures" class="{{isActivePath regex='user_pictures'}}")
-                    +icon name='picture' cl='ui inline mini image'
-                    |pictures
-                a.ui.large.tertiary.button(href="/user/#{username}/friends" class="{{isActivePath regex='user_friends'}}")
-                    +icon name='groups' cl='ui inline mini image'
-                    |friends
+                //- a.ui.large.tertiary.button(href="/user/#{username}/pictures" class="{{isActivePath regex='user_pictures'}}")
+                //-     +icon name='picture' cl='ui inline mini image'
+                //-     |pictures
+                //- a.ui.large.tertiary.button(href="/user/#{username}/friends" class="{{isActivePath regex='user_friends'}}")
+                //-     +icon name='groups' cl='ui inline mini image'
+                //-     |friends
                 a.ui.large.tertiary.button(href="/user/#{username}/badges" class="{{isActivePath regex='user_badges'}}")
                     +icon name='verified-badge' cl='ui inline mini image'
                     |badges
