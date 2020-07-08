@@ -7,6 +7,7 @@ if Meteor.isClient
     Template.home.onCreated ->
         @autorun => Meteor.subscribe 'model_docs', 'debit'
         @autorun => Meteor.subscribe 'model_docs', 'offer'
+        @autorun => Meteor.subscribe 'model_docs', 'shift'
         @autorun => Meteor.subscribe 'model_docs', 'email_signup'
         @autorun => Meteor.subscribe 'all_users'
         @autorun -> Meteor.subscribe('home_tag_results',
@@ -25,12 +26,29 @@ if Meteor.isClient
             )
 
     Template.home.helpers
+        stewards: ->
+            Meteor.users.find
+                levels:$in:['steward']
+        regenerators: ->
+            Meteor.users.find
+                levels:$in:['regenerator']
+        memberss: ->
+            Meteor.users.find
+                levels:$in:['members']
+        explorers: ->
+            Meteor.users.find
+                levels:$in:['explorer']
         news_items: ->
             Docs.find {
                 model:'debit'
             },
                 sort:
                     _timestamp: -1
+                limit:10
+        upcoming_shifts: ->
+            Docs.find {model:'shift'},
+                sort:
+                    date:1
                 limit:10
         most_given: ->
             Meteor.users.find {global_debit_count_rank:$exists:true},

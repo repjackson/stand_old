@@ -41,8 +41,9 @@ if Meteor.isClient
         @autorun -> Meteor.subscribe 'user_from_username', Router.current().params.username
         @autorun -> Meteor.subscribe 'user_offers', Router.current().params.username
         @autorun -> Meteor.subscribe 'user_model_docs', 'debit', Router.current().params.username
-        # @autorun -> Meteor.subscribe 'model_docs', 'credit'
         @autorun -> Meteor.subscribe 'all_users'
+    Template.user_credits_small.onCreated ->
+        @autorun -> Meteor.subscribe 'user_credits', Router.current().params.username
     Template.profile_layout.onRendered ->
         Meteor.setTimeout ->
             $('.button').popup()
@@ -120,13 +121,14 @@ if Meteor.isClient
         'click .recalc_user_act_stats': ->
             Meteor.call 'recalc_user_act_stats', Router.current().params.username, ->
 
-    Template.user_dashboard.helpers
+    Template.user_credits_small.helpers
         earned_items: ->
             current_user = Meteor.users.findOne(username:Router.current().params.username)
             Docs.find {
                 model:'debit'
                 target_id: current_user._id
             }, sort: _timestamp:-1
+    Template.user_dashboard.helpers
         spent_items: ->
             current_user = Meteor.users.findOne(username:Router.current().params.username)
             Docs.find {
@@ -226,9 +228,12 @@ if Meteor.isServer
 
     Meteor.publish 'user_model_docs', (model, username)->
         user = Meteor.users.findOne username:username
-        Docs.find
+        Docs.find {
             model:model
             _author_id:user._id
+        },
+            sort:_timestamp:-1
+            limit:20
 
     Meteor.publish 'user_events', (user_id)->
         user = Meteor.users.findOne user_id

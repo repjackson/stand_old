@@ -16,6 +16,10 @@ if Meteor.isClient
     @selected_shift_roles = new ReactiveArray []
 
 
+    Template.shift_edit.onCreated ->
+        @autorun => Meteor.subscribe 'doc', Router.current().params.doc_id
+    Template.shift_edit.onCreated ->
+        @autorun => Meteor.subscribe 'doc', Router.current().params.doc_id
 
 
 

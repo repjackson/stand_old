@@ -12,10 +12,10 @@ template(name='home')
         //-                 |hi #{currentUser.username}
         //-         else
         //-             .ui.header Welcome to One Riverside
-        .five.column.row
+        .four.column.row
             .column
                 .ui.header
-                    +icon name='line-chart'
+                    +icon name='leaderboard'
                     |one score
                 .smallscroll
                     .ui.selection.link.list
@@ -27,6 +27,18 @@ template(name='home')
                                     .header #{username}:
                                         |{{fixed one_score}}
             .column
+                a.ui.header(href="/shifts")
+                    +icon name='clock'
+                    |upcoming shifts
+                .smallscroll
+                    .ui.selection.link.list
+                        each upcoming_shifts
+                            a.item(href="/shift/#{_id}/view")
+                                if job.image_id
+                                    img.ui.avatar.image(src="{{c.url job.image_id height=200 width=200 gravity='face' crop='fill'}}")
+                                .content
+                                    .header #{date} #{start_time}-#{end_time}:
+            .column
                 .ui.header
                     +icon name='birthday'
                     |latest celebrations
@@ -36,7 +48,7 @@ template(name='home')
                             a.item(href="/debit/#{_id}/view")
                                 .content
                                     .header
-                                        .ui.basic.label #{amount}pt
+                                        .ui.basic.circular.label #{amount}pt
                                         if _author.profile_image_id
                                             img.ui.avatar.image(src="{{c.url _author.profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
                                         | #{_author_username}
@@ -48,7 +60,7 @@ template(name='home')
                                     .description 
                                         |#{description}
                                     each tags 
-                                        .ui.tiny.basic.label #{this}
+                                        .ui.tiny.basic.circular.label #{this}
             .column
                 //- .ui.header 
                 //-     +icon name='leaderboard'
@@ -120,6 +132,9 @@ template(name='home')
                     |Explorer
                 .ui.list
                     .item 0 per diem
+                .ui.list
+                    each explorers
+                        .item #{username}
                 .ui.big.input
                     input.submit_email(type='text' placeholder='input email')
                 if is_admin
@@ -131,18 +146,29 @@ template(name='home')
                     |Member
                 .ui.list
                     .item 0 per diem
+                .ui.list
+                    each members
+                        .item #{username}
+                    
             .column
                 .ui.header
                     +icon name='worker-male'
                     |Regenerator
                 .ui.list
                     .item 20 per diem            
+                .ui.list
+                    each regenerators
+                        .item #{username}
+                    
             .column
                 .ui.header
                     +icon name='shield'
                     |Steward
                 .ui.list
                     .item 50 per diem            
+                .ui.list
+                    each stewards
+                        .item #{username}
     
         //- .row
         //-     .eight.wide.column

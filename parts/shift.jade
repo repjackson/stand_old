@@ -80,6 +80,21 @@ template(name='shift_view')
                     +voting_full
                     //- +array_view key='location_tags' label='location_tags' direct=true
                 .four.wide.column
+                    if can_edit 
+                        a.ui.button(href="/shift/#{_id}/edit")
+                            i.pencil.icon
+                            |edit
+                    a.ui.header(href="/shift/#{_id}/view")
+                        |#{job.title}
+                    .ui.list 
+                        .item #{date} date
+                        .item #{start_time} start time
+                        .item #{end_time} end time
+                        .item #{steward.username} steward (lead?)
+                    .ui.list
+                        each contributers
+                            .item #{username} contributer
+                            
                     //- .ui.fluid.green.button.submit
                     //-     i.checkmark.icon
                     //-     |submit
@@ -89,9 +104,12 @@ template(name='shift_edit')
         .ui.stackable.padded.grid
             .row 
                 .four.wide.column
-                    .ui.button.delete_item
-                        |delete
+                    a.ui.fluid.green.big.button(href="/shift/#{_id}/view")
+                        i.checkmark.big.icon
+                        |save
+                    .ui.small.button.delete_item
                         i.large.red.remove.icon
+                        |delete
                 
                 .eight.wide.column
                     .ui.header 
@@ -101,27 +119,19 @@ template(name='shift_edit')
             .row 
                 .four.wide.column
                 .eight.wide.column
-                    .ui.stackable.two.column.grid
-                        .column
-                            .ui.header 
-                                small author
-                                |#{_author.username}
-                        .column
-                            .ui.header 
-                                |recipient
-                                |#{target.username}
-                            
+                    .ui.header 
+                        small author
+                        |#{_author.username}
+                    |#{target.username}
+                    +date_edit key='date' label='date' direct=true
+                    +time_edit key='start_time' label='start time' direct=true
+                    +time_edit key='end_time' label='end time' direct=true
+                    //- +multi_user_ref key=leader_ids direct=true
+                    .item #{steward.username} steward (lead?)
+                    +textarea_edit key='description' direct=true
                     +number_edit key='amount' label='amount' direct=true
-                    +key_value_edit key='amount' value=1
-                    +key_value_edit key='amount' value=5
-                    +key_value_edit key='amount' value=10
-                    +key_value_edit key='amount' value=20
-                    +textarea_edit key='description' label='description' direct=true
                     +image_edit key='image_id' label='image' direct=true
                     div 
                     +array_edit key='tags' label='tags' direct=true
                     //- +array_edit key='location_tags' label='location_tags' direct=true
                 .four.wide.column
-                    .ui.fluid.green.button.submit
-                        i.checkmark.icon
-                        |submit

@@ -55,9 +55,10 @@ template(name='user_item')
             
             if is_admin
                 +addtoset_user key='levels' value='member'
-                +addtoset_user key='levels' value='l2'
-                +addtoset_user key='levels' value='l3'
-                +addtoset_user key='levels' value='l4'
+                +addtoset_user key='levels' value='contributor'
+                +addtoset_user key='levels' value='explorer'
+                +addtoset_user key='levels' value='regenerator'
+                +addtoset_user key='levels' value='steward'
         //- .content
         //-     +user_friend_button
         
