@@ -15,16 +15,16 @@ template(name='model_edit_layout')
                     #delete_model.ui.icon.circular.button
                         i.trash.red.icon
                 .twelve.wide.column
-                    a.ui.compact.large.circular.button(href="/model/edit/#{current_doc._id}/" class="{{isActivePath regex='model_edit_dashboard'}}")
+                    a.ui.compact.large.circular.tertiary.basic.button(href="/model/edit/#{current_doc._id}/" class="{{isActivePath regex='model_edit_dashboard'}}")
                         +icon name='dashboard' cl='ui avatar image'
                         |dashboard
-                    a.ui.compact.large.circular.button(href="/model/edit/#{current_doc._id}/fields" class="{{isActivePath regex='model_edit_fields'}}")
+                    a.ui.compact.large.circular.tertiary.basic.button(href="/model/edit/#{current_doc._id}/fields" class="{{isActivePath regex='model_edit_fields'}}")
                         +icon name='list' cl='ui avatar image'
                         |fields
-                    a.ui.compact.large.circular.button(href="/model/edit/#{current_doc._id}/modules" class="{{isActivePath regex='model_edit_modules'}}")
+                    a.ui.compact.large.circular.tertiary.basic.button(href="/model/edit/#{current_doc._id}/modules" class="{{isActivePath regex='model_edit_modules'}}")
                         +icon name='module' cl='ui avatar image'
                         |modules
-                    a.ui.compact.large.circular.button(href="/model/edit/#{current_doc._id}/permissions" class="{{isActivePath regex='model_edit_permissions'}}")
+                    a.ui.compact.large.circular.tertiary.basic.button(href="/model/edit/#{current_doc._id}/permissions" class="{{isActivePath regex='model_edit_permissions'}}")
                         +icon name='shield' cl='ui avatar image'
                         |permissions
                     +yield
@@ -43,7 +43,7 @@ template(name='model_edit_dashboard')
         +key_value_edit key='collection' value='users' icon='groups'
 
         //- +multi_doc_edit key='actions' label='actions' ref_model='action' direct=true
-        +text_edit key='app' label='app' direct=true
+        //- +text_edit key='app' label='app' direct=true
         
 template(name='model_edit_fields')
     //- |#{model}
