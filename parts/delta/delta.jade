@@ -2,11 +2,12 @@ template(name='delta')
     .ui.stackable.grid
         with current_model
             .row
-                .five.wide.column.scrolling
+                .four.wide.column.scrolling
                     if is_loading
                         .ui.inline.header.pulsing
-                            +icon name=color_icon cl='pulsing'
-                            |loading #{title}...
+                            //- +icon name=color_icon cl='pulsing'
+                            i.grey.loading.yin.yang.icon
+                            | #{title}...
                     else
                         unless key_value_is current_delta.model_filter 'model'
                             a.ui.icon.basic.compact.tertiary.button.go_home
@@ -43,7 +44,7 @@ template(name='delta')
                     div
                     each sorted_facets
                         +facet
-                .eleven.wide.column
+                .twelve.wide.column
                     |&nbsp;
                     .ui.icon.input(class=query_class)
                         if current_delta.search_query
