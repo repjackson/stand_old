@@ -1,5 +1,5 @@
 template(name='delta')
-    .ui.stackable.grid
+    .ui.stackable.padded.grid
         with current_model
             .row
                 .four.wide.column
@@ -152,10 +152,13 @@ template(name='delta')
             //-         .ui.header calculations
             //-         .ui.button rerun calculations
         unless current_model
-            if is_admin
-                .ui.big.button.create_model create model
-            //- else 
-                //- .ui.header model not found
+            if subs_ready
+                if is_admin
+                    .ui.big.button.create_model create model
+                //- else 
+                    //- .ui.header model not found
+            else
+                i.large.loading.grey.yin.yang.icon
             
             
 template(name='toggle_visible_field')            
@@ -191,10 +194,10 @@ template(name='set_limit')
     .item.set_limit #{amount}
 
 template(name='set_view_mode')
-    .ui.tertiary.button.set_view_mode 
-        if icon 
-            i.icon(class=icon)
-        |#{title}
+    .ui.tertiary.icon.button.set_view_mode(title=title)
+        i.large.icon(class=icon)
+        //- if icon 
+        //- |#{title}
 
 template(name='facet')
     div

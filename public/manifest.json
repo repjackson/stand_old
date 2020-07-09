@@ -2,7 +2,7 @@
  "name": "one riverside",
  "short_name": "one riverside",
  "description": "wei wu wei",
- "background_color": "green",
+ "background_color": "white",
  "theme_color": "grey",
  "start_url": "/",
  "display": "fullscreen",

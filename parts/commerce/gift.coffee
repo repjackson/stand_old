@@ -1,20 +1,20 @@
 if Meteor.isClient
-    Router.route '/spend', (->
+    Router.route '/gift', (->
         @layout 'layout'
-        @render 'spend'
-        ), name:'spend'
+        @render 'gift'
+        ), name:'gift'
 
-    Template.spend.onCreated ->
-        # @autorun => Meteor.subscribe 'model_docs', 'spend'
+    Template.gift.onCreated ->
+        # @autorun => Meteor.subscribe 'model_docs', 'gift'
         # @autorun => Meteor.subscribe 'all_users'
-        @autorun -> Meteor.subscribe('spend_tag_results',
+        @autorun -> Meteor.subscribe('gift_tag_results',
             selected_tags.array()
             selected_location_tags.array()
             selected_authors.array()
             Session.get('view_purchased')
             # Session.get('view_incomplete')
             )
-        @autorun -> Meteor.subscribe('spend_results',
+        @autorun -> Meteor.subscribe('gift_results',
             selected_tags.array()
             selected_location_tags.array()
             selected_authors.array()
@@ -22,27 +22,27 @@ if Meteor.isClient
             # Session.get('view_incomplete')
             )
 
-    Template.spend.helpers
-        spend_items: ->
+    Template.gift.helpers
+        gift_items: ->
             Docs.find
-                model:'spend'
-    Template.spend.events
-        'click .add_spend': ->
+                model:'gift'
+    Template.gift.events
+        'click .add_gift': ->
             new_id =
                 Docs.insert
-                    model:'spend'
-            Router.go "/spend/#{new_id}/edit"
+                    model:'gift'
+            Router.go "/gift/#{new_id}/edit"
 
 
-    Template.spend_card.events
-        'click .record_spend': ->
+    Template.gift_card.events
+        'click .record_gift': ->
             if Meteor.user()
                 Meteor.users.update Meteor.userId(),
                     $inc: points:-@points
                 $('body').toast({
                     class: 'info',
-                    message: "#{@points} spent"
+                    message: "#{@points} gifted"
                 })
                 Docs.insert
-                    model:'spend_item'
+                    model:'gift_item'
                     parent_id: @_id

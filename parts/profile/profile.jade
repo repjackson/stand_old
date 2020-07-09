@@ -5,12 +5,12 @@ template(name='profile_layout')
         .ui.stackable.padded.grid
             .four.wide.center.aligned.column
                 img.ui.centered.small.profile_image.circular.image(src="{{c.url profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
-                a.ui.large.center.aligned.header(href="/user/#{username}") #{username}
+                a.ui.large.center.aligned.header.refresh_user_stats(href="/user/#{username}") #{username}
+                //- .ui.tertiary.icon.button.refresh_user_stats(title='refresh stats')
+                //-     i.refresh.icon
                 .spacer
-                .ui.tertiary.button.refresh_user_stats
-                    i.refresh.icon
-                    |refresh stats
-                .ui.large.list
+                .ui.list
+                    .item #{boops}x booped
                     .item #{debit_count} debits
                         .ui.label ##{global_debit_count_rank}
                     .item #{credit_count} credits
@@ -50,9 +50,12 @@ template(name='profile_layout')
                             +icon name='hand-planting' cl='ui inline mini image'
                             |offer
              
-                .ui.header levels
-                    each levels
-                        |#{this}
+                .ui.inline.header levels
+                each levels
+                    .ui.basic.label #{this}
+                .ui.inline.header roles
+                each roles
+                    .ui.basic.label #{this}
                 .ui.header #{points}pts
                        
                 //- a.ui.tertiary.button.logout_other_clients(href="#")

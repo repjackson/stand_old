@@ -1,16 +1,16 @@
 if Meteor.isClient
-    Router.route '/spend/:doc_id/edit', (->
+    Router.route '/gift/:doc_id/edit', (->
         @layout 'layout'
-        @render 'spend_edit'
-        ), name:'spend_edit'
+        @render 'gift_edit'
+        ), name:'gift_edit'
 
-    Template.spend_edit.onCreated ->
+    Template.gift_edit.onCreated ->
         @autorun => Meteor.subscribe 'doc', Router.current().params.doc_id
-    Template.spend_edit.onRendered ->
-    Template.spend_edit.events
+    Template.gift_edit.onRendered ->
+    Template.gift_edit.events
         'click .delete_item': ->
             if confirm 'delete item?'
                 Docs.remove @_id
 
-    Template.spend_edit.helpers
-    Template.spend_edit.events
+    Template.gift_edit.helpers
+    Template.gift_edit.events

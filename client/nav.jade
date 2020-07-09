@@ -18,7 +18,7 @@ template(name='nav')
             span.mobile.hidden
                 //- |&nbsp;
                 | generate
-        a.item(href="/spend" class="{{isActivePath regex='spend'}}")
+        a.item(href="/gift" class="{{isActivePath regex='gift'}}")
             //- +icon name='rain' cl='ui avatar image'
             //- +icon name='shop' cl='ui avatar image'
             +icon name='plant-under-rain' cl='ui avatar image'
@@ -44,15 +44,18 @@ template(name='nav')
         //-     +icon name='campfire' cl='ui avatar image'
         //-     |tribes
         .right.menu
+            if is_admin
+                .icon.item
+                    i.shield.icon
             //- a.item(href="/m/location") 
             //-     i.marker.icon
-            if currentUser
-                a.item.set_user(href="/m/user" class="{{isActivePath '/m/user'}}")
-                    //- +icon name='groups' cl='ui avatar image'
-                    i.users.large.icon
-                    span.mobile.hidden
-                        //- |&nbsp;
-                        | directory
+            //- if currentUser
+            //-     a.item.set_user(href="/m/user" class="{{isActivePath '/m/user'}}")
+            //-         //- +icon name='groups' cl='ui avatar image'
+            //-         i.users.large.icon
+            //-         span.mobile.hidden
+            //-             //- |&nbsp;
+            //-             | directory
         
             //- a.item(href="/m/bug")
             //-     i.question.icon

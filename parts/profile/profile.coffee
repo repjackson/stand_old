@@ -177,8 +177,12 @@ if Meteor.isClient
         'click .profile_image': (e,t)->
             $(e.currentTarget).closest('.profile_image').transition(
                 animation: 'jiggle'
-                duration: 750
+                duration: 700
             )
+            user = Meteor.users.findOne username:Router.current().params.username
+
+            Meteor.users.update user._id,
+                $inc:boops:1
         'click .toggle_size': -> Session.set 'view_side', !Session.get('view_side')
         'click .recalc_student_stats': -> Meteor.call 'recalc_student_stats', Router.current().params.username
         'click .set_delta_model': -> Meteor.call 'set_delta_facets', @slug, null, true

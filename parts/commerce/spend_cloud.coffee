@@ -1,5 +1,5 @@
 if Meteor.isClient
-    Template.spend_cloud.events
+    Template.gift_cloud.events
         'click .set_today': -> Session.set('date_setting','today')
         'click .set_yesterday': -> Session.set('date_setting','yesterday')
         'click .set_this_month': -> Session.set('date_setting','set_this_month')
@@ -84,7 +84,7 @@ if Meteor.isClient
             console.log @
 
 
-    Template.spend_cloud.helpers
+    Template.gift_cloud.helpers
         curent_date_setting: -> Session.get('date_setting')
 
         is_loading: -> Session.get('is_loading')
@@ -130,7 +130,7 @@ if Meteor.isClient
         selected_location_tags: -> selected_location_tags.array()
 
 
-        spend_tag_results: ->
+        gift_tag_results: ->
             # console.log Session.get('current_query')
             # if Session.get('current_query')
             if Session.get('searching')
