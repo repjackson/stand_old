@@ -46,8 +46,8 @@ template(name='nav')
         //-     +icon name='campfire' cl='ui avatar image'
         //-     |tribes
         .right.menu
-            if is_admin
-                .icon.item
+            if is_in_admin
+                .icon.item.toggle_admin
                     i.shield.icon
             //- a.item(href="/m/location") 
             //-     i.marker.icon

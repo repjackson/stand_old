@@ -8,6 +8,8 @@ Template.registerHelper 'in_role', (role)->
     else
         false
 
+Template.registerHelper 'is_in_admin', () ->
+    Meteor.user() and Meteor.userId() in ['vwCi2GTJgvBJN5F6c','Dw2DfanyyteLytajt']
 Template.registerHelper 'current_user', () ->
     Meteor.users.findOne username:Router.current().params.username
 
@@ -53,7 +55,7 @@ Template.registerHelper 'can_edit', () ->
     # if @_author_id and Meteor.userId()
     @_author_id is Meteor.userId()
     if Meteor.user().roles
-        'admin' in Meteor.user().roles
+        'admin' in Meteor.user().roles or @_author_id is Meteor.userId()
 
 
 

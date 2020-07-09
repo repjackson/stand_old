@@ -4,6 +4,13 @@ Template.nav.onCreated ->
 
 
 Template.nav.events
+    'click .toggle_admin': ->
+        if 'admin' in Meteor.user().roles
+            Meteor.users.update Meteor.userId(),
+                $pull:'roles':'admin'
+        else
+            Meteor.users.update Meteor.userId(),
+                $addToSet:'roles':'admin'
     'click .set_user': ->
         Session.set 'loading', true
         Meteor.call 'set_facets', 'user', ->
