@@ -36,9 +36,9 @@ template(name='delta_result_card')
                                     //- |edit
                             //- a.ui.icon.large.button(href="/m/#{current_model.slug}/#{_id}/view" title='view')
                             //-     i.right.chevron.yellow.large.icon
-                        if _author_id
-                            +author_info
                         if is_admin
+                            if _author_id
+                                +author_info
                             +creation_info
                             .ui.small.inline.header #{views} views
                                 //- i.eye.icon
@@ -61,7 +61,7 @@ template(name='delta_list_result')
             .ui.fluid.basic.segment
                 .content
                     if key_value_is 'model' 'model'
-                        .ui.inline.header
+                        a.ui.inline.header.route_model(href="/m/#{slug}")
                             +icon name=color_icon
                             |#{title}
                     else
@@ -73,10 +73,10 @@ template(name='delta_list_result')
                     span.extra
                         if key_value_is 'model' 'model'
                             //- +user_list_toggle key='bookmark_ids' icon='bookmark' label='bookmark' color='red'
-                            a.ui.button.route_model(href="/m/#{slug}")
-                                |view model
-                                i.right.chevron.green.icon
                             if is_admin
+                                //- a.ui.button.route_model(href="/m/#{slug}")
+                                //- |view model
+                                //- i.right.chevron.green.icon
                                 a.ui.button.route_model(href="/model/edit/#{_id}")
                                     i.cog.icon
                                     |edit model
@@ -93,9 +93,9 @@ template(name='delta_list_result')
                                     //- |edit
                             //- a.ui.icon.large.button(href="/m/#{current_model.slug}/#{_id}/view" title='view')
                             //-     i.right.chevron.yellow.large.icon
-                        if _author_id
-                            +author_info
                         if is_admin
+                            if _author_id
+                                +author_info
                             +print_this
                             +creation_info
                             .ui.small.inline.header #{views} views

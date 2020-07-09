@@ -167,7 +167,7 @@ template(name='image_view')
         //- if classes
         //-     img(src="{{c.url field_value gravity='face' crop='fit'}}" class=classes)
         //- else 
-        img.ui.centered.rounded.medium.image(src="{{c.url field_value gravity='face' crop='fit'}}")
+        img.ui.centered.rounded.image(src="{{c.url field_value gravity='face' crop='fit'}}")
         //- a(href="{{c.url field_value gravity='face' crop='fit'}}")
         //-     |download
     //- +call_visual
@@ -596,7 +596,7 @@ template(name='array_edit')
         //- +clear_value                
     if field_value
         each field_value
-            .ui.large.circular.basic.label
+            .ui.large.basic.label
                 i.delete.icon.remove_element
                 |#{this}
                 
@@ -838,7 +838,7 @@ template(name='single_user_edit')
     .ui.inline.header 
         |#{label} #{title}
     if field_value
-        .pull_user.ui.icon.compact.circular.button(title='remove user')
+        .pull_user.ui.icon.compact.button(title='remove user')
             i.remove.icon
             //- |clear #{field_value}
     unless field_value

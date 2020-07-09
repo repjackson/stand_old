@@ -6,22 +6,23 @@ template(name='nav')
         
         a.item(href="/" class="{{isActivePath regex='home'}}")
             //- +icon name='home' cl='ui avatar image'
-            i.home.icon
-            //- +icon name='1-circle' cl='ui avatar image'
+            //- i.home.icon
+            +icon name='1-circle' cl='ui avatar image'
             span.mobile.hidden
                 //- |&nbsp;
-                |OneRiverside
+                |One Riverside
         a.item(href="/generate" class="{{isActivePath regex='generate'}}")
             //- +icon name='work' cl='ui mini image'
-            //- +icon name='sprout' cl='ui avatar image'
-            i.plus.icon
+            +icon name='sprout' cl='ui avatar image'
+            //- i.plus.icon
             span.mobile.hidden
                 //- |&nbsp;
                 | generate
         a.item(href="/spend" class="{{isActivePath regex='spend'}}")
             //- +icon name='rain' cl='ui avatar image'
             //- +icon name='shop' cl='ui avatar image'
-            i.minus.icon
+            +icon name='plant-under-rain' cl='ui avatar image'
+            //- i.minus.icon
             span.mobile.hidden
                 //- |&nbsp;
                 | gift

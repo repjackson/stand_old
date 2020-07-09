@@ -20,9 +20,10 @@ template(name='delta')
                             unless key_value_is current_delta.model_filter 'model'
                                 .ui.icon.basic.button.add_model_doc(title="add #{slug}")
                                     i.plus.large.green.icon
-                            if is_admin
-                                .ui.icon.basic.button.add_model_doc(title="add #{slug}")
-                                    i.plus.large.green.icon
+                            else 
+                                if is_admin
+                                    .ui.icon.basic.button.add_model_doc(title="add #{slug}")
+                                        i.plus.large.green.icon
                         //- +user_list_toggle key='bookmark_ids' add_icon='bookmark outline' remove_icon='bookmark' label="bookmark"
                         if is_admin
                             .ui.icon.button.edit_model(title='configure model')
@@ -33,12 +34,12 @@ template(name='delta')
                                     i.remove.icon
                                 .ui.icon.button.print_delta(title='print delta')
                                     i.code.large.icon
-                                i.refresh.link.reset.circular.large.icon(title='reload session')
+                            i.refresh.link.reset.circular.large.icon(title='reload session')
                             if is_dev
                                 i.code.link.icon.print_delta(title='print session doc')
                                 i.trash.delete_delta.link.icon(title='delete session')
                         else
-                            .create_delta.ui.large.button(title='new session')
+                            .create_delta.ui.big.green.button(title='new session')
                                 i.plus.icon
                                 |session
                     div
@@ -63,6 +64,8 @@ template(name='delta')
                                 .menu
                                     each sortable_fields
                                         .item.set_sort_key 
+                                            if icon 
+                                                +icon name=icon
                                             |#{title}
                             .ui.tertiary.icon.button.set_sort_direction(title='sort direction')
                                 if sorting_up
@@ -101,14 +104,17 @@ template(name='delta')
                         .ui.small.inline.header(title='total results') #{current_delta.total}
                         |&nbsp;
                         |&nbsp;
+                        //- with delta
+                        //-     +key_value_edit key='view_mode' value='list'
+                        //-     +key_value_edit key='view_mode' value='cards'
+                        +set_view_mode title='list' icon='list'
+                        +set_view_mode title='cards' icon='clone'
                         //- .ui.inline.small.grey.header view
-                        .ui.simple.dropdown.item
-                            |#{current_delta.view_mode}
-                            i.dropdown.icon
-                            .menu
-                                //- +set_view_mode title='table' icon='table'
-                                +set_view_mode title='list' icon='list'
-                                +set_view_mode title='cards' icon='clone'
+                        //- .ui.simple.dropdown.item
+                        //-     |#{current_delta.view_mode}
+                        //-     i.dropdown.icon
+                        //-     .menu
+                        //-         //- +set_view_mode title='table' icon='table'
                                 //- +set_view_mode title='items' icon='list'
                                 //- +set_view_mode title='map' icon='map'
                                 //- +set_view_mode title='graph' icon='graph'
@@ -126,7 +132,7 @@ template(name='delta')
                             //- .ui.segments
                             each current_delta.result_ids
                                 if is_loading
-                                    .ui.segment
+                                    .ui.basic.segment
                                         .ui.fluid.placeholder
                                             .line
                                             .line
@@ -137,7 +143,7 @@ template(name='delta')
                                             .line
                                 else 
                                     +delta_list_result
-                                    .ui.divider
+                                    //- .ui.divider
                     //- +Template.dynamic template=view_mode_template
             //- .row 
             //-     .sixteen.wide.column
@@ -185,7 +191,7 @@ template(name='set_limit')
     .item.set_limit #{amount}
 
 template(name='set_view_mode')
-    .item.set_view_mode 
+    .ui.button.set_view_mode 
         if icon 
             i.icon(class=icon)
         |#{title}

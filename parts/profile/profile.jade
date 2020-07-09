@@ -47,7 +47,7 @@ template(name='profile_layout')
                             +icon name='donate' cl='ui inline mini image'
                             |give
                         .ui.tertiary.button.offer
-                            +icon name='trust' cl='ui inline mini image'
+                            +icon name='hand-planting' cl='ui inline mini image'
                             |offer
              
                 .ui.header levels
@@ -75,7 +75,7 @@ template(name='profile_layout')
                     +icon name='sprout' cl='ui inline mini image'
                     |generated
                 a.ui.large.tertiary.button(href="/user/#{username}/spent" class="{{isActivePath regex='user_spent'}}")
-                    +icon name='rain' cl='ui inline mini image'
+                    +icon name='plant-under-rain' cl='ui inline mini image'
                     |spent
                 //- a.ui.large.tertiary.button(href="/user/#{username}/posts" class="{{isActivePath regex='user_posts'}}")
                 //-     +icon name='rss' cl='ui inline mini image'
@@ -107,8 +107,8 @@ template(name='user_dashboard')
             +user_credits_small
         .column
             .ui.header 
-                +icon name='rain'
-                |Spent
+                +icon name='plant-under-rain'
+                |gifted
             .ui.link.list.smallscroll
                 each spent_items
                     .item 
@@ -131,8 +131,8 @@ template(name='user_dashboard')
                                 +remove_button
         .column
             .ui.header 
-                +icon name='trust'
-                |Offers
+                +icon name='hand-planting'
+                |offers
             .ui.link.list.smallscroll
                 each user_offers
                     a.item(href="/offer/#{_id}/view")

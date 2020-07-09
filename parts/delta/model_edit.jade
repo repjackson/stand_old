@@ -10,21 +10,21 @@ template(name='model_edit_layout')
                     |created
                     +creation_info
                     div
-                    a.ui.big.icon.circular.green.button(href="/m/#{slug}")
+                    a.ui.big.icon.green.button(href="/m/#{slug}")
                         i.big.checkmark.icon
-                    #delete_model.ui.icon.circular.button
+                    #delete_model.ui.icon.button
                         i.trash.red.icon
                 .twelve.wide.column
-                    a.ui.compact.large.circular.tertiary.basic.button(href="/model/edit/#{current_doc._id}/" class="{{isActivePath regex='model_edit_dashboard'}}")
+                    a.ui.compact.large.tertiary.basic.button(href="/model/edit/#{current_doc._id}/" class="{{isActivePath regex='model_edit_dashboard'}}")
                         +icon name='dashboard' cl='ui avatar image'
                         |dashboard
-                    a.ui.compact.large.circular.tertiary.basic.button(href="/model/edit/#{current_doc._id}/fields" class="{{isActivePath regex='model_edit_fields'}}")
+                    a.ui.compact.large.tertiary.basic.button(href="/model/edit/#{current_doc._id}/fields" class="{{isActivePath regex='model_edit_fields'}}")
                         +icon name='list' cl='ui avatar image'
                         |fields
-                    a.ui.compact.large.circular.tertiary.basic.button(href="/model/edit/#{current_doc._id}/modules" class="{{isActivePath regex='model_edit_modules'}}")
+                    a.ui.compact.large.tertiary.basic.button(href="/model/edit/#{current_doc._id}/modules" class="{{isActivePath regex='model_edit_modules'}}")
                         +icon name='module' cl='ui avatar image'
                         |modules
-                    a.ui.compact.large.circular.tertiary.basic.button(href="/model/edit/#{current_doc._id}/permissions" class="{{isActivePath regex='model_edit_permissions'}}")
+                    a.ui.compact.large.tertiary.basic.button(href="/model/edit/#{current_doc._id}/permissions" class="{{isActivePath regex='model_edit_permissions'}}")
                         +icon name='shield' cl='ui avatar image'
                         |permissions
                     +yield
@@ -52,7 +52,7 @@ template(name='model_edit_fields')
     //-     // .ui.header #{key} [#{field}] #{label}
     .spacer
     .ui.inline.header fields
-    .ui.icon.large.compact.circular.button.add_field
+    .ui.icon.large.compact.button.add_field
         i.plus.green.icon
     .spacer
     //- .ui.segments
@@ -77,7 +77,7 @@ template(name='model_edit_permissions')
 
 
 template(name='field_edit')
-    .ui.segment
+    .ui.basic.segment
         .title.field_edit.pointer
             |#{rank}
             if icon
@@ -91,9 +91,9 @@ template(name='field_edit')
                 i.sort.amount.down.icon
             each view_roles
                 .ui.label #{this}
-            //- .ui.icon.compact.circular.button
+            //- .ui.icon.compact.button
             //-     i.up.caret.icon
-            //- .ui.icon.compact.circular.button
+            //- .ui.icon.compact.button
             //-     i.down.caret.icon
             if viewing_content    
                 i.large.caret.down.icon
@@ -108,7 +108,9 @@ template(name='field_edit')
                 //- +textarea_edit key='description' label='description' direct=true
                 .spacer
                 +text_edit key='field_type' label='field type' direct=true
-                +key_value_edit key='field_type' value='text'
+                +key_value_edit key='field_type' value='text' icon='text'
+                +key_value_edit key='field_type' value='array' icon='list'
+                +key_value_edit key='field_type' value='boolean' icon='toggle-on'
                 +key_value_edit key='field_type' value='number' icon='hashtag'
                 +key_value_edit key='field_type' value='float' icon='hashtag'
                 +key_value_edit key='field_type' value='textarea' icon='list'
