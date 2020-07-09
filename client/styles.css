@@ -18,6 +18,9 @@ body {
     margin-top:  !important;
 }
 
+.segment {
+    transition: height 1s linear;
+}
 
 .topnav.menu {
     /* border-radius: 0 0 10px 10px !important; */
@@ -176,7 +179,7 @@ body {
 
 .card {
     /* background: black !important; */
-    border-radius: 10px !important;
+    /* border-radius: 10px !important; */
 }
 
 a.goto_article {
@@ -346,7 +349,7 @@ input {
 }
 
 ::-webkit-scrollbar {
-  width: 2px !important;
+  width: 1px !important;
   border-radius: 10px !important;
 }
 .wrap_input {

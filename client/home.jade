@@ -48,7 +48,7 @@ template(name='home')
                             a.item(href="/debit/#{_id}/view")
                                 .content
                                     .header
-                                        .ui.basic.circular.label #{amount}pt
+                                        .ui.basic.circular.label #{amount}p
                                         if _author.profile_image_id
                                             img.ui.avatar.image(src="{{c.url _author.profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
                                         | #{_author_username}
@@ -113,7 +113,7 @@ template(name='home')
                     .ui.selection.list
                         each offers
                             a.item(href="/offer/#{_id}/view")
-                                .header #{amount}pts
+                                .header #{amount}p
                                 |#{_author.username}
                                 |#{description}
                                 |#{when}
