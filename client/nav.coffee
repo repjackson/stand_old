@@ -8,15 +8,15 @@ Template.nav.events
         Session.set 'loading', true
         Meteor.call 'set_facets', 'user', ->
             Session.set 'loading', false
-    'click .set_user': ->
+    'click .set_shift': ->
         Session.set 'loading', true
-        Meteor.call 'set_facets', 'user', ->
+        Meteor.call 'set_facets', 'shift', ->
             Session.set 'loading', false
     'click .set_model': ->
         Session.set 'loading', true
         Meteor.call 'set_facets', 'model', ->
             Session.set 'loading', false
-    'click .set_user': ->
+    'click .set_shop': ->
         Session.set 'loading', true
-        Meteor.call 'set_facets', 'user', ->
+        Meteor.call 'set_facets', 'shop', ->
             Session.set 'loading', false

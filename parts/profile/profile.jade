@@ -9,7 +9,7 @@ template(name='profile_layout')
                 //- .ui.tertiary.icon.button.refresh_user_stats(title='refresh stats')
                 //-     i.refresh.icon
                 .spacer
-                .ui.list
+                .ui.horizontal.list
                     .item #{boops}x booped
                     .item #{debit_count} debits
                         .ui.label ##{global_debit_count_rank}
@@ -19,7 +19,7 @@ template(name='profile_layout')
                     .item #{total_credit_amount}pts total received
                     .item #{calculated_user_balance} calculated user balance
                 if is_admin
-                    .ui.list 
+                    .ui.horizontal.list 
                         .item #{total_bandwith} total bandwith
                         .item #{debit_credit_ratio} debit_credit_ratio
                         .item {{fixed dc_ratio_inverted}} dc_ratio_inverted
@@ -53,15 +53,12 @@ template(name='profile_layout')
                 .ui.inline.header levels
                 each levels
                     .ui.basic.label #{this}
-                .ui.inline.header roles
-                each roles
-                    .ui.basic.label #{this}
                 .ui.header #{points}pts
                        
                 //- a.ui.tertiary.button.logout_other_clients(href="#")
                 //-     //- i.globe.icon
                 //-     |log out other clients
-                .ui.header 
+                .ui.inline.header 
                     +icon name='shield'
                     |roles
                 each roles
@@ -77,9 +74,9 @@ template(name='profile_layout')
                 a.ui.large.tertiary.button(href="/user/#{username}/generated" class="{{isActivePath regex='user_generated'}}")
                     +icon name='sprout' cl='ui inline mini image'
                     |generated
-                a.ui.large.tertiary.button(href="/user/#{username}/spent" class="{{isActivePath regex='user_spent'}}")
+                a.ui.large.tertiary.button(href="/user/#{username}/gifted" class="{{isActivePath regex='user_gifted'}}")
                     +icon name='plant-under-rain' cl='ui inline mini image'
-                    |spent
+                    |gifted
                 //- a.ui.large.tertiary.button(href="/user/#{username}/posts" class="{{isActivePath regex='user_posts'}}")
                 //-     +icon name='rss' cl='ui inline mini image'
                 //-     |posts
@@ -113,7 +110,7 @@ template(name='user_dashboard')
                 +icon name='plant-under-rain'
                 |gifted
             .ui.link.list.smallscroll
-                each spent_items
+                each gifted_items
                     .item 
                         if target.profile_image_id
                             img.ui.avatar.image(src="{{c.url target.profile_image_id height=200 width=200 gravity='face' crop='fill'}}")

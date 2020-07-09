@@ -1,5 +1,5 @@
 if Meteor.isClient
-    Router.route '/user/:username/spent', (->
+    Router.route '/user/:username/gifted', (->
         @layout 'profile_layout'
         @render 'user_debits'
         ), name:'user_debits'
@@ -23,7 +23,7 @@ if Meteor.isClient
 
 
     Template.user_debits.helpers
-        spent_items: ->
+        gifted_items: ->
             current_user = Meteor.users.findOne(username:Router.current().params.username)
             Docs.find {
                 model:'debit'
