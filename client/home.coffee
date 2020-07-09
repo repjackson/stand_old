@@ -26,6 +26,8 @@ if Meteor.isClient
             )
 
     Template.home.helpers
+        view_section: (input)->
+            Session.equals('view_section',input)
         stewards: ->
             Meteor.users.find
                 levels:$in:['steward']
@@ -79,6 +81,12 @@ if Meteor.isClient
                 model:'email_signup'
 
     Template.home.events
+        'click .set_shifts': -> Session.set('view_section', 'upcoming_shifts')
+        'click .set_one_score': -> Session.set('view_section', 'one_score')
+        'click .set_latest_celebrations': -> Session.set('view_section', 'latest_celebrations')
+        'click .set_most_given': -> Session.set('view_section', 'most_given')
+        'click .set_most_received': -> Session.set('view_section', 'most_received')
+        'click .set_offers': -> Session.set('view_section', 'offers')
         'click .add_home': ->
             new_id =
                 Docs.insert

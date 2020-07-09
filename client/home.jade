@@ -1,22 +1,10 @@
 template(name='home')
-    .ui.stackable.padded.grid
-        //- .row
-        //-     .sixteen.wide.center.aligned.column
-        //-         if currentUser
-        //-             .ui.header 
-        //-                 if currentUser.profile_image_id
-        //-                     img.ui.avatar.image(src="{{c.url currentUser.profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
-        //- 
-        //-                 if is_admin
-        //-                     +icon name='shield'
-        //-                 |hi #{currentUser.username}
-        //-         else
-        //-             .ui.header Welcome to One Riverside
-        .four.column.row
-            .column
-                .ui.header
-                    +icon name='leaderboard'
-                    |one score
+    div
+        .ui.basic.button
+            a.ui.header.set_one_score
+                +icon name='leaderboard'
+                |one score
+            if view_section 'one_score'
                 .smallscroll
                     .ui.selection.link.list
                         each one_score_users
@@ -26,10 +14,12 @@ template(name='home')
                                 .content
                                     .header #{username}:
                                         |{{fixed one_score}}
-            .column
-                a.ui.header(href="/shifts")
-                    +icon name='clock'
-                    |upcoming shifts
+        .ui.basic.button
+            //- a.ui.header.toggle_shifts(href="/shifts")
+            a.ui.header.set_shifts
+                +icon name='clock'
+                |upcoming shifts
+            if view_section 'upcoming_shifts'
                 .smallscroll
                     .ui.selection.link.list
                         each upcoming_shifts
@@ -38,10 +28,11 @@ template(name='home')
                                     img.ui.avatar.image(src="{{c.url job.image_id height=200 width=200 gravity='face' crop='fill'}}")
                                 .content
                                     .header #{date} #{start_time}-#{end_time}:
-            .column
-                .ui.header
-                    +icon name='birthday'
-                    |latest celebrations
+        .ui.basic.button
+            a.ui.header.set_latest_celebrations
+                +icon name='birthday'
+                |latest celebrations
+            if view_section 'latest_celebrations'
                 .smallscroll
                     .ui.selection.link.list
                         each news_items
@@ -61,13 +52,11 @@ template(name='home')
                                         |#{description}
                                     each tags 
                                         .ui.tiny.basic.circular.label #{this}
-            .column
-                //- .ui.header 
-                //-     +icon name='leaderboard'
-                //-     |leaderboard
-                .ui.header
-                    +icon name='donate'
-                    |most given
+        .ui.basic.button
+            .ui.header.set_most_given
+                +icon name='donate'
+                |most given
+            if view_section 'most_given'
                 .smallscroll
                     .ui.selection.link.list
                         each most_given
@@ -78,16 +67,17 @@ template(name='home')
                                 .content
                                     .header #{username}:
                                         |#{debit_count}
-                //- .ui.header
-                //-     +icon name='picture'
-                //-     |photos
-                //- .ui.selection.link.list
-                //-     each photos
-                //-         .item #{post}
-            .column
-                .ui.header
-                    +icon name='get-cash'
-                    |most received
+            //- .ui.header
+            //-     +icon name='picture'
+            //-     |photos
+            //- .ui.selection.link.list
+            //-     each photos
+            //-         .item #{post}
+        .ui.basic.button
+            a.ui.header.set_most_received
+                +icon name='get-cash'
+                |most received
+            if view_section 'most_received'
                 .smallscroll
                     .ui.selection.link.list
                         each most_received
@@ -99,16 +89,17 @@ template(name='home')
                                         |#{username}:
                                         |#{credit_count}
                         
-                //- .ui.header
-                //-     +icon name='chat'
-                //-     |posts
-                //- .ui.selection.link.list
-                //-     each user_posts
-                //-         .item #{post}
-            .column
-                .ui.header
-                    +icon name='hand-planting'
-                    |offers
+            //- .ui.header
+            //-     +icon name='chat'
+            //-     |posts
+            //- .ui.selection.link.list
+            //-     each user_posts
+            //-         .item #{post}
+        .ui.basic.button
+            a.ui.header.set_offers
+                +icon name='hand-planting'
+                |offers
+            if view_section 'offers'
                 .smallscroll
                     .ui.selection.list
                         each offers
@@ -117,84 +108,85 @@ template(name='home')
                                 |#{_author.username}
                                 |#{description}
                                 |#{when}
-                //- .ui.header
-                //-     |most total
-                //- .ui.header
-                //-     +icon name='calendar'
-                //-     |events
-                //- .ui.selection.link.list
-                //-     each user_events
-                //-         .item #{post}
-        .four.column.row
-            .column
-                .ui.header
-                    +icon name='compass'
-                    |Explorer
-                .ui.list
-                    .item 0 per diem
-                .ui.list
-                    each explorers
-                        .item #{username}
-                .ui.big.input
-                    input.submit_email(type='text' placeholder='input email')
-                if is_admin
-                    each email_signups
-                        .ui.small.header #{email_address}
-            .column
-                .ui.header
-                    +icon name='badge'
-                    |Member
-                .ui.list
-                    .item 0 per diem
-                .ui.list
-                    each members
-                        .item #{username}
-                    
-            .column
-                .ui.header
-                    +icon name='worker-male'
-                    |Regenerator
-                .ui.list
-                    .item 20 per diem            
-                .ui.list
-                    each regenerators
-                        .item #{username}
-                    
-            .column
-                .ui.header
-                    +icon name='shield'
-                    |Steward
-                .ui.list
-                    .item 50 per diem            
-                .ui.list
-                    each stewards
-                        .item #{username}
-    
-        //- .row
-        //-     .eight.wide.column
-        //-         .ui.header 
-        //-             +icon name='sprout'
-        //-             |Generated
-        //-         each credits
-        //-             .item #{when}
-        //-     .eight.wide.column
-        //-         .ui.header 
-        //-             +icon name='rain'
-        //-             |Spent
-        //-         .ui.list.smallscroll
-        //-             each debits
-        //-                 .item
-        //-                     img.ui.avatar.image(src="{{c.url author.profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
-        //-                     .content
-        //-                         .header #{when} from 
-        //-                             a(href="/user/#{username}")
-        //-                                 |#{author.username}
-        //-                         .description
-        //-                             strong #{amount} 
-        //- .row
-        //-     .four.wide.column
-        //-         .ui.header 
-        //-             +icon name='diamond-care-1'
-        //-             |join
-        //-         .ui.big.input.email_signup
-        //-             input(type='text')
+            //- .ui.header
+            //-     |most total
+            //- .ui.header
+            //-     +icon name='calendar'
+            //-     |events
+            //- .ui.selection.link.list
+            //-     each user_events
+            //-         .item #{post}
+        .ui.grid
+            .four.column.row
+                .column
+                    .ui.header
+                        +icon name='compass'
+                        |Explorer
+                    .ui.list
+                        .item 0 per diem
+                    .ui.list
+                        each explorers
+                            .item #{username}
+                    .ui.big.input
+                        input.submit_email(type='text' placeholder='input email')
+                    if is_admin
+                        each email_signups
+                            .ui.small.header #{email_address}
+                .column
+                    .ui.header
+                        +icon name='badge'
+                        |Member
+                    .ui.list
+                        .item 0 per diem
+                    .ui.list
+                        each members
+                            .item #{username}
+                        
+                .column
+                    .ui.header
+                        +icon name='worker-male'
+                        |Regenerator
+                    .ui.list
+                        .item 20 per diem            
+                    .ui.list
+                        each regenerators
+                            .item #{username}
+                        
+                .column
+                    .ui.header
+                        +icon name='shield'
+                        |Steward
+                    .ui.list
+                        .item 50 per diem            
+                    .ui.list
+                        each stewards
+                            .item #{username}
+        
+            //- .row
+            //-     .eight.wide.column
+            //-         .ui.header 
+            //-             +icon name='sprout'
+            //-             |Generated
+            //-         each credits
+            //-             .item #{when}
+            //-     .eight.wide.column
+            //-         .ui.header 
+            //-             +icon name='rain'
+            //-             |Spent
+            //-         .ui.list.smallscroll
+            //-             each debits
+            //-                 .item
+            //-                     img.ui.avatar.image(src="{{c.url author.profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
+            //-                     .content
+            //-                         .header #{when} from 
+            //-                             a(href="/user/#{username}")
+            //-                                 |#{author.username}
+            //-                         .description
+            //-                             strong #{amount} 
+            //- .row
+            //-     .four.wide.column
+            //-         .ui.header 
+            //-             +icon name='diamond-care-1'
+            //-             |join
+            //-         .ui.big.input.email_signup
+            //-             input(type='text')
