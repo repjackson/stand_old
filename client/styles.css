@@ -60,7 +60,7 @@ body {
 }
 
 .result_column {
-  animation: fadein .5s;
+  animation: fadein .25s;
 }
 
 @media screen and (max-width: 1100px) {
@@ -88,7 +88,7 @@ body {
 }
 
 .topnav > .item {
-    transition: all .5s ease !important;
+    transition: all .25s ease !important;
     /* z-index: 2000 !important; */
 }
 .global_container{
@@ -119,13 +119,13 @@ body {
 }
 
 .ui.button.result {
-    transition: all .5s ease !important;
+    transition: all .25s ease !important;
     display: inline !important;
     /* padding: 5px !important; */
 }
 
 .tone_item {
-    transition: all .5s ease !important;
+    transition: all .25s ease !important;
 }
 
 .ui.button.result:hover{
@@ -148,7 +148,7 @@ body {
     font-weight: 300 !important;
     /* color: grey !important; */
     /* border-radius: 0 0 10px 10px !important; */
-    transition: all .5s ease !important;
+    transition: all .25s ease !important;
     /* margin-bottom: 10px !important; */
     /* background-color: rgba(250,250,250,.6) !important; */
     /* opacity: .7 !important; */
@@ -185,10 +185,10 @@ a.goto_article {
 
 /* .ui.button:not(.circular)) { */
 .ui.button {
-    border-radius: 25px !important;
+    border-radius: 10px !important;
     margin: 2px !important;
     /* border-radius: 20px !important; */
-    transition: all .5s ease !important;
+    transition: all .25s ease !important;
     /* background-color: rgba(200, 200, 200, 0.2) !important; */
     /* padding: 12px !important; */
     /* font-weight: lighter !important; */
@@ -402,20 +402,20 @@ input {
 }
 
 body {
-    transition: all .5s !important;
+    transition: all .25s !important;
 }
 
 
 
 .button:active{
     -webkit-transform: translate(0, 2px) !important; /* depth of button press */
-    /* transition: all .5s !important; */
+    /* transition: all .25s !important; */
     transform: translate(0, 2px) !important; /* depth of button press */
 }
 
 
 .button, .selector, .card, .dark_mode, .header, i, .icon, .item{
-    animation: fadein .5s;
+    animation: fadein .25s;
     -webkit-transition: opacity .5s ease-in;
     /* -webkit-transition: opacity .5s ease-out; */
     /* animation: fadeout .5s; */
@@ -450,11 +450,7 @@ body {
     font-family: 'Ubuntu', sans-serif !important;
 }
 .segment, .input, .header, .button {
-  animation: fadein .5s;
-}
-
-.segment {
-    border-radius: 10px !important;
+  animation: fadein .25s;
 }
 
 @keyframes fadein {
@@ -463,7 +459,7 @@ body {
 }
 
 .result_column {
-  /* animation: fadein .5s; */
+  /* animation: fadein .25s; */
 }
 
 @media screen and (max-width: 1100px) {

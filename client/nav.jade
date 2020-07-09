@@ -1,5 +1,9 @@
 template(name='nav')
     .ui.fluid.attached.borderless.inverted.large.menu.topnav
+        a.item(href="/m/model" class="{{isActivePath regex='delta'}}" title='apps')
+            //- +icon name='database' cl='ui mini image'
+            i.th.icon
+        
         a.item(href="/" class="{{isActivePath regex='home'}}")
             //- +icon name='home' cl='ui avatar image'
             i.home.icon
@@ -22,13 +26,14 @@ template(name='nav')
                 //- |&nbsp;
                 | gift
         //- a.item(href="/users" class="{{isActivePath '/users'}}")
-        a.item(href="/badges" class="{{isActivePath '/badges'}}")
+        //- a.item(href="/badges" class="{{isActivePath '/badges'}}")
+        a.item(href="/m/badge" class="{{isActivePath '/m/badge'}}")
             //- +icon name='verified-badge' cl='ui avatar image'
             i.certificate.icon
             span.mobile.hidden
                 //- |&nbsp;
                 | badges
-        a.item(href="/shifts" class="{{isActivePath '/shifts'}}")
+        a.item(href="/m/shift" class="{{isActivePath '/m/shift'}}")
             //- +icon name='calendar' cl='ui avatar image'
             i.calendar.icon
             span.mobile.hidden
@@ -38,6 +43,8 @@ template(name='nav')
         //-     +icon name='campfire' cl='ui avatar image'
         //-     |tribes
         .right.menu
+            a.item(href="/m/location") 
+                i.marker.icon
             if currentUser
                 a.item(href="/m/user" class="{{isActivePath '/m/user'}}")
                     //- +icon name='groups' cl='ui avatar image'
@@ -46,14 +53,9 @@ template(name='nav')
                         //- |&nbsp;
                         | directory
         
-            a.item(href="/help")
+            a.item(href="/m/bug")
                 i.question.icon
             if currentUser
-                if is_admin
-                    a.item(href="/m/model" class="{{isActivePath regex='delta'}}" title='admin')
-                        //- +icon name='database' cl='ui mini image'
-                        i.database.icon
-                        //- |db
                 a.large.item(href="/user/#{currentUser.username}" class="{{isActivePath regex='profile_layout'}}")
                     //- i.large.user.large.icon
                     if currentUser.profile_image_id

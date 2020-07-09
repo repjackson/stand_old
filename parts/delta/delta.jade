@@ -8,15 +8,16 @@ template(name='delta')
                             +icon name=color_icon cl='pulsing'
                             |loading #{title}...
                     else
-                        //- unless key_value_is current_delta.model_filter 'model'
-                        //-     a.ui.icon.button.go_home
-                        //-         i.left.chevron.icon
+                        unless key_value_is current_delta.model_filter 'model'
+                            a.ui.icon.basic.compact.circular.button.go_home
+                                i.left.chevron.icon
+                                +icon name='1-circle' cl='ui inline image'
                         .ui.inline.header(title="#{description}, #{views} views")
                             +icon name=color_icon
                             | #{title}
                     unless is_loading
                         if currentUser
-                            .ui.icon.compact.button.add_model_doc(title="add #{slug}")
+                            .ui.icon.basic.button.add_model_doc(title="add #{slug}")
                                 i.plus.large.green.icon
                         //- +user_list_toggle key='bookmark_ids' add_icon='bookmark outline' remove_icon='bookmark' label="bookmark"
                         if is_admin
@@ -51,19 +52,20 @@ template(name='delta')
                         //- .ui.segment(class=loading_class)
                         //- .ui.inline.small.grey.header(title='change sort direction')
                         //-     |sort by
-                        .ui.compact.small.menu(title='sort by')
-                            .ui.simple.dropdown.item
-                                strong #{current_delta.sort_key}
-                                i.dropdown.icon
-                                .menu
-                                    each sortable_fields
-                                        .item.set_sort_key 
-                                            |#{title}
-                        .ui.compact.icon.button.set_sort_direction(title='sort direction')
-                            if sorting_up
-                                i.sort.amount.down.large.icon
-                            else
-                                i.sort.amount.up.large.icon
+                        if sortable_fields.count
+                            .ui.compact.small.menu(title='sort by')
+                                .ui.simple.dropdown.item
+                                    strong #{current_delta.sort_key}
+                                    i.dropdown.icon
+                                    .menu
+                                        each sortable_fields
+                                            .item.set_sort_key 
+                                                |#{title}
+                            .ui.compact.icon.button.set_sort_direction(title='sort direction')
+                                if sorting_up
+                                    i.sort.amount.down.large.icon
+                                else
+                                    i.sort.amount.up.large.icon
                         //- .ui.compact.button.set_sort_direction
                         //-     |#{current_delta.sort_direction}
                         |&nbsp;
@@ -105,7 +107,7 @@ template(name='delta')
                                 .menu
                                     //- +set_view_mode title='table' icon='table'
                                     +set_view_mode title='list' icon='list'
-                                    +set_view_mode title='cards' icon='cards'
+                                    +set_view_mode title='cards' icon='clone'
                                     //- +set_view_mode title='items' icon='list'
                                     //- +set_view_mode title='map' icon='map'
                                     //- +set_view_mode title='graph' icon='graph'
@@ -120,19 +122,20 @@ template(name='delta')
                                 each current_delta.result_ids
                                     +delta_result_card
                         else if delta_key_value_is 'view_mode' 'list'
-                            each current_delta.result_ids
-                                if is_loading
-                                    .ui.segment
-                                        .ui.fluid.placeholder
-                                            .line
-                                            .line
-                                            .line
-                                            .line
-                                            .line
-                                            .line
-                                            .line
-                                else 
-                                    +delta_list_result
+                            .ui.segments
+                                each current_delta.result_ids
+                                    if is_loading
+                                        .ui.segment
+                                            .ui.fluid.placeholder
+                                                .line
+                                                .line
+                                                .line
+                                                .line
+                                                .line
+                                                .line
+                                                .line
+                                    else 
+                                        +delta_list_result
                     //- +Template.dynamic template=view_mode_template
             //- .row 
             //-     .sixteen.wide.column
