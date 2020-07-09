@@ -1,6 +1,6 @@
 template(name='home')
     div
-        .ui.basic.button
+        .ui.circular.basic.button
             a.ui.header.set_one_score
                 +icon name='leaderboard'
                 |one score
@@ -14,7 +14,7 @@ template(name='home')
                                 .content
                                     .header #{username}:
                                         |{{fixed one_score}}
-        .ui.basic.button
+        .ui.circular.basic.button
             //- a.ui.header.toggle_shifts(href="/shifts")
             a.ui.header.set_shifts
                 +icon name='clock'
@@ -28,7 +28,7 @@ template(name='home')
                                     img.ui.avatar.image(src="{{c.url job.image_id height=200 width=200 gravity='face' crop='fill'}}")
                                 .content
                                     .header #{date} #{start_time}-#{end_time}:
-        .ui.basic.button
+        .ui.circular.basic.button
             a.ui.header.set_latest_celebrations
                 +icon name='birthday'
                 |latest celebrations
@@ -52,7 +52,7 @@ template(name='home')
                                         |#{description}
                                     each tags 
                                         .ui.tiny.basic.circular.label #{this}
-        .ui.basic.button
+        .ui.circular.basic.button
             .ui.header.set_most_given
                 +icon name='donate'
                 |most given
@@ -73,7 +73,7 @@ template(name='home')
             //- .ui.selection.link.list
             //-     each photos
             //-         .item #{post}
-        .ui.basic.button
+        .ui.circular.basic.button
             a.ui.header.set_most_received
                 +icon name='get-cash'
                 |most received
@@ -95,7 +95,7 @@ template(name='home')
             //- .ui.selection.link.list
             //-     each user_posts
             //-         .item #{post}
-        .ui.basic.button
+        .ui.circular.basic.button
             a.ui.header.set_offers
                 +icon name='hand-planting'
                 |offers
@@ -116,7 +116,7 @@ template(name='home')
             //- .ui.selection.link.list
             //-     each user_events
             //-         .item #{post}
-        .ui.grid
+        .ui.stackable.grid
             .four.column.row
                 .column
                     .ui.header
@@ -126,7 +126,7 @@ template(name='home')
                         .item 0 per diem
                     .ui.list
                         each explorers
-                            .item #{username}
+                            a.item(href="/user/#{username}") #{username}
                     .ui.big.input
                         input.submit_email(type='text' placeholder='input email')
                     if is_admin
@@ -140,7 +140,7 @@ template(name='home')
                         .item 0 per diem
                     .ui.list
                         each members
-                            .item #{username}
+                            a.item(href="/user/#{username}") #{username}
                         
                 .column
                     .ui.header
@@ -150,7 +150,7 @@ template(name='home')
                         .item 20 per diem            
                     .ui.list
                         each regenerators
-                            .item #{username}
+                            a.item(href="/user/#{username}") #{username}
                         
                 .column
                     .ui.header
@@ -160,7 +160,7 @@ template(name='home')
                         .item 50 per diem            
                     .ui.list
                         each stewards
-                            .item #{username}
+                            a.item(href="/user/#{username}") #{username}
         
             //- .row
             //-     .eight.wide.column

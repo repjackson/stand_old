@@ -15,9 +15,9 @@ template(name='profile_layout')
                         .ui.label ##{global_debit_count_rank}
                     .item #{credit_count} credits
                         .ui.label ##{global_credit_count_rank}
-                    .item #{total_debit_amount}pts total given
-                    .item #{total_credit_amount}pts total received
-                    .item #{calculated_user_balance} calculated user balance
+                    .item #{total_debit_amount}p total given
+                    .item #{total_credit_amount}p total received
+                    .item #{calculated_user_balance}p recorded balance
                 if is_admin
                     .ui.horizontal.list 
                         .item #{total_bandwith} total bandwith
@@ -25,7 +25,7 @@ template(name='profile_layout')
                         .item {{fixed dc_ratio_inverted}} dc_ratio_inverted
                         .item {{fixed credit_debit_ratio}} credit_debit_ratio
                         .item {{fixed cd_ratio_inverted}} cd_ratio_inverted
-                .ui.small.header {{fixed one_score}} one score
+                .ui.small.inline.header {{fixed one_score}} one score
                 if is_admin
                     a.ui.basic.button(href="/user/#{username}/edit")
                         +icon name='shield' cl='ui mini inline image'
@@ -53,13 +53,14 @@ template(name='profile_layout')
                 .ui.inline.header levels
                 each levels
                     .ui.basic.label #{this}
-                .ui.header #{points}pts
+                .ui.inline.header #{points}pts
                        
                 //- a.ui.tertiary.button.logout_other_clients(href="#")
                 //-     //- i.globe.icon
                 //-     |log out other clients
                 .ui.inline.header 
-                    +icon name='shield'
+                    //- +icon name='shield'
+                    i.shield.icon
                     |roles
                 each roles
                     .ui.label #{this}

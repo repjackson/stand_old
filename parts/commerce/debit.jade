@@ -8,16 +8,24 @@ template(name='debit_view')
                     //-     i.large.red.remove.icon
                 
                 .eight.wide.column
+                    .ui.header
+                        i.exchange.icon
+                        |#{amount}p
+                        | transaction
+                        | #{when}
                     .ui.stackable.two.column.grid
                         .column
-                            .ui.header sender
-                            a.ui.header(href="/user/#{_author.username}") 
+                            .ui.inline.header 
+                                i.tint.icon
+                                |gifter
+                            a.ui.inline.header(href="/user/#{_author.username}") 
                                 img.ui.avatar.image(src="{{c.url _author.profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
                                 |#{_author.username}
                         .column
-                            .ui.header
+                            .ui.inline.header
+                                i.seedling.icon
                                 |recipient
-                            a.ui.header(href="/user/#{target.username}")
+                            a.ui.inline.header(href="/user/#{target.username}")
                                 img.ui.avatar.image(src="{{c.url target.profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
                                 |#{target.username}
                             

@@ -1,13 +1,13 @@
 template(name='nav')
-    .ui.fluid.attached.borderless.inverted.large.menu.topnav
+    .ui.fluid.attached.borderless.inverted.menu.topnav
         a.icon.item.set_model(href="/m/model" class="{{isActivePath regex='delta'}}" title='apps')
             //- +icon name='database' cl='ui mini image'
             //- +icon name='menu' cl='ui mini image'
-            i.bars.icon
+            i.large.bars.icon
         
         a.item(href="/" class="{{isActivePath regex='home'}}")
             //- +icon name='home' cl='ui avatar image'
-            i.home.icon
+            i.large.home.icon
             //- +icon name='home' cl='ui avatar image'
             span.mobile.hidden
                 //- |&nbsp;
@@ -16,7 +16,7 @@ template(name='nav')
         a.item.set_shift(href="/m/shift" class="{{isActivePath regex='generate'}}")
             //- +icon name='work' cl='ui mini image'
             //- +icon name='sprout' cl='ui avatar image'
-            i.seedling.icon
+            i.large.seedling.icon
             span.mobile.hidden
                 //- |&nbsp;
                 | generate
@@ -24,7 +24,7 @@ template(name='nav')
             //- +icon name='rain' cl='ui avatar image'
             //- +icon name='shop' cl='ui avatar image'
             //- +icon name='plant-under-rain' cl='ui avatar image'
-            i.tint.icon
+            i.large.tint.icon
             span.mobile.hidden
                 //- |&nbsp;
                 | gift
