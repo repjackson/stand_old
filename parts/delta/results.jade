@@ -21,7 +21,7 @@ template(name='delta_result_card')
                             //-     i.right.chevron.green.icon
                                 //- +icon name='chevron-right' clases='ui avatar image'
                             if is_admin
-                                a.ui.button.route_model(href="/model/edit/#{_id}")
+                                a.ui.compact.basic.button.route_model(href="/model/edit/#{_id}")
                                     i.cog.icon
                                     |edit model
                                 span(title='views')
@@ -77,14 +77,14 @@ template(name='delta_list_result')
                                 //- a.ui.button.route_model(href="/m/#{slug}")
                                 //- |view model
                                 //- i.right.chevron.green.icon
-                                a.ui.button.route_model(href="/model/edit/#{_id}")
+                                a.ui.compact.basic.button.route_model(href="/model/edit/#{_id}")
                                     i.cog.icon
                                     |edit model
                                 span(title='views')
                                     i.grey.eye.icon
                                     | #{views}
                         else
-                            .ui.large.button.result
+                            .ui.compact.basic.button.result
                                 |view
                                 i.right.chevron.icon
                             if can_edit

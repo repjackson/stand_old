@@ -2,7 +2,7 @@ template(name='delta')
     .ui.stackable.grid
         with current_model
             .row
-                .four.wide.column.scrolling
+                .four.wide.column
                     if is_loading
                         .ui.inline.header.pulsing
                             //- +icon name=color_icon cl='pulsing'
@@ -11,7 +11,7 @@ template(name='delta')
                     else
                         unless key_value_is current_delta.model_filter 'model'
                             a.ui.icon.basic.compact.tertiary.button.go_home
-                                +icon name='1-circle' cl='ui inline image'
+                                +icon name='home' cl='ui inline image'
                         .ui.inline.header(title="#{description}, #{views} views")
                             +icon name=color_icon
                             | #{title}
@@ -191,7 +191,7 @@ template(name='set_limit')
     .item.set_limit #{amount}
 
 template(name='set_view_mode')
-    .ui.button.set_view_mode 
+    .ui.tertiary.button.set_view_mode 
         if icon 
             i.icon(class=icon)
         |#{title}

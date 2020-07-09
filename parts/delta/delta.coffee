@@ -133,7 +133,8 @@ if Meteor.isClient
 
     Template.delta.helpers
         is_loading: -> Session.get('loading')
-
+        subs_ready: ->
+            Template.instance().subscriptionsReady()
         table_header_column: ->
             console.log @
 

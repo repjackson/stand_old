@@ -1,16 +1,16 @@
 template(name='nav')
     .ui.fluid.attached.borderless.inverted.large.menu.topnav
-        a.item(href="/m/model" class="{{isActivePath regex='delta'}}" title='apps')
+        a.item.set_model(href="/m/model" class="{{isActivePath regex='delta'}}" title='apps')
             //- +icon name='database' cl='ui mini image'
             i.th.icon
         
         a.item(href="/" class="{{isActivePath regex='home'}}")
             //- +icon name='home' cl='ui avatar image'
             //- i.home.icon
-            +icon name='1-circle' cl='ui avatar image'
+            +icon name='home' cl='ui avatar image'
             span.mobile.hidden
                 //- |&nbsp;
-                |One Riverside
+                |ONE|Riverside
         a.item(href="/generate" class="{{isActivePath regex='generate'}}")
             //- +icon name='work' cl='ui mini image'
             +icon name='sprout' cl='ui avatar image'
@@ -44,18 +44,18 @@ template(name='nav')
         //-     +icon name='campfire' cl='ui avatar image'
         //-     |tribes
         .right.menu
-            a.item(href="/m/location") 
-                i.marker.icon
+            //- a.item(href="/m/location") 
+            //-     i.marker.icon
             if currentUser
-                a.item(href="/m/user" class="{{isActivePath '/m/user'}}")
+                a.item.set_user(href="/m/user" class="{{isActivePath '/m/user'}}")
                     //- +icon name='groups' cl='ui avatar image'
                     i.users.large.icon
                     span.mobile.hidden
                         //- |&nbsp;
                         | directory
         
-            a.item(href="/m/bug")
-                i.question.icon
+            //- a.item(href="/m/bug")
+            //-     i.question.icon
             if currentUser
                 a.large.item(href="/user/#{currentUser.username}" class="{{isActivePath regex='profile_layout'}}")
                     //- i.large.user.large.icon
