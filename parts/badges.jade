@@ -1,31 +1,3 @@
-template(name='badges')
-    .ui.padded.stackable.grid
-        .four.wide.column
-            +badge_cloud
-        .twelve.wide.column
-            .scrolling
-                .ui.stackable.four.cards
-                    each badges
-                        +badge_item
-
-
-
-
-template(name='badge_cloud')
-    i.tags.icon
-    if selected_user_tags
-        #clear_tags.ui.primary.icon.button
-            i.remove.icon
-        each selected_user_tags
-            .unselect_tag.ui.primary.button
-                strong #{this}
-    each all_tags
-        .ui.compact.button.select_tag(class=cloud_tag_class) 
-            strong #{this.name}
-
-
-        
-
 template(name='badge_item')
     a.card(href="/badge/#{_id}/view")
         .image

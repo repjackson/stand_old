@@ -38,4 +38,4 @@ if Meteor.isClient
             $(e.currentTarget).closest('.grid').transition('fade left', 250)
             Meteor.setTimeout ->
                 Router.go "/m/#{current_model}"
-            , 250
+            , 100

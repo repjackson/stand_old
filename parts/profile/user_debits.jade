@@ -7,13 +7,13 @@ template(name='user_debits')
             .item
                 if target.profile_image_id
                     img.ui.avatar.image(src="{{c.url target.profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
-                strong #{amount}pt 
+                strong #{amount}pt
+                |to
+                a(href="/user/#{target.username}")
+                    |#{target.username}
                 .content
                     a(href="/debit/#{_id}/view")
-                        |#{when} to 
-                    a(href="/user/#{target.username}")
-                        |#{target.username}
-                .content
+                        |#{when} 
                     .description
                         |#{description}
                         each tags

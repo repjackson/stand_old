@@ -12,10 +12,8 @@ if Meteor.isClient
             current_model = Router.current().params.model_slug
             if current_model
                 if Template["#{current_model}_card"]
-                    # console.log 'true'
                     return true
                 else
-                    # console.log 'false'
                     return false
 
         model_template: ->
@@ -48,7 +46,7 @@ if Meteor.isClient
         'click .result': (e,t)->
             # console.log @
             model_slug =  Router.current().params.model_slug
-            $(e.currentTarget).closest('.result').transition('fade')
+            # $(e.currentTarget).closest('.result').transition('fade')
             if Meteor.user()
                 Docs.update @_id,
                     $inc: views: 1

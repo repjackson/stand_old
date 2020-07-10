@@ -61,7 +61,7 @@ template(name='icon_edit')
     div
     if icon
         //- i.grey.icon(class=icon)
-        +icon name=icon cl='ui middle aligned image'
+        +icon name=icon cl='ui avatar image'
     .ui.inline.header
         if title
             |#{title}
@@ -147,7 +147,7 @@ template(name='link_view')
     if field_value
         div
         if icon
-            +icon name=icon cl='ui middle aligned image'
+            +icon name=icon cl='ui avatar image'
         //- .ui.inline.header 
         //-     |#{title} #{label}
         a.ui.header(href=field_value target='_window') #{label}
@@ -178,7 +178,7 @@ template(name='image_view')
 template(name='image_edit')
     .ui.form
         if icon
-            +icon name=icon cl='ui middle aligned image'
+            +icon name=icon cl='ui avatar image'
         .ui.inline.header
             if title
                 |#{title}
@@ -231,8 +231,9 @@ template(name='textarea_view')
             //- else if key
             //-     |#{key}
             //- else
-            //-     |#{this}            
-        .f10 {{nl2br field_value}}
+            //-     |#{this}     
+        //- .spacer       
+        .f11 {{nl2br field_value}}
 
 template(name='textarea_edit')
     .ui.form
@@ -240,7 +241,7 @@ template(name='textarea_edit')
             label 
                 //- if icon
                 //-     i.icon(class=field_value)
-                    //- +i name=icon cl='ui middle aligned image'
+                    //- +i name=icon cl='ui avatar image'
                 if title
                     |#{title}
                 else if label
@@ -257,7 +258,7 @@ template(name='text_edit')
     div
     if icon
         //- i.grey.icon(class=icon)
-        +icon name=icon cl='ui middle aligned image'
+        +icon name=icon cl='ui avatar image'
     .ui.inline.small.header
         if title
             |#{title}
@@ -273,7 +274,7 @@ template(name='text_edit')
 template(name='slug_edit')
     if icon
         //- i.grey.icon(class=icon)
-        +icon name=icon cl='ui middle aligned image'
+        +icon name=icon cl='ui avatar image'
     .ui.inline.header.pointer.slugify_title
         if title
             |#{title}
@@ -339,7 +340,7 @@ template(name='parent_edit')
             |parent edit
             //- if icon
             //-     i.grey.icon(class=icon)
-                //- +i name=icon cl='ui middle aligned image'
+                //- +i name=icon cl='ui avatar image'
             if title
                 |#{title}
             else if label
@@ -393,7 +394,7 @@ template(name='phone_view')
         unless header
             div
             //- if icon
-            //-     +i name=icon cl='ui middle aligned image'          
+            //-     +i name=icon cl='ui avatar image'          
             .ui.inline.grey.header
                 if title
                     |#{title}
@@ -412,7 +413,7 @@ template(name='number_edit')
         //- i.grey.icon(class=icon)
     .ui.inline.small.header(title=tip)
         if icon
-            +i name=icon cl='ui middle aligned image'
+            +i name=icon cl='ui avatar image'
         if title
             |#{title}
         else if label
@@ -505,7 +506,7 @@ template(name='date_view')
     if field_value
         div
         if icon
-            +icon name=icon cl='ui middle aligned image'
+            +icon name=icon cl='ui avatar image'
         .ui.grey.inline.header
             if title
                 |#{title}
@@ -585,7 +586,7 @@ template(name='array_edit')
     div
     if icon
         //- i.grey.icon(class=icon)
-        +icon name=icon cl='ui middle aligned image'
+        +icon name=icon cl='ui avatar image'
     .ui.inline.header
         if title
             |#{title}
@@ -607,7 +608,7 @@ template(name='array_view')
         div
         if icon
             i.grey.icon(class=icon)
-            //- +icon name=icon cl='ui middle aligned image' title=title
+            //- +icon name=icon cl='ui avatar image' title=title
         if label
             .ui.inline.small.grey.header(title=title)
                 |#{label}
@@ -710,7 +711,7 @@ template(name='boolean_edit')
             i.circle.outline.icon
         //- .ui.compact.button.toggle_boolean(class=boolean_toggle_class)
         if icon
-            +icon name=icon cl='ui middle aligned image'
+            +icon name=icon cl='ui avatar image'
         .inline.f12
             //- if field_value
             //-     i.checkmark.icon
@@ -764,7 +765,7 @@ template(name='single_doc_view')
         .ui.label
             if icon
                 //- i.grey.icon(class=icon)
-                +icon name=icon cl='ui middle aligned image'
+                +icon name=icon cl='ui avatar image'
             |#{field_value}
 
 

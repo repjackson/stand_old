@@ -32,7 +32,11 @@ if Meteor.isClient
             Session.equals('expand_field', @_id)
 
     Template.field_edit.events
-        'click .field_edit': ->
+        'click .field_edit': (e,t)->
+            $('.segment').removeClass('raised')
+
+            $(e.currentTarget).closest('.segment').toggleClass('raised')
+
             if Session.equals('expand_field', @_id)
                 Session.set('expand_field', null)
             else

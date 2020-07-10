@@ -125,7 +125,7 @@ template(name='delta')
                         //- each current_delta.result_ids
                         //-     .ui.header #{this}
                         if delta_key_value_is 'view_mode' 'cards'
-                            .ui.cards
+                            .ui.three.stackable.cards
                                 each current_delta.result_ids
                                     +delta_result_card
                         else if delta_key_value_is 'view_mode' 'list'
@@ -138,9 +138,9 @@ template(name='delta')
                                             .line
                                             .line
                                             .line
-                                            .line
-                                            .line
-                                            .line
+                                            //- .line
+                                            //- .line
+                                            //- .line
                                 else 
                                     +delta_list_result
                                     //- .ui.divider
@@ -157,8 +157,10 @@ template(name='delta')
                     .ui.big.button.create_model create model
                 //- else 
                     //- .ui.header model not found
-            else
-                i.large.loading.grey.yin.yang.icon
+            //- else
+            .ui.hidden.divider
+            .ui.header
+                i.big.loading.grey.yin.yang.icon
             
             
 template(name='toggle_visible_field')            

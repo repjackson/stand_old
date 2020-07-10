@@ -58,7 +58,7 @@ template(name='delta_list_result')
             +Template.dynamic template=model_template
             //- .ui.header temp found
         else
-            .ui.fluid.basic.segment
+            .ui.fluid.basic.segment.result_segment
                 .content
                     if key_value_is 'model' 'model'
                         a.ui.inline.header.route_model(href="/m/#{slug}")

@@ -53,7 +53,7 @@ if Meteor.isClient
         'click .result': (e,t)->
             # console.log @
             model_slug =  Router.current().params.model_slug
-            $(e.currentTarget).closest('.result').transition('fade')
+            # $(e.currentTarget).closest('.result').transition('fade')
             if Meteor.user()
                 Docs.update @_id,
                     $inc: views: 1
