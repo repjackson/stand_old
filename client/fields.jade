@@ -54,8 +54,8 @@ template(name='color_icon_edit')
         //- i.large.icon(class=field_value)
         //- img.ui.inline.image(src="https://img.icons8.com/fluent/48/000000/#{field_value}.png")
         //- img.ui.inline.image(src="https://img.icons8.com/dusk/48/000000/#{field_value}.png")
-        //- img.ui.inline.image(src="https://img.icons8.com/color/48/000000/#{field_value}.png")
-        img.ui.inline.image(src="https://img.icons8.com/office/48/000000/#{field_value}.png")
+        img.ui.inline.image(src="https://img.icons8.com/color/48/000000/#{field_value}.png")
+        //- img.ui.inline.image(src="https://img.icons8.com/office/48/000000/#{field_value}.png")
 
 template(name='icon_edit')
     div
@@ -319,7 +319,7 @@ template(name='text_view')
         //-     div
         //-     if icon
         //-         +icon name=icon                
-        .ui.inline.grey.header
+        .ui.inline.grey.small.header
             if title
                 |#{title}
             else if label

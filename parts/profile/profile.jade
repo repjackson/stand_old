@@ -3,7 +3,7 @@ template(name='profile_layout')
     +nav
     with user
         .ui.stackable.padded.grid
-            .four.wide.center.aligned.column
+            .four.wide.column
                 img.ui.centered.small.profile_image.circular.image(src="{{c.url profile_image_id height=200 width=200 gravity='face' crop='fill'}}")
                 a.ui.large.center.aligned.header.refresh_user_stats(href="/user/#{username}") #{username}
                 //- .ui.tertiary.icon.button.refresh_user_stats(title='refresh stats')
@@ -15,9 +15,15 @@ template(name='profile_layout')
                         .ui.label ##{global_debit_count_rank}
                     .item #{credit_count} credits
                         .ui.label ##{global_credit_count_rank}
-                    .item #{total_debit_amount}p total given
-                    .item #{total_credit_amount}p total received
-                    .item #{calculated_user_balance}p recorded balance
+                .ui.large.basic.label(title='points given') 
+                    i.minus.icon
+                    |#{total_debit_amount}
+                .ui.large.basic.label(title='points received')
+                    i.plus.small.icon
+                    |#{total_credit_amount}
+                .item #{total_debit_amount}p total given
+                .item #{total_credit_amount}p total received
+                .item #{calculated_user_balance}p recorded balance
                 if is_admin
                     .ui.horizontal.list 
                         .item #{total_bandwith} total bandwith

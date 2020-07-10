@@ -15,16 +15,16 @@ template(name='model_edit_layout')
                     #delete_model.ui.icon.button
                         i.trash.red.icon
                 .twelve.wide.column
-                    a.ui.compact.large.tertiary.basic.button(href="/model/edit/#{current_doc._id}/" class="{{isActivePath regex='model_edit_dashboard'}}")
+                    a.ui.compact.large.circule.basic.button(href="/model/edit/#{current_doc._id}/" class="{{isActivePath regex='model_edit_dashboard'}}")
                         +icon name='dashboard' cl='ui avatar image'
                         |dashboard
-                    a.ui.compact.large.tertiary.basic.button(href="/model/edit/#{current_doc._id}/fields" class="{{isActivePath regex='model_edit_fields'}}")
+                    a.ui.compact.large.circule.basic.button(href="/model/edit/#{current_doc._id}/fields" class="{{isActivePath regex='model_edit_fields'}}")
                         +icon name='list' cl='ui avatar image'
                         |fields
-                    a.ui.compact.large.tertiary.basic.button(href="/model/edit/#{current_doc._id}/modules" class="{{isActivePath regex='model_edit_modules'}}")
+                    a.ui.compact.large.circule.basic.button(href="/model/edit/#{current_doc._id}/modules" class="{{isActivePath regex='model_edit_modules'}}")
                         +icon name='module' cl='ui avatar image'
                         |modules
-                    a.ui.compact.large.tertiary.basic.button(href="/model/edit/#{current_doc._id}/permissions" class="{{isActivePath regex='model_edit_permissions'}}")
+                    a.ui.compact.large.circule.basic.button(href="/model/edit/#{current_doc._id}/permissions" class="{{isActivePath regex='model_edit_permissions'}}")
                         +icon name='shield' cl='ui avatar image'
                         |permissions
                     +yield
@@ -101,8 +101,8 @@ template(name='field_edit')
                 i.large.caret.right.grey.icon
         if viewing_content
             .content
-                +text_edit key='title' label='title (human)' direct=true
-                +text_edit key='key' label='key (machine)' direct=true
+                +text_edit key='title' label='label' direct=true
+                +slug_edit key='key' label='key' direct=true
                 +number_edit key='rank' label='rank' direct=true      
                 +color_icon_edit key='icon' label='color icon' direct=true       
                 //- +textarea_edit key='description' label='description' direct=true
